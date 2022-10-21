@@ -1,10 +1,50 @@
 /* Last modified by Joseph Parsons on October 21, 2022 */
+
+/* Color scheme incorporation */
+.sugar_hearts_you {
+    color: #fe4356;
+}
+
+.party_confetti {
+    color: #fc9d9a;
+}
+
+.sugar_champagne {
+    color: #f9cdad;
+}
+
+.bursts_of_euphoria {
+    color: #c8c8a9;
+}
+
+.happy_balloons {
+    color: #83af9b;
+}
+
+.sugar_hearts_you_background {
+    color: #fe4356;
+}
+
+.party_confetti_background {
+    color: #fc9d9a;
+}
+
+.sugar_champagne_background {
+    color: #f9cdad;
+}
+
+.bursts_of_euphoria_background {
+    color: #c8c8a9;
+}
+
+.happy_balloons_background {
+    color: #83af9b;
+}
+
+/* Display for the visible and hidden components. */
 .hidden {
     display: none;
 }
 .visible {
     display: block;
-}
-body {
-    background-color: yellow;
 }
