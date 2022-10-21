@@ -18,7 +18,7 @@ function main() {
         sections.push(documentSection);
         console.log(documentSection);
     }
-    makeSectionVisible(0);
+    makeSectionVisible(3);
 }
 function makeSectionVisible(index) {
     //Make the section with the given index visible.
