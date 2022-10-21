@@ -14,6 +14,8 @@ function main() {
     for (let i = 0; i < sectionCount; i++) {
         const navbarElement = document.getElementById(navbarLinkIDs[i]);
         const documentSection = document.getElementById(sectionIDs[i]);
+        navbarLinks.push(navbarElement);
+        sections.push(documentSection);
         console.log(documentSection);
     }
     makeSectionVisible(0);

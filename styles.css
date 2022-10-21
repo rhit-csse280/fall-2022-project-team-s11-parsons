@@ -5,3 +5,6 @@
 .visible {
     display: block;
 }
+body {
+    background-color: yellow;
+}
