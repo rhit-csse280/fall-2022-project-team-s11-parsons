@@ -16,7 +16,11 @@ function main() {
         const documentSection = document.getElementById(sectionIDs[i]);
         navbarLinks.push(navbarElement);
         sections.push(documentSection);
-        console.log(documentSection);
+        navbarElement.addEventListener("click", () => {
+            console.log(`Going to page ${i}`)
+            makeSectionVisible(i);
+        });
+        console.log(navbarElement);
     }
     makeSectionVisible(3);
 }
