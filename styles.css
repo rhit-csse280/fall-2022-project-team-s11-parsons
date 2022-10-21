@@ -41,6 +41,13 @@
     background-color: #83af9b;
 }
 
+.btn-primary {
+    background-color: #83af9b;
+}
+.btn-secondary {
+    background-color: #fe4356;
+}
+
 /* Display for the visible and hidden components. */
 .hidden {
     display: none;
