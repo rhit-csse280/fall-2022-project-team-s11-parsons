@@ -41,6 +41,7 @@
     background-color: #83af9b;
 }
 
+/* Default Button Colors */
 .btn-primary {
     background-color: #83af9b;
 }
@@ -55,3 +56,5 @@
 .visible {
     display: block;
 }
+
+/* Used for the AM/PM selector on the Meeting page */

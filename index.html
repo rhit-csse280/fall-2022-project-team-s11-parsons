@@ -8,25 +8,31 @@
     <title>Bootstrap demo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="sugar_champagne_background">
     <h1>Meal Meetings</h1>
-    <nav class="navbar navbar-expand-lg bg-light">
+    <nav class="navbar navbar-expand-lg sugar_champagne_background">
         <div class="container-fluid">
             <ul class="nav nav-pills">
                 <li class="nav-item">
-                    <a class="nav-link" href="#" id="profileTab" onclick="() => makeSectionVisible(0)">Profile</a>
+                    <a class="nav-link" href="#" id="profileTab" onclick="() => makeSectionVisible(0)">
+                        <span class="material-icons">account_circle</span><br>Profile</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" id="meetingTab" onclick="() => makeSectionVisible(1)">Meeting</a>
+                    <a class="nav-link" href="#" id="meetingTab" onclick="() => makeSectionVisible(1)">
+                        <span class="material-icons">restaurant</span><br>Meeting</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" id="promptTab" onclick="() => makeSectionVisible(2)">Prompt</a>
+                    <a class="nav-link" href="#" id="promptTab" onclick="() => makeSectionVisible(2)">
+                        <span class="material-icons">lightbulb</span><br>Prompt</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="#" id="infoTab" onclick="() => makeSectionVisible(3)">Info</a>
+                    <a class="nav-link active" href="#" id="infoTab" onclick="() => makeSectionVisible(3)">
+                        <span class="material-icons">info</span><br>Info</a>
                 </li>
             </ul>
         </div>
