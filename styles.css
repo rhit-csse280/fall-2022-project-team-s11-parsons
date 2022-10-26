@@ -57,4 +57,9 @@
     display: block;
 }
 
+
+body {
+    background-color: #f9cdad;
+}
+
 /* Used for the AM/PM selector on the Meeting page */
