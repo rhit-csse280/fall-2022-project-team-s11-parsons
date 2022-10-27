@@ -1,11 +1,9 @@
-<p [style.color]="getColor('Hearts of Euphoria')">Where and when would you like to eat?</p>
+<p [style.color]="getColor('Sugar Hearts You')">Where and when would you like to eat?</p>
 <p>Start @</p>
 <input class="form-control" [style.backgroundColor]="getColor('Bursts of Euphoria')" type="text" placeholder="HH:MM" aria-label="default input example">
-<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-    <input type="radio" class="btn-check" name="btnradio" id="amOption" autocomplete="off" checked>
-    <label class="btn btn-outline-primary" for="amOption">AM</label>
-    <input type="radio" class="btn-check" name="btnradio" id="pmOption" autocomplete="off">
-    <label class="btn btn-outline-primary" for="pmOption">PM</label>
-</div>
+<span id="ampmSpan">
+    <button type="button" class="btn btn-primary" [style.backgroundColor]="getColor('Bursts of Euphoria')" id="amButton">AM</button>
+    <button type="button" class="btn btn-primary" [style.backgroundColor]="getColor('Party Confetti')" id="pmButton">PM</button>
+</span>
 <p>Location</p>
 <input class="form-control" [style.backgroundColor]="getColor('Bursts of Euphoria')" type="text" placeholder="Location" aria-label="default input example">

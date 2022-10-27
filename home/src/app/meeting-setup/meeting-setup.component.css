@@ -1,0 +1,13 @@
+#amButton, #pmButton {
+    border: 0px;
+    border-radius: 0px;
+    padding: 0px;
+}
+#amButton {
+    font-size: 2em;
+}
+#ampmSpan {
+    display: inline-block;
+    background-color: #FC9D9A;
+    padding: 5px;
+}
