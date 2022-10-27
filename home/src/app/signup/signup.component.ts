@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-    selector: 'app-setup',
-    templateUrl: './setup.component.html',
-    styleUrls: ['./setup.component.css']
+    selector: 'app-signup',
+    templateUrl: './signup.component.html',
+    styleUrls: ['./signup.component.css']
 })
-export class SetupComponent implements OnInit {
+export class SignupComponent implements OnInit {
 
     constructor() { }
 
@@ -15,5 +15,4 @@ export class SetupComponent implements OnInit {
     getColor(colorName: string): string {
         return sessionStorage.getItem(colorName) || "black";
     }
-
 }

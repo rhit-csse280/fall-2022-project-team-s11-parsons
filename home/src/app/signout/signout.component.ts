@@ -1,15 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-signout',
-  templateUrl: './signout.component.html',
-  styleUrls: ['./signout.component.css']
+    selector: 'app-signout',
+    templateUrl: './signout.component.html',
+    styleUrls: ['./signout.component.css']
 })
 export class SignoutComponent implements OnInit {
 
-  constructor() { }
+    constructor() { }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+    }
+
+    getColor(colorName: string): string {
+        return sessionStorage.getItem(colorName) || "black";
+    }
 
 }
