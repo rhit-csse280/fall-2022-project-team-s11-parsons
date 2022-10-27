@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-prompt',
-  templateUrl: './prompt.component.html',
-  styleUrls: ['./prompt.component.css']
+    selector: 'app-prompt',
+    templateUrl: './prompt.component.html',
+    styleUrls: ['./prompt.component.css']
 })
 export class PromptComponent implements OnInit {
+    @Input() colorlist : readonly string[] = [];
+    constructor() { }
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+    }
 
 }
