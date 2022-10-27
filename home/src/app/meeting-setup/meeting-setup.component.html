@@ -38,6 +38,8 @@
     </div>
 </div>
 <div *ngIf="state === 'CONFIRMED'">
-    <p [style.color]="getColor('Sugar Hearts You')">You are meeting with abcd at 12:00 PM at Chauncey's.</p>
-    <button type="button" class="btn btn-secondary centeredBlock" [style.backgroundColor]="getColor('Sugar Hearts You')">Cancel</button>
+    <p [style.color]="getColor('Sugar Hearts You')" style="text-align: center; ">You are meeting with abcd at 12:00 PM at Chauncey's.</p>
+    <div id="cancelAfterConfirmation">
+        <button type="button" class="btn btn-secondary centeredBlock" [style.backgroundColor]="getColor('Sugar Hearts You')">Cancel</button>
+    </div>
 </div>
