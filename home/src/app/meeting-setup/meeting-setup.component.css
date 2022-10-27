@@ -46,7 +46,7 @@
     align-items: center;
 }
 
-#waitingButtons {
+#waitingButtons, #invitationReceivedButtons {
     display: flex;
     flex-direction: row;
     width: 100vw;
