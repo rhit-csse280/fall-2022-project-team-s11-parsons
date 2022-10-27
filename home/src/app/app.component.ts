@@ -7,6 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
     title : string = 'Meal Meetings';
+    username : string = '';
+    constructor() {
+
+    }
     getColor (colorName : string) : string {
         return sessionStorage.getItem(colorName) || "black";
     }
