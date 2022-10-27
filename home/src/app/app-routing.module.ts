@@ -11,10 +11,10 @@ import { SignoutComponent } from './signout/signout.component';
 import { SignupComponent } from './signup/signup.component';
 
 const routes: Routes = [
-    { path: 'profile', component: ProfileComponent },
-    { path: 'meeting', component: MeetingSetupComponent },
-    { path: 'prompt', component: PromptComponent },
-    { path: 'info', component: InfoComponent },
+    { path: 'profile/:id', component: ProfileComponent },
+    { path: 'meeting/:id', component: MeetingSetupComponent },
+    { path: 'prompt/:id', component: PromptComponent },
+    { path: 'info/:id', component: InfoComponent },
     { path: 'signin', component: SigninComponent },
     { path: 'signout', component: SignoutComponent },
     { path: 'setup', component: SetupComponent },
