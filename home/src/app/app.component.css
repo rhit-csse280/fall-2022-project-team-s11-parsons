@@ -36,8 +36,8 @@
     left: 5vw;
     width: 90vw;
     height: 90vh;
-    border-width: 5px;
+    border-width: 0px;
     border-color: black;
+    border-style: solid;
     z-index: 10;
-    background-color: aqua;
 }

@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
     title : string = 'Meal Meetings';
-    username : string = 'a';
+    username : string = '';
     constructor() {
 
     }
