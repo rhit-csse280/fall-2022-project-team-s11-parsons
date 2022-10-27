@@ -37,3 +37,19 @@
     justify-content: space-around;
     align-items: center;
 }
+
+#waitingContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#waitingButtons {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    justify-content: space-around;
+    align-items: center;
+}
