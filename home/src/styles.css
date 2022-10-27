@@ -1,7 +1,9 @@
+/* By default, all text is black */
 * {
     color: black;
 }
 
+/* Center block and text */
 .centeredBlock {
     margin: 0 auto;
 }
@@ -10,6 +12,7 @@
     text-align: center;
 }
 
+
 body {
     background-color: #F9CDAD;
     font-family: 'Happy Monkey', sans-serif;
@@ -17,4 +20,8 @@ body {
 
 button.btn {
     color: black;
+}
+
+button {
+    margin: 5px; /* Looks like a comfortable margin. */
 }

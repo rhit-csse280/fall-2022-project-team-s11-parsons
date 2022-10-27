@@ -28,3 +28,16 @@
 #backgroundDiv.notsignedin {
     background-color: rgba(249, 205, 173, 0.5);
 }
+
+/* Captures all space that should be visible on the screen. */
+#availableSpace {
+    position: fixed;
+    top: 5vh;
+    left: 5vw;
+    width: 90vw;
+    height: 90vh;
+    border-width: 5px;
+    border-color: black;
+    z-index: 10;
+    background-color: aqua;
+}
