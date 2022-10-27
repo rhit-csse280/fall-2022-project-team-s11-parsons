@@ -8,6 +8,10 @@ import { MeetingSetupComponent } from './meeting-setup/meeting-setup.component';
 import { PromptComponent } from './prompt/prompt.component';
 import { InfoComponent } from './info/info.component';
 import { ProfileComponent } from './profile/profile.component';
+import { HomepageComponent } from './homepage/homepage.component';
+import { SigninComponent } from './signin/signin.component';
+import { SignoutComponent } from './signout/signout.component';
+import { SetupComponent } from './setup/setup.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +20,11 @@ import { ProfileComponent } from './profile/profile.component';
     MeetingSetupComponent,
     PromptComponent,
     InfoComponent,
-    ProfileComponent
+    ProfileComponent,
+    HomepageComponent,
+    SigninComponent,
+    SignoutComponent,
+    SetupComponent
   ],
   imports: [
     BrowserModule,
