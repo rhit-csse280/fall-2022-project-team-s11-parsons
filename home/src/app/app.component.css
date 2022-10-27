@@ -1,6 +1,8 @@
 /* Create items that are manually set to span the page. */
 /* Use z-indexes and transparency as desired. */
 
+/* This image needs to be behind the background div. */
+/* Also note that this stretches, not crops, the image. */
 #backgroundImage {
     position: fixed;
     width: 100vw;
@@ -16,6 +18,13 @@
     height: 100vh;
     top: 0;
     left: 0;
-    background-color: rgba(255, 255, 255, 0.5);
     z-index: -10;
+}
+
+#backgroundDiv.signedin {
+    background-color: rgba(249, 205, 173, 0.9);
+}
+
+#backgroundDiv.notsignedin {
+    background-color: rgba(249, 205, 173, 0.5);
 }
