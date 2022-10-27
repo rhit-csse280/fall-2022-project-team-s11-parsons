@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
     title : string = 'Meal Meetings';
-    colorList : readonly string[] = 
-        ["#FE4365", "#FC9D9A", "#F9CDAD", "#C8C8A9", "#83AF9B"];
+    getColor(colorName : string) : string {
+        return sessionStorage.getItem(colorName) || "black";
+    }
 }
