@@ -1,6 +1,6 @@
 <div *ngIf="state === 'SETUP'">
-    <p [style.color]="getColor('Sugar Hearts You')">Where and when would you like to eat?</p>
-    <div id="start_time_container">
+    <p [style.color]="getColor('Sugar Hearts You')" id="setup_description">Where and when would you like to eat?</p>
+    <div id="startTimeContainer">
         <a>Start @</a>
         <input class="form-control" [style.backgroundColor]="getColor('Bursts of Euphoria')" type="text" placeholder="HH:MM" aria-label="default input example">
         <span id="ampmSpan">
@@ -9,8 +9,10 @@
         </span>
     </div>
     <p>Location</p>
-    <input class="form-control" [style.backgroundColor]="getColor('Bursts of Euphoria')" type="text" placeholder="Location" aria-label="default input example">
-    <button type="button" class="btn btn-primary centeredBlock" [style.backgroundColor]="getColor('Happy Balloons')">Request</button>
+    <div id="bottomOfMeetingSetup">
+        <input class="form-control" [style.backgroundColor]="getColor('Bursts of Euphoria')" type="text" placeholder="Location" aria-label="default input example">
+        <button type="button" class="btn btn-primary centeredBlock" [style.backgroundColor]="getColor('Happy Balloons')">Request</button>
+    </div>
 </div>
 <div *ngIf="state === 'WAITING'">
     <p [style.color]="getColor('Sugar Hearts You')">You have a plan in place.</p>

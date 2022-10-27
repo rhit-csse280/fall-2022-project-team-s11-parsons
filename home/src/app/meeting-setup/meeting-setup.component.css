@@ -12,13 +12,28 @@
     padding: 5px;
 }
 
-#start_time_container {
+#startTimeContainer {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
 }
 
-#start_time_container .form-control {
+#startTimeContainer .form-control {
     width: 25%;
+}
+
+#setup_description {
+    text-align: center;
+}
+
+#bottomOfMeetingSetup .form-control {
+    width: 75%;
+}
+
+#bottomOfMeetingSetup {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
 }
