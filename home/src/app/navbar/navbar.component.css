@@ -2,8 +2,18 @@ a {
     color: black;
 }
 a.selected {
-    color: black;
+    color: black; /* needed for specificity probably */
     font-weight: bold;
     background-color: #83AF9B;
     border-radius: 0px;
+}
+
+/* Replaces the bootstrap .container-fluid div */
+#navbar {
+    width: 100vw;
+    background-color: cyan;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
 }

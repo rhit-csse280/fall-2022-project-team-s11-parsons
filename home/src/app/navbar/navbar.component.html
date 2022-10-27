@@ -1,11 +1,11 @@
 <nav class="navbar navbar-expand-lg" [style.backgroundColor]="getColor('Sugar Champagne')">
-    <div class="container-fluid">
-        <ul class="nav nav-pills">
+    <ul class="nav nav-pills">
+        <div id="navbar">
             <li class="nav-item" *ngFor="let tab of navigationTabs">
                 <a (click)="setSelected(tab.tabName)" class="nav-link" routerLink="/{{tab.tabName | lowercase}}" [class.selected]="lastSelectedTab==tab.tabName">
                     <span class="material-icons">{{tab.materialIcon}}</span><br>{{tab.tabName}}
                 </a>
             </li>
-        </ul>
-    </div>
+        </div>
+    </ul>
 </nav>
