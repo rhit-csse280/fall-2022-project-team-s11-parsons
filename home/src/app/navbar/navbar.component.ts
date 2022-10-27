@@ -6,8 +6,6 @@ import { Component, Input, OnInit } from '@angular/core';
     styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-    @Input() colorlist : readonly string[] = [];
-
     navigationTabs = [
         { materialIcon: "account_circle", tabName: "Profile" },
         { materialIcon: "restaurant", tabName: "Meeting" },
@@ -19,6 +17,10 @@ export class NavbarComponent implements OnInit {
     }
 
     ngOnInit(): void {
+    }
+
+    getColor (colorName : string) : string {
+        return sessionStorage.getItem(colorName) || "black";
     }
 
 }

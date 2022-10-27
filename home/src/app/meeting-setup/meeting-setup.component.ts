@@ -6,10 +6,13 @@ import { Component, Input, OnInit } from '@angular/core';
     styleUrls: ['./meeting-setup.component.css']
 })
 export class MeetingSetupComponent implements OnInit {
-    @Input() colorlist : readonly string[] = [];
     constructor() { }
 
     ngOnInit(): void {
+    }
+
+    getColor (colorName : string) : string {
+        return sessionStorage.getItem(colorName) || "black";
     }
 
 }

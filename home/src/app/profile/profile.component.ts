@@ -13,4 +13,8 @@ export class ProfileComponent implements OnInit {
     ngOnInit(): void {
     }
 
+    getColor (colorName : string) : string {
+        return sessionStorage.getItem(colorName) || "black";
+    }
+
 }

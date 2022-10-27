@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
     title : string = 'Meal Meetings';
-    getColor(colorName : string) : string {
+    getColor (colorName : string) : string {
         return sessionStorage.getItem(colorName) || "black";
     }
 }
