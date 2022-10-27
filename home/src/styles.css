@@ -1,3 +1,15 @@
+* {
+    color: black;
+}
+
+.centeredBlock {
+    margin: 0 auto;
+}
+
+.centeredText {
+    text-align: center;
+}
+
 body {
     background-color: #F9CDAD;
     font-family: 'Happy Monkey', sans-serif;
