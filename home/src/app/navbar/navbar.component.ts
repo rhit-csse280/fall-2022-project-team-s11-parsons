@@ -13,6 +13,8 @@ export class NavbarComponent implements OnInit {
         { materialIcon: "info", tabName: "Info" }
     ];
 
+    lastSelectedTab = "Profile";
+
     constructor() {
     }
 
@@ -21,6 +23,10 @@ export class NavbarComponent implements OnInit {
 
     getColor (colorName : string) : string {
         return sessionStorage.getItem(colorName) || "black";
+    }
+
+    setSelected(tabName : string) : void {
+        this.lastSelectedTab = tabName;
     }
 
 }

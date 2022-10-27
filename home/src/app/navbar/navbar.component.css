@@ -1,0 +1,9 @@
+a {
+    color: black;
+}
+a.selected {
+    color: black;
+    font-weight: bold;
+    background-color: #83AF9B;
+    border-radius: 0px;
+}
