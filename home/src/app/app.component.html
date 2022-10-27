@@ -1,11 +1,11 @@
-<div *ngIf="username!=''">
+<div *ngIf="username!=''" id="signedin">
     <h1 [style.color]="getColor('Sugar Hearts You')">{{title}}</h1>
     <p>Thanks to sugar! for the color palette. The color palette can be found at <a href="https://www.colourlovers.com/palette/629637/">https://www.colourlovers.com/palette/629637/</a>. For more color palettes by sugar!, go visit <a href="https://www.colourlovers.com/lover/sugar%21">https://www.colourlovers.com/lover/sugar%21</a>!</p>
     <p>This was made using the Angular framework and Bootstrap.</p>
     <app-navbar></app-navbar>
     <router-outlet></router-outlet>
 </div>
-<div *ngIf="username==''">
+<div *ngIf="username==''" id="notsignedin">
     <h1 [style.color]="getColor('Sugar Hearts You')">{{title}}</h1>
     <button type="button" class="btn btn-primary" [style.backgroundColor]="getColor('Happy Balloons')">Sign In</button>
     <button type="button" class="btn btn-primary" [style.backgroundColor]="getColor('Happy Balloons')">Sign Up</button>
