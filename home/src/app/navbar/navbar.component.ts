@@ -6,8 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
     styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-    @Input() colorlist !: readonly string[];
-    @Input() colorindex !: number;
+    @Input() colorlist : readonly string[] = [];
 
     navigationTabs = [
         { materialIcon: "account_circle", tabName: "Profile" },
