@@ -11,3 +11,14 @@
     background-color: #FC9D9A;
     padding: 5px;
 }
+
+#start_time_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#start_time_container .form-control {
+    width: 25%;
+}
