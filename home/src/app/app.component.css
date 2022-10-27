@@ -40,4 +40,5 @@
     border-color: black;
     border-style: solid;
     z-index: 10;
+    overflow: auto;
 }
