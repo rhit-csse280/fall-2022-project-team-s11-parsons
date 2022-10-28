@@ -13,6 +13,9 @@ import { SigninComponent } from './signin/signin.component';
 import { SignoutComponent } from './signout/signout.component';
 import { SetupComponent } from './setup/setup.component';
 import { SignupComponent } from './signup/signup.component';
+import { LoginModalComponent } from './login-modal/login-modal.component';
+import { SignupCredentialPageComponent } from './signup-credential-page/signup-credential-page.component';
+import { SigninCredentialPageComponent } from './signin-credential-page/signin-credential-page.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { SignupComponent } from './signup/signup.component';
     SigninComponent,
     SignoutComponent,
     SetupComponent,
-    SignupComponent
+    SignupComponent,
+    LoginModalComponent,
+    SignupCredentialPageComponent,
+    SigninCredentialPageComponent
   ],
   imports: [
     BrowserModule,
