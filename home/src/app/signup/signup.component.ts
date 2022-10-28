@@ -62,7 +62,7 @@ export class SignupComponent implements OnInit {
         currentAccounts += `${myUsername},${emailValue},${passwordValue},,,,\n`;
         sessionStorage.setItem("person", currentAccounts);
         sessionStorage.setItem("username", myUsername);
-        document.location.href = "/info";
+        document.location.href = "/setup";
         return 0;
     }
 }

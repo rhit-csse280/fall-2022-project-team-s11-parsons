@@ -16,4 +16,9 @@ export class SigninComponent implements OnInit {
     getColor(colorName: string): string {
         return sessionStorage.getItem(colorName) || "black";
     }
+
+    sendSignInData(emailValue : string, passwordValue : string) {
+        console.log(emailValue);
+        console.log(passwordValue);
+    }
 }
