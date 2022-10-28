@@ -16,8 +16,46 @@ export class SignupComponent implements OnInit {
         return sessionStorage.getItem(colorName) || "black";
     }
 
-    sendSignUpData(emailValue: string, passwordValue: string) {
+    // Generates a random username with the given length that is not an element of forbidden.
+    generateRandomUsername(forbidden: string[], length: number) : string {
+        let possibility = "";
+        const space = "0123456789";
+        for (let i = 0; i < length; i++) {
+            possibility += space[Math.floor(Math.random() * space.length)];
+        }
+        for (const forbiddenOption of forbidden) {
+            if (forbiddenOption == space) {
+                return this.generateRandomUsername(forbidden, length);
+            }
+        }
+        return possibility;
+    }
+
+    sendSignUpData(emailValue: string, passwordValue: string) : number {
+        // Determine whether the email is already in the database.
+        // If not, allow the account to be created.
         console.log("Sign Up goes here");
         console.log(`${emailValue} ${passwordValue}`);
+        // The value stored in session storage uses a CSV-like format
+        let currentAccounts : string | null = sessionStorage.getItem("person");
+        if (!currentAccounts) {
+            currentAccounts = "";
+        }
+        // Extract the usernames (to avoid repeats) and 
+        const accounts : string[] = currentAccounts.split("\n");
+        const usernames : string[] = [];
+        for (const account of accounts) {
+            const accountProperties : string[] = account.split(",");
+            const username = accountProperties[0];
+            usernames.push(username);
+            const email = accountProperties[1];
+            if (email == emailValue) {
+                return -1;
+            }
+        }
+        //Add a new entry
+        currentAccounts += `${this.generateRandomUsername(usernames, 20)},${emailValue},${passwordValue},,,,`;
+        sessionStorage.setItem("person", currentAccounts);
+        return 0;
     }
 }
