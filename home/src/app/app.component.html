@@ -1,6 +1,6 @@
 <!-- This is not really a good way of getting a background, but it works. -->
 <img src="/assets/spaghetti-1932466_1920.jpg" id="backgroundImage">
-<div id="backgroundDiv" [class.signedin]="username!=''" [class.notsignedin]="username==''"></div>
+<div id="backgroundDiv" [class.signedin]="getUsername()" [class.notsignedin]="!getUsername()"></div>
 
 <div id="availableSpace">
     <router-outlet></router-outlet>
