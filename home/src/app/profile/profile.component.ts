@@ -22,4 +22,8 @@ export class ProfileComponent implements OnInit {
         document.location.href = "/home";
     }
 
+    getUsername() {
+        return sessionStorage.getItem("username");
+    }
+
 }

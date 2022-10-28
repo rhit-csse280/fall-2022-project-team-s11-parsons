@@ -1,3 +1,7 @@
+#setupContainer, #invitationReceivedContainer, #confirmedContainer {
+    background-color: cyan;
+}
+
 #amButton, #pmButton {
     border: 0px;
     border-radius: 0px;
@@ -41,15 +45,18 @@
 #waitingContainer {
     display: flex;
     flex-direction: column;
-    width: 100vw;
+    left: 5vw;
+    width: 90vw;
     justify-content: space-around;
     align-items: center;
+    background-color: cyan;
 }
 
 #waitingButtons, #invitationReceivedButtons {
     display: flex;
     flex-direction: row;
-    width: 100vw;
+    width: 90vw;
+    left: 5vw;
     justify-content: space-around;
     align-items: center;
 }
