@@ -106,6 +106,37 @@ export class MeetingSetupComponent implements OnInit {
         sessionStorage.setItem("person", currentAccounts);
     }
 
+    sendUserPosition(propX: number, propY: number) {
+        const myUsername : string = sessionStorage.getItem("username") || "ERROR";
+
+        // Figure out what is stored in the current accounts.
+        let currentAccounts : string | null = sessionStorage.getItem("person");
+        if (!currentAccounts) {
+            // This should never be run in practice.
+            currentAccounts = "";
+        }
+
+        //Look at each account.
+        const accounts : string[] = currentAccounts.split("\n");
+        for (let i = 0; i < accounts.length; i++) {
+            const account = accounts[i];
+            if (account === "") {
+                //Ignore blank lines
+                continue;
+            }
+            const accountProperties : string[] = account.split(",");
+            const username = accountProperties[0];
+            if (myUsername === username) {
+                // Change the appropriate properties, generate a new string, and put it back into acounts.
+                accountProperties[7] = "" + propX;
+                accountProperties[8] = "" + propY;
+                accounts[i] = accountProperties.join(",");
+            }
+        }
+        currentAccounts = accounts.join("\n");
+        sessionStorage.setItem("person", currentAccounts);
+    }
+
     logClick(e : MouseEvent, imageWidth: number, imageHeight: number) {
         /* Chrome developer tools allow me to see properties that I didn't know existed. */
         /* For example, finding the width and height of an image. */
@@ -115,6 +146,7 @@ export class MeetingSetupComponent implements OnInit {
         this.myProportionY = (e as PointerEvent).offsetY / imageHeight;
         console.log(`${this.myProportionX} ${this.myProportionY}`);
         this.positionDiv(imageWidth, imageHeight);
+        this.sendUserPosition(this.myProportionX, this.myProportionY);
     }
 
     positionDiv(imageWidth : number, imageHeight: number) {

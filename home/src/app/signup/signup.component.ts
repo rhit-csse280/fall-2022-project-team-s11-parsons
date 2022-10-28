@@ -59,7 +59,7 @@ export class SignupComponent implements OnInit {
         }
         //Add a new entry
         const myUsername = this.generateRandomUsername(usernames, 20);
-        currentAccounts += `${myUsername},${emailValue},${passwordValue},,,,\n`;
+        currentAccounts += `${myUsername},${emailValue},${passwordValue},,,,,,\n`;
         sessionStorage.setItem("person", currentAccounts);
         sessionStorage.setItem("username", myUsername);
         document.location.href = "/setup";
