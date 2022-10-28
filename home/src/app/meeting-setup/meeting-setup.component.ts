@@ -14,6 +14,8 @@ export class MeetingSetupComponent implements OnInit {
         {url: "/assets/PercopoHall3.PNG", width: 1736, height: 487}
     ];
     index: number = 0;
+    myProportionX: number = 0;
+    myProportionY: number = 0;
 
     constructor() { }
 
@@ -102,12 +104,17 @@ export class MeetingSetupComponent implements OnInit {
         sessionStorage.setItem("person", currentAccounts);
     }
 
-    logClick(e : MouseEvent, imageWidth: number) {
+    logClick(e : MouseEvent, imageWidth: number, imageHeight: number) {
         console.log(e);
-        let imageHeight = imageWidth * (this.images[this.index].height / this.images[this.index].width);
-        let myProportionX = (e as PointerEvent).offsetX / imageWidth;
-        let myProportionY = (e as PointerEvent).offsetY / imageHeight;
-        console.log(`${myProportionX} ${myProportionY}`);
+        this.myProportionX = (e as PointerEvent).offsetX / imageWidth;
+        this.myProportionY = (e as PointerEvent).offsetY / imageHeight;
+        console.log(`${this.myProportionX} ${this.myProportionY}`);
+        this.positionDiv(imageWidth, imageHeight);
+    }
+
+    positionDiv(imageWidth : number, imageHeight: number) {
+        const redBoxLeft = this.myProportionX * imageWidth;
+        const redBoxTop = -imageHeight;
     }
 
 }

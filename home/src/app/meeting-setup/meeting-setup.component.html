@@ -44,5 +44,8 @@
     </div>
     <!-- I got this idea based on one of the past projects. -->
     <!-- See https://rosehulman.sharepoint.com/sites/Facilities/Shared%20Documents/Forms/AllItems.aspx?id=%2Fsites%2FFacilities%2FShared%20Documents%2FResidential%20Buildings%2FPercopo%20Hall%203rd%20Floor%2Epdf&parent=%2Fsites%2FFacilities%2FShared%20Documents%2FResidential%20Buildings&p=true&ga=1 -->
-    <img #mapImage [src]="images[index].url" id="confirmationImage" (click)="logClick($event, mapImage.width)">
+    <div id="confirmationImageContainer">
+        <img #mapImage [src]="images[index].url" id="confirmationImage" (click)="logClick($event, mapImage.width, mapImage.height)">
+        <div id="currentLocation"></div>
+    </div>
 </div>

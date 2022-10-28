@@ -70,3 +70,12 @@
 #confirmationImage {
     width: 90vw;
 }
+
+#currentLocation {
+    width: 10px;
+    height: 10px;
+    position: relative;
+    background-color: red;
+    top: 0px;
+    left: 0px;
+}
