@@ -20,12 +20,14 @@ export class MeetingSetupComponent implements OnInit {
     myProportionY: number = 0;
 
     constructor() {
-        const userPosition = this.getUserPosition();
-        this.myProportionX = userPosition["propX"];
-        this.myProportionY = userPosition["propY"];
     }
 
     ngOnInit(): void {
+        const userPosition = this.getUserPosition();
+        this.myProportionX = userPosition["propX"];
+        this.myProportionY = userPosition["propY"];
+        console.log(`${this.myProportionX} ${this.myProportionY}`)
+        this.positionDiv(this.images[this.index].width, this.images[this.index].height);
     }
 
     getColor (colorName : string) : string {
@@ -191,7 +193,8 @@ export class MeetingSetupComponent implements OnInit {
         // Adding this.myProportionY * imageHeight gets the appropriate center Y position.
         // To move it so the div is centered where you click, rather than have the top left corner placed there, subtract half the height.
         const locationIndicatorTop = -imageHeight + this.myProportionY * imageHeight - 5;
-        const locationIndicator = document.getElementById("currentLocation");
+        let locationIndicator = document.getElementById("currentLocation");
+        console.log(locationIndicator);
         if (locationIndicator) {
             locationIndicator.style.left = locationIndicatorLeft + "px";
             locationIndicator.style.top = locationIndicatorTop + "px";
