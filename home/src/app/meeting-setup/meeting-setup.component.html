@@ -1,0 +1,16 @@
+<div id="setupContainer">
+    <p [style.color]="getColor('Sugar Hearts You')" id="setupDescription">Where and when would you like to eat?</p>
+    <div id="startTimeContainer">
+        <a>Start @</a>
+        <input #hhmmtime class="form-control" [style.backgroundColor]="getColor('Bursts of Euphoria')" type="text" placeholder="HH:MM" aria-label="default input example">
+        <span id="ampmSpan">
+            <button type="button" class="btn btn-primary" [style.backgroundColor]="getColor(pm ? 'Party Confetti' : 'Bursts of Euphoria')" id="amButton" [class.selectedampm]="!pm" (click)="setAmPm(false)">AM</button>
+            <button type="button" class="btn btn-primary" [style.backgroundColor]="getColor(!pm ? 'Party Confetti' : 'Bursts of Euphoria')" id="pmButton" [class.selectedampm]="pm" (click)="setAmPm(true)">PM</button>
+        </span>
+    </div>
+    <p>Location</p>
+    <div id="bottomOfMeetingSetup">
+        <input #location class="form-control" [style.backgroundColor]="getColor('Bursts of Euphoria')" type="text" placeholder="Location" aria-label="default input example">
+        <button type="button" class="btn btn-primary centeredBlock" [style.backgroundColor]="getColor('Happy Balloons')" (click)="sendPreferredDetails(hhmmtime.value, location.value)">Request</button>
+    </div>
+</div>

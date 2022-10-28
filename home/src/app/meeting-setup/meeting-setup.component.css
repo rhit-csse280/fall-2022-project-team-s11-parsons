@@ -1,0 +1,45 @@
+#setupContainer {
+    background-color: cyan;
+}
+
+#amButton, #pmButton {
+    border: 0px;
+    border-radius: 0px;
+    padding: 0px;
+}
+
+#amButton.selectedampm, #pmButton.selectedampm {
+    font-size: 2em;
+}
+
+#ampmSpan {
+    display: inline-block;
+    background-color: #FC9D9A;
+    padding: 5px;
+}
+
+#startTimeContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#startTimeContainer .form-control {
+    width: 25%;
+}
+
+#setupDescription {
+    text-align: center;
+}
+
+#bottomOfMeetingSetup .form-control {
+    width: 75%;
+}
+
+#bottomOfMeetingSetup {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
