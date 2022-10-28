@@ -66,3 +66,7 @@
     flex-direction: row;
     justify-content: center;
 }
+
+#confirmationImage {
+    width: 90vw;
+}
