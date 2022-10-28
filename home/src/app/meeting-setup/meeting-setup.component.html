@@ -4,8 +4,8 @@
         <a>Start @</a>
         <input class="form-control" [style.backgroundColor]="getColor('Bursts of Euphoria')" type="text" placeholder="HH:MM" aria-label="default input example">
         <span id="ampmSpan">
-            <button type="button" class="btn btn-primary" [style.backgroundColor]="getColor('Bursts of Euphoria')" id="amButton">AM</button>
-            <button type="button" class="btn btn-primary" [style.backgroundColor]="getColor('Party Confetti')" id="pmButton">PM</button>
+            <button type="button" class="btn btn-primary" [style.backgroundColor]="getColor(pm ? 'Party Confetti' : 'Bursts of Euphoria')" id="amButton" [class.selectedampm]="!pm" (click)="setAmPm(false)">AM</button>
+            <button type="button" class="btn btn-primary" [style.backgroundColor]="getColor(!pm ? 'Party Confetti' : 'Bursts of Euphoria')" id="pmButton" [class.selectedampm]="pm" (click)="setAmPm(true)">PM</button>
         </span>
     </div>
     <p>Location</p>

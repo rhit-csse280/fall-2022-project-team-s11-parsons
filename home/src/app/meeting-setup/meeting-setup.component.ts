@@ -6,7 +6,8 @@ import { Component, Input, OnInit } from '@angular/core';
     styleUrls: ['./meeting-setup.component.css']
 })
 export class MeetingSetupComponent implements OnInit {
-    state : string = "CONFIRMED";
+    state : string = "SETUP";
+    pm: boolean = false;
     constructor() { }
 
     ngOnInit(): void {
@@ -14,6 +15,10 @@ export class MeetingSetupComponent implements OnInit {
 
     getColor (colorName : string) : string {
         return sessionStorage.getItem(colorName) || "black";
+    }
+
+    setAmPm(pmTrue : boolean) : void {
+        this.pm = pmTrue;
     }
 
 }

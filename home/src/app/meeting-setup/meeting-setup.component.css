@@ -7,7 +7,7 @@
     border-radius: 0px;
     padding: 0px;
 }
-#amButton {
+#amButton.selectedampm, #pmButton.selectedampm {
     font-size: 2em;
 }
 #ampmSpan {
