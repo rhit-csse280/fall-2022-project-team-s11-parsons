@@ -26,8 +26,6 @@ export class MeetingSetupComponent implements OnInit {
         const userPosition = this.getUserPosition();
         this.myProportionX = userPosition["propX"];
         this.myProportionY = userPosition["propY"];
-        console.log(`${this.myProportionX} ${this.myProportionY}`)
-        this.positionDiv(this.images[this.index].width, this.images[this.index].height);
     }
 
     getColor (colorName : string) : string {
@@ -184,6 +182,7 @@ export class MeetingSetupComponent implements OnInit {
     }
 
     positionDiv(imageWidth : number, imageHeight: number) {
+        console.log("Positioning div");
         // Figuring out this.myProportionX * imageWidth gets the appropriate x position relative to the div.
         // Since the div is the image plus a bit of space beneath it, this gets the appropriate x location for the center of the div.
         // To move it so the div is centered where you click, rather than have the top left corner placed there, subtract half the width.
