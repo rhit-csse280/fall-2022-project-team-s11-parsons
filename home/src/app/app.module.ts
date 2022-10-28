@@ -16,6 +16,12 @@ import { SignupComponent } from './signup/signup.component';
 import { LoginModalComponent } from './login-modal/login-modal.component';
 import { SignupCredentialPageComponent } from './signup-credential-page/signup-credential-page.component';
 import { SigninCredentialPageComponent } from './signin-credential-page/signin-credential-page.component';
+import { WaitingComponent } from './waiting/waiting.component';
+import { AwaitingconfirmationComponent } from './awaitingconfirmation/awaitingconfirmation.component';
+import { MeetingWaitingComponent } from './meeting-waiting/meeting-waiting.component';
+import { MeetingAwaitingconfirmationComponent } from './meeting-awaitingconfirmation/meeting-awaitingconfirmation.component';
+import { MeetingConfirmationComponent } from './meeting-confirmation/meeting-confirmation.component';
+import { MeetingComponent } from './meeting/meeting.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +38,13 @@ import { SigninCredentialPageComponent } from './signin-credential-page/signin-c
     SignupComponent,
     LoginModalComponent,
     SignupCredentialPageComponent,
-    SigninCredentialPageComponent
+    SigninCredentialPageComponent,
+    WaitingComponent,
+    AwaitingconfirmationComponent,
+    MeetingWaitingComponent,
+    MeetingAwaitingconfirmationComponent,
+    MeetingConfirmationComponent,
+    MeetingComponent
   ],
   imports: [
     BrowserModule,

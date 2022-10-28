@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
     styleUrls: ['./meeting-setup.component.css']
 })
 export class MeetingSetupComponent implements OnInit {
-    state : string = "CONFIRMED";
+    state : string = "SETUP";
     pm: boolean = false;
     hour: number = 0;
     minute: number = 0;
