@@ -98,4 +98,8 @@ export class MeetingSetupComponent implements OnInit {
         sessionStorage.setItem("person", currentAccounts);
     }
 
+    logClick(e : Event) {
+        console.log(e);
+    }
+
 }
