@@ -98,8 +98,9 @@ export class MeetingSetupComponent implements OnInit {
         sessionStorage.setItem("person", currentAccounts);
     }
 
-    logClick(e : Event) {
+    logClick(e : MouseEvent) {
         console.log(e);
+        console.log(`${(e as PointerEvent).offsetX} ${(e as PointerEvent).offsetY}`);
     }
 
 }
