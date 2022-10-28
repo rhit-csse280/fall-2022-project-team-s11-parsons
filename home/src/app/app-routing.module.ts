@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomepageComponent } from './homepage/homepage.component';
 import { InfoComponent } from './info/info.component';
-import { MeetingSetupComponent } from './meeting-setup/meeting-setup.component';
+import { MeetingComponent } from './meeting/meeting.component';
 import { ProfileComponent } from './profile/profile.component';
 import { PromptComponent } from './prompt/prompt.component';
 import { SetupComponent } from './setup/setup.component';
@@ -12,7 +12,7 @@ import { SignupComponent } from './signup/signup.component';
 
 const routes: Routes = [
     { path: 'profile', component: ProfileComponent },
-    { path: 'meeting', component: MeetingSetupComponent },
+    { path: 'meeting', component: MeetingComponent },
     { path: 'prompt', component: PromptComponent },
     { path: 'info', component: InfoComponent },
     { path: 'signin', component: SigninComponent },
