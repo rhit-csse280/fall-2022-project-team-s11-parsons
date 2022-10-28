@@ -7,3 +7,10 @@
     justify-content: space-between;
     background-color: cyan;
 }
+
+#attributionsSubpage {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    width: 90vw;
+    left: 5vw;
+}

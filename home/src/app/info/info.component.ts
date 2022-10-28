@@ -6,6 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
     styleUrls: ['./info.component.css']
 })
 export class InfoComponent implements OnInit {
+    displayAttributionsAndLicense = false;
     constructor() { }
 
     ngOnInit(): void {
