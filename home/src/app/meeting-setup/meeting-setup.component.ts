@@ -11,9 +11,11 @@ export class MeetingSetupComponent implements OnInit {
     hour: number = 0;
     minute: number = 0;
     images = [
-        {url: "/assets/PercopoHall3.PNG", width: 1736, height: 487}
+        {url: "/assets/PercopoHall3.PNG", width: 1736, height: 487},
+        // This image was cropped from the sign close to Career Services.
+        {url: "/assets/vonderschmittcafe.jpg", width: 1332, height: 1780}
     ];
-    index: number = 0;
+    index: number = 1;
     myProportionX: number = 0;
     myProportionY: number = 0;
 
