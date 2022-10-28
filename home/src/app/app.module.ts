@@ -10,14 +10,8 @@ import { InfoComponent } from './info/info.component';
 import { ProfileComponent } from './profile/profile.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { SigninComponent } from './signin/signin.component';
-import { SignoutComponent } from './signout/signout.component';
 import { SetupComponent } from './setup/setup.component';
 import { SignupComponent } from './signup/signup.component';
-import { LoginModalComponent } from './login-modal/login-modal.component';
-import { SignupCredentialPageComponent } from './signup-credential-page/signup-credential-page.component';
-import { SigninCredentialPageComponent } from './signin-credential-page/signin-credential-page.component';
-import { WaitingComponent } from './waiting/waiting.component';
-import { AwaitingconfirmationComponent } from './awaitingconfirmation/awaitingconfirmation.component';
 import { MeetingWaitingComponent } from './meeting-waiting/meeting-waiting.component';
 import { MeetingAwaitingconfirmationComponent } from './meeting-awaitingconfirmation/meeting-awaitingconfirmation.component';
 import { MeetingConfirmationComponent } from './meeting-confirmation/meeting-confirmation.component';
@@ -33,14 +27,8 @@ import { MeetingComponent } from './meeting/meeting.component';
     ProfileComponent,
     HomepageComponent,
     SigninComponent,
-    SignoutComponent,
     SetupComponent,
     SignupComponent,
-    LoginModalComponent,
-    SignupCredentialPageComponent,
-    SigninCredentialPageComponent,
-    WaitingComponent,
-    AwaitingconfirmationComponent,
     MeetingWaitingComponent,
     MeetingAwaitingconfirmationComponent,
     MeetingConfirmationComponent,
