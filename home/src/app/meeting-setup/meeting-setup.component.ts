@@ -10,6 +10,10 @@ export class MeetingSetupComponent implements OnInit {
     pm: boolean = false;
     hour: number = 0;
     minute: number = 0;
+    images = [
+        {url: "/assets/PercopoHall3.PNG", width: 1736, height: 487}
+    ];
+    index: number = 0;
 
     constructor() { }
 
@@ -98,9 +102,12 @@ export class MeetingSetupComponent implements OnInit {
         sessionStorage.setItem("person", currentAccounts);
     }
 
-    logClick(e : MouseEvent) {
+    logClick(e : MouseEvent, imageWidth: number) {
         console.log(e);
-        console.log(`${(e as PointerEvent).offsetX} ${(e as PointerEvent).offsetY}`);
+        let imageHeight = imageWidth * (this.images[this.index].height / this.images[this.index].width);
+        let myProportionX = (e as PointerEvent).offsetX / imageWidth;
+        let myProportionY = (e as PointerEvent).offsetY / imageHeight;
+        console.log(`${myProportionX} ${myProportionY}`);
     }
 
 }
