@@ -15,4 +15,8 @@ export class SignupComponent implements OnInit {
     getColor(colorName: string): string {
         return sessionStorage.getItem(colorName) || "black";
     }
+
+    sendSignUpData() {
+        console.log("Sign Up goes here");
+    }
 }
