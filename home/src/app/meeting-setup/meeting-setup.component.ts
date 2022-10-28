@@ -19,7 +19,11 @@ export class MeetingSetupComponent implements OnInit {
     myProportionX: number = 0;
     myProportionY: number = 0;
 
-    constructor() { }
+    constructor() {
+        const userPosition = this.getUserPosition();
+        this.myProportionX = userPosition["propX"];
+        this.myProportionY = userPosition["propY"];
+    }
 
     ngOnInit(): void {
     }
@@ -106,7 +110,7 @@ export class MeetingSetupComponent implements OnInit {
         sessionStorage.setItem("person", currentAccounts);
     }
 
-    sendUserPosition(propX: number, propY: number) {
+    sendUserPosition(propX: number, propY: number) : void {
         const myUsername : string = sessionStorage.getItem("username") || "ERROR";
 
         // Figure out what is stored in the current accounts.
@@ -135,6 +139,34 @@ export class MeetingSetupComponent implements OnInit {
         }
         currentAccounts = accounts.join("\n");
         sessionStorage.setItem("person", currentAccounts);
+    }
+
+    getUserPosition() {
+        const myUsername : string = sessionStorage.getItem("username") || "ERROR";
+
+        // Figure out what is stored in the current accounts.
+        let currentAccounts : string | null = sessionStorage.getItem("person");
+        if (!currentAccounts) {
+            // This should never be run in practice.
+            currentAccounts = "";
+        }
+
+        //Look at each account.
+        const accounts : string[] = currentAccounts.split("\n");
+        for (let i = 0; i < accounts.length; i++) {
+            const account = accounts[i];
+            if (account === "") {
+                //Ignore blank lines
+                continue;
+            }
+            const accountProperties : string[] = account.split(",");
+            const username = accountProperties[0];
+            if (myUsername === username) {
+                // Change the appropriate properties, generate a new string, and put it back into acounts.
+                return {"propX" : Number(accountProperties[7]), "propY" : Number(accountProperties[8])};
+            }
+        }
+        return {"propX" : 0, "propY" : 0};
     }
 
     logClick(e : MouseEvent, imageWidth: number, imageHeight: number) {
