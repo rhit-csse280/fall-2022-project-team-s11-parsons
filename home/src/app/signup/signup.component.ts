@@ -45,6 +45,10 @@ export class SignupComponent implements OnInit {
         const accounts : string[] = currentAccounts.split("\n");
         const usernames : string[] = [];
         for (const account of accounts) {
+            if (account === "") {
+                //Ignore blank lines
+                continue;
+            }
             const accountProperties : string[] = account.split(",");
             const username = accountProperties[0];
             usernames.push(username);
@@ -55,9 +59,10 @@ export class SignupComponent implements OnInit {
         }
         //Add a new entry
         const myUsername = this.generateRandomUsername(usernames, 20);
-        currentAccounts += `${myUsername},${emailValue},${passwordValue},,,,`;
+        currentAccounts += `${myUsername},${emailValue},${passwordValue},,,,\n`;
         sessionStorage.setItem("person", currentAccounts);
         sessionStorage.setItem("username", myUsername);
+        document.location.href = "/info";
         return 0;
     }
 }

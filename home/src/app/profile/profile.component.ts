@@ -17,4 +17,9 @@ export class ProfileComponent implements OnInit {
         return sessionStorage.getItem(colorName) || "black";
     }
 
+    signOut() {
+        sessionStorage.setItem("username", "");
+        document.location.href = "/home";
+    }
+
 }
