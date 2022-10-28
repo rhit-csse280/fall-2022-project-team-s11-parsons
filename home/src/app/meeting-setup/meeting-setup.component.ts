@@ -105,7 +105,10 @@ export class MeetingSetupComponent implements OnInit {
     }
 
     logClick(e : MouseEvent, imageWidth: number, imageHeight: number) {
+        /* Chrome developer tools allow me to see properties that I didn't know existed. */
+        /* For example, finding the width and height of an image. */
         console.log(e);
+        // TypeScript casting (see https://www.w3schools.com/typescript/typescript_casting.php)
         this.myProportionX = (e as PointerEvent).offsetX / imageWidth;
         this.myProportionY = (e as PointerEvent).offsetY / imageHeight;
         console.log(`${this.myProportionX} ${this.myProportionY}`);
@@ -113,8 +116,20 @@ export class MeetingSetupComponent implements OnInit {
     }
 
     positionDiv(imageWidth : number, imageHeight: number) {
-        const redBoxLeft = this.myProportionX * imageWidth;
-        const redBoxTop = -imageHeight;
+        // Figuring out this.myProportionX * imageWidth gets the appropriate x position relative to the div.
+        // Since the div is the image plus a bit of space beneath it, this gets the appropriate x location for the center of the div.
+        // To move it so the div is centered where you click, rather than have the top left corner placed there, subtract half the width.
+        const locationIndicatorLeft = this.myProportionX * imageWidth - 5;
+        // Recall that by default, this red box would be below the image.
+        // Hence, changing it to -imageHeight moves it to the top of the image.
+        // Adding this.myProportionY * imageHeight gets the appropriate center Y position.
+        // To move it so the div is centered where you click, rather than have the top left corner placed there, subtract half the height.
+        const locationIndicatorTop = -imageHeight + this.myProportionY * imageHeight - 5;
+        const locationIndicator = document.getElementById("currentLocation");
+        if (locationIndicator) {
+            locationIndicator.style.left = locationIndicatorLeft + "px";
+            locationIndicator.style.top = locationIndicatorTop + "px";
+        }
     }
 
 }

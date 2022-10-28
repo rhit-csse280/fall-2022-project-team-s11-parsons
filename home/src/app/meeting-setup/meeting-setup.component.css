@@ -76,6 +76,6 @@
     height: 10px;
     position: relative;
     background-color: red;
-    top: 0px;
-    left: 0px;
+    top: -1000000px;
+    left: -100000px;
 }
