@@ -18,7 +18,28 @@ export class SigninComponent implements OnInit {
     }
 
     sendSignInData(emailValue : string, passwordValue : string) {
-        console.log(emailValue);
-        console.log(passwordValue);
+        let currentAccounts : string | null = sessionStorage.getItem("person");
+        if (!currentAccounts) {
+            currentAccounts = "";
+        }
+        // Extract the usernames (to avoid repeats) and 
+        const accounts : string[] = currentAccounts.split("\n");
+        const usernames : string[] = [];
+        for (const account of accounts) {
+            if (account === "") {
+                //Ignore blank lines
+                continue;
+            }
+            const accountProperties : string[] = account.split(",");
+            const username = accountProperties[0];
+            const email = accountProperties[1];
+            const password = accountProperties[2];
+            if (email === emailValue && password === passwordValue) {
+                sessionStorage.setItem("username", username);
+                document.location.href = "/info";
+                return 0;
+            }
+        }
+        return -1;
     }
 }
