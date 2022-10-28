@@ -41,9 +41,10 @@ export class MeetingSetupComponent implements OnInit {
         return -1;
     }
 
+    // Given a time expression, if it is valid, set the hour and minute properties of this class to the values from this time expression.
     convertToDetails(timeExpression : string) : void {
         if (timeExpression.length != 5) {
-            console.log("Wrong Length for MM:HH format");
+            console.log("Wrong Length for HH:MM format");
             return;
         } else {
             const newHour : string = timeExpression.substring(0, 2);
@@ -56,6 +57,45 @@ export class MeetingSetupComponent implements OnInit {
                 console.log(`${this.hour} ${this.minute}`);
             }
         }
+    }
+
+    sendPreferredDetails(timeExpression : string, locationValue : string) : void {
+        // Make sure the time expression is valid.
+        this.convertToDetails(timeExpression);
+        if (this.hour == 0 || this.minute == 0) {
+            return;
+        }
+
+        const myUsername : string = sessionStorage.getItem("username") || "ERROR";
+
+        // Figure out what is stored in the current accounts.
+        let currentAccounts : string | null = sessionStorage.getItem("person");
+        if (!currentAccounts) {
+            // This should never be run in practice.
+            currentAccounts = "";
+        }
+
+        //Look at each account.
+        const accounts : string[] = currentAccounts.split("\n");
+        for (let i = 0; i < accounts.length; i++) {
+            const account = accounts[i];
+            if (account === "") {
+                //Ignore blank lines
+                continue;
+            }
+            const accountProperties : string[] = account.split(",");
+            const username = accountProperties[0];
+            if (myUsername === username) {
+                // Change the appropriate properties, generate a new string, and put it back into acounts.
+                accountProperties[3] = "" + this.hour;
+                accountProperties[4] = "" + this.minute;
+                accountProperties[5] = this.pm ? "1" : "0";
+                accountProperties[6] = locationValue;
+                accounts[i] = accountProperties.join(",");
+            }
+        }
+        currentAccounts = accounts.join("\n");
+        sessionStorage.setItem("person", currentAccounts);
     }
 
 }

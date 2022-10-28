@@ -22,9 +22,7 @@ export class SigninComponent implements OnInit {
         if (!currentAccounts) {
             currentAccounts = "";
         }
-        // Extract the usernames (to avoid repeats) and 
         const accounts : string[] = currentAccounts.split("\n");
-        const usernames : string[] = [];
         for (const account of accounts) {
             if (account === "") {
                 //Ignore blank lines

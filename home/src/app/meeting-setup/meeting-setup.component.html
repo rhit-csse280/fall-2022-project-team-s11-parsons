@@ -10,8 +10,8 @@
     </div>
     <p>Location</p>
     <div id="bottomOfMeetingSetup">
-        <input class="form-control" [style.backgroundColor]="getColor('Bursts of Euphoria')" type="text" placeholder="Location" aria-label="default input example">
-        <button type="button" class="btn btn-primary centeredBlock" [style.backgroundColor]="getColor('Happy Balloons')" (click)="convertToDetails(hhmmtime.value)">Request</button>
+        <input #location class="form-control" [style.backgroundColor]="getColor('Bursts of Euphoria')" type="text" placeholder="Location" aria-label="default input example">
+        <button type="button" class="btn btn-primary centeredBlock" [style.backgroundColor]="getColor('Happy Balloons')" (click)="sendPreferredDetails(hhmmtime.value, location.value)">Request</button>
     </div>
 </div>
 <div *ngIf="state === 'WAITING'" id="waitingContainer">
