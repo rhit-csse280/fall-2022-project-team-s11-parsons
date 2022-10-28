@@ -3,4 +3,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    width: 90vw;
+    left: 5vw;
+    background-color: cyan;
 }
