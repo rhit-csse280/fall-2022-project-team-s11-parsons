@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "meal-meetings": {
+      "hosting": {
+        "home": [
+          "meal-meetings"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "meal-meetings"
+  }
+}
