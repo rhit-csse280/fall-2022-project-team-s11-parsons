@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import 'rosefire';
 
 @Component({
     selector: 'app-signin',
@@ -7,10 +6,8 @@ import 'rosefire';
     styleUrls: ['./signin.component.css']
 })
 export class SigninComponent implements OnInit {
-    afAuth : AngularFireAuth;
-    constructor(afAuth : AngularFireAuth) {
-        this.afAuth = afAuth;
-    }
+
+    constructor() { }
 
     ngOnInit(): void {
     }
@@ -20,8 +17,7 @@ export class SigninComponent implements OnInit {
         return sessionStorage.getItem(colorName) || "black";
     }
 
-    sendSignInData(emailValue: string, passwordValue: string) {
-        /*
+    sendSignInData(emailValue : string, passwordValue : string) {
         let currentAccounts : string | null = sessionStorage.getItem("person");
         if (!currentAccounts) {
             currentAccounts = "";
@@ -43,18 +39,5 @@ export class SigninComponent implements OnInit {
             }
         }
         return -1;
-        */
-        Rosefire.signIn('fdcea3b8-924f-48eb-8602-9c9355591911', (error, rfUser: RosefireUser) => {
-            if (error) {
-                // User not logged in!
-                console.error(error);
-                return;
-            } else {
-                // Use the token to authenticate with your server
-                // checkout the server SDKs for more information.
-                console.log(rfUser);
-                this.afAuth.auth().signInWithCustomToken(rfUser.token);
-            }
-        });
     }
 }
