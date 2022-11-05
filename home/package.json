@@ -19,6 +19,8 @@
     "@angular/platform-browser": "^14.2.0",
     "@angular/platform-browser-dynamic": "^14.2.0",
     "@angular/router": "^14.2.0",
+    "angularfire2": "^5.4.2",
+    "firebase": "^9.13.0",
     "rosefire": "git+https://ada.csse.rose-hulman.edu/rosefire/javascript-sdk.git#2.1.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
