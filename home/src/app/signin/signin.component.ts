@@ -1,5 +1,19 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import 'rosefire';
+
+/*
+    The setup code for this component was non-trivial. Some sources I used were:
+    https://github.com/angular/angularfire/ and subpages
+    https://ada.csse.rose-hulman.edu/rosefire/javascript-sdk and subpages
+    https://github.com/angular/angularfire/issues/2409#issuecomment-615993136
+    Other sources I saw were:
+    https://stackoverflow.com/questions/51656933/angular-6-and-firebase-angularfireauth
+    https://github.com/angular/angularfire/issues/2409#issuecomment-615993136
+
+    Thanks to https://stackoverflow.com/questions/55241779/nullinjectorerror-no-provider-for-injectiontoken-angularfire2-app-options
+    for fixing a critical error
+*/
 
 @Component({
     selector: 'app-signin',
@@ -7,9 +21,9 @@ import 'rosefire';
     styleUrls: ['./signin.component.css']
 })
 export class SigninComponent implements OnInit {
-    afAuth : AngularFireAuth;
+    myAuth : AngularFireAuth;
     constructor(afAuth : AngularFireAuth) {
-        this.afAuth = afAuth;
+        this.myAuth = afAuth;
     }
 
     ngOnInit(): void {
@@ -53,7 +67,7 @@ export class SigninComponent implements OnInit {
                 // Use the token to authenticate with your server
                 // checkout the server SDKs for more information.
                 console.log(rfUser);
-                this.afAuth.auth().signInWithCustomToken(rfUser.token);
+                this.myAuth.signInWithCustomToken(rfUser.token);
             }
         });
     }
