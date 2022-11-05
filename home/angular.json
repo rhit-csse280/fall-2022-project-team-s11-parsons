@@ -92,7 +92,19 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "../node_modules/rosefire/dist/js/rosefire.min.js"
+            ]
+          }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "home:build:production",
+            "firebaseProject": "meal-meetings",
+            "firebaseHostingSite": "meal-meetings"
           }
         }
       }

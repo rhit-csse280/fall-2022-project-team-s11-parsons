@@ -16,6 +16,10 @@ import { MeetingWaitingComponent } from './meeting-waiting/meeting-waiting.compo
 import { MeetingAwaitingconfirmationComponent } from './meeting-awaitingconfirmation/meeting-awaitingconfirmation.component';
 import { MeetingConfirmationComponent } from './meeting-confirmation/meeting-confirmation.component';
 import { MeetingComponent } from './meeting/meeting.component';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -36,7 +40,10 @@ import { MeetingComponent } from './meeting/meeting.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore())
   ],
   providers: [],
   bootstrap: [AppComponent]
