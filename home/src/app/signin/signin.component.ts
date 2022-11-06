@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import 'rosefire';
 
 @Component({
     selector: 'app-signin',
@@ -18,6 +19,23 @@ export class SigninComponent implements OnInit {
     }
 
     sendSignInData(emailValue : string, passwordValue : string) {
+        console.log(emailValue);
+        console.log(passwordValue);
+
+        Rosefire.signIn('fdcea3b8-924f-48eb-8602-9c9355591911', (error, rfUser: RosefireUser) => {
+            if (error) {
+              // User not logged in!
+              console.error(error);
+              return;
+            } else {
+              // Use the token to authenticate with your server
+              // checkout the server SDKs for more information.
+              console.log(rfUser);
+            }
+          });
+          
+
+        /*
         let currentAccounts : string | null = sessionStorage.getItem("person");
         if (!currentAccounts) {
             currentAccounts = "";
@@ -39,5 +57,6 @@ export class SigninComponent implements OnInit {
             }
         }
         return -1;
+        */
     }
 }
