@@ -7,8 +7,12 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
     @Input() colorlist : readonly string[] = [];
+    interests : string = "";
 
-    constructor() { }
+    constructor() { 
+        // Check every 0.1 seconds what the current value for interests is.
+        setInterval(this.getInterests.bind(this), 100);
+    }
 
     ngOnInit(): void {
     }
@@ -19,6 +23,7 @@ export class ProfileComponent implements OnInit {
 
     signOut() {
         sessionStorage.setItem("username", "");
+        sessionStorage.setItem("userdata", "{}");
         document.location.href = "/home";
     }
 
@@ -26,4 +31,7 @@ export class ProfileComponent implements OnInit {
         return sessionStorage.getItem("username");
     }
 
+    getInterests() {
+        this.interests = JSON.parse(sessionStorage.getItem("userdata")||"{}")["interests"];
+    }
 }
