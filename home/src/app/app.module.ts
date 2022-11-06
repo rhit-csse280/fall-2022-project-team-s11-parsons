@@ -45,7 +45,10 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore())
   ],
-  providers: [],
+  //I looked at https://stackoverflow.com/questions/66252333/error-nullinjectorerror-r3injectorerrorappmodule
+  //However, https://stackoverflow.com/questions/69844586/nullinjectorerror-no-provider-for-injectiontoken-angularfire2-app-options-2021?noredirect=1&lq=1 provided the answer.
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { doc, Firestore, getDoc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
-export interface Item {
+export interface User {
     hour: number,
     minute: number,
     pm: boolean,
@@ -19,14 +19,27 @@ export interface Item {
 })
 export class AppComponent {
     title : string = 'Meal Meetings';
-    usersCollection: AngularFirestoreCollection<Item> | null = null;
-    users: Observable<Item[]> | null = null;
-    constructor(afs: AngularFirestore) {
-        this.usersCollection = afs.collection<Item>('Users');
-        this.users = this.usersCollection.valueChanges();
-        console.log(this.usersCollection);
-        console.log(this.users);
+    docRef : any; // short for document reference
+    docSnap : any; // short for document snapshot
+    myFirestore : any; // used to represent the firestore object.
+    constructor(firestore : Firestore) {
+        this.myFirestore = firestore;
+        this.docRef = doc(this.myFirestore, "Users", "TPgaEVy71RKUQgCNcrei");
+        getDoc(this.docRef).then((result) => {
+            this.docSnap = result;
+            console.log("Welcome to Meal Meetings!");
+        }).catch((err) => {
+            console.error("Could not complete initialization because of ", err);
+        })
     }
+
+    //I based this solution based on this code:
+    // https://stackoverflow.com/questions/69844586/nullinjectorerror-no-provider-for-injectiontoken-angularfire2-app-options-2021?noredirect=1&lq=1
+    // response from Michael de Soto (https://stackoverflow.com/users/4151208/michael-de-soto)
+    //Somehow this works. I don't fully get why.
+    async initializer() {
+    }
+
     getColor (colorName : string) : string {
         return sessionStorage.getItem(colorName) || "black";
     }
