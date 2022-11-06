@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { collection, Firestore, getDocs } from '@angular/fire/firestore';
+import { collection, Firestore, doc, onSnapshot } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 export interface User {
@@ -20,6 +20,7 @@ export interface User {
 export class AppComponent {
     title : string = 'Meal Meetings';
     myFirestore : any; // used to represent the firestore object.
+    unsubscribe: any;
     
     //I based this solution based on this code:
     // https://stackoverflow.com/questions/69844586/nullinjectorerror-no-provider-for-injectiontoken-angularfire2-app-options-2021?noredirect=1&lq=1
@@ -32,10 +33,11 @@ export class AppComponent {
     }
 
     async beginListening() {
-        const querySnapshot = await getDocs(collection(this.myFirestore, "Users"));
-        querySnapshot.forEach((doc) => {
-            console.log(doc.id, " => ", doc.data());
-        });
+        //Listen to the user with the User ID TPgaEVy71RKUQgCNcrei
+        const docRef = doc(this.myFirestore, "Users", "TPgaEVy71RKUQgCNcrei");
+        this.unsubscribe = onSnapshot(docRef, (userDoc) => {
+            console.log(userDoc.data());
+        })
     }
 
     getColor (colorName : string) : string {
