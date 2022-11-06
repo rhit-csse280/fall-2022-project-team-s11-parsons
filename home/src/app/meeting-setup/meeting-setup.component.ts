@@ -67,35 +67,14 @@ export class MeetingSetupComponent implements OnInit {
             return;
         }
 
-        const myUsername : string = sessionStorage.getItem("username") || "ERROR";
+        // Get the current user data.
+        const userDataString : string = sessionStorage.getItem("userdata") || "{}";
+        const userDataJSON : object = JSON.parse(userDataString);
 
-        // Figure out what is stored in the current accounts.
-        let currentAccounts : string | null = sessionStorage.getItem("person");
-        if (!currentAccounts) {
-            // This should never be run in practice.
-            currentAccounts = "";
-        }
-
-        //Look at each account.
-        const accounts : string[] = currentAccounts.split("\n");
-        for (let i = 0; i < accounts.length; i++) {
-            const account = accounts[i];
-            if (account === "") {
-                //Ignore blank lines
-                continue;
-            }
-            const accountProperties : string[] = account.split(",");
-            const username = accountProperties[0];
-            if (myUsername === username) {
-                // Change the appropriate properties, generate a new string, and put it back into acounts.
-                accountProperties[3] = "" + this.hour;
-                accountProperties[4] = "" + this.minute;
-                accountProperties[5] = this.pm ? "1" : "0";
-                accountProperties[6] = locationValue;
-                accounts[i] = accountProperties.join(",");
-            }
-        }
-        currentAccounts = accounts.join("\n");
-        sessionStorage.setItem("person", currentAccounts);
+        // Modify the relevant portions.
+        console.log("Attempting to modify things...");
+        //userDataJSON.hour = this.hour;
+        //userDataJSON.minute = this.minute;
+        //userDataJSON.pm = this.pm;
     }
 }

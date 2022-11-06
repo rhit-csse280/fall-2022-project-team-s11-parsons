@@ -21,6 +21,7 @@ export class AppComponent {
     title : string = 'Meal Meetings';
     myFirestore : any; // used to represent the firestore object.
     unsubscribe: any;
+    userData: any;
     
     //I based this solution based on this code:
     // https://stackoverflow.com/questions/69844586/nullinjectorerror-no-provider-for-injectiontoken-angularfire2-app-options-2021?noredirect=1&lq=1
@@ -32,12 +33,28 @@ export class AppComponent {
         setTimeout(this.beginListening.bind(this), 1000);
     }
 
+    // Used for constantly listening to the database.
     async beginListening() {
         //Listen to the user with the User ID TPgaEVy71RKUQgCNcrei
         const docRef = doc(this.myFirestore, "Users", "TPgaEVy71RKUQgCNcrei");
         this.unsubscribe = onSnapshot(docRef, (userDoc) => {
-            console.log(userDoc.data());
+            this.userData = userDoc.data();
+            console.log(this.userData);
+            this.putDataIntoStorage();
         })
+    }
+
+    // Used to store the relevant fields of data into storage.
+    putDataIntoStorage() {
+        sessionStorage.setItem("userdata", JSON.stringify(this.userData));
+    }
+
+    // Used to retrieve the relevant fields of data from storage.
+    getDataFromStorage() {
+        const storageData : string | null = sessionStorage.getItem("userdata");
+        if (storageData) {
+            this.userData = JSON.parse(storageData);
+        }
     }
 
     getColor (colorName : string) : string {
