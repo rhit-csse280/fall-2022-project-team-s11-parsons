@@ -28,6 +28,8 @@ export class SigninComponent implements OnInit {
                 // Use the token to authenticate with your server
                 // checkout the server SDKs for more information.
                 console.log(rfUser);
+                sessionStorage.setItem("username", rfUser.token);
+                window.location.href = `/profile`;
             }
         });
 

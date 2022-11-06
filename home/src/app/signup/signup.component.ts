@@ -40,7 +40,9 @@ export class SignupComponent implements OnInit {
             } else {
                 // Use the token to authenticate with your server
                 // checkout the server SDKs for more information.
+                sessionStorage.setItem("username", rfUser.token);
                 console.log(rfUser);
+                window.location.href = `/setup`;
             }
         });
     }
