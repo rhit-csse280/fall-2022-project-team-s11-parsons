@@ -22,8 +22,16 @@ export class AppComponent {
     docRef : any; // short for document reference
     docSnap : any; // short for document snapshot
     myFirestore : any; // used to represent the firestore object.
+    
+
+    //I based this solution based on this code:
+    // https://stackoverflow.com/questions/69844586/nullinjectorerror-no-provider-for-injectiontoken-angularfire2-app-options-2021?noredirect=1&lq=1
+    // response from Michael de Soto (https://stackoverflow.com/users/4151208/michael-de-soto)
+    //Somehow this works. I don't fully get why.
+    // I guess part of it is it is based on the "Get a Document" section at https://firebase.google.com/docs/firestore/query-data/get-data
     constructor(firestore : Firestore) {
         this.myFirestore = firestore;
+        // Extract a document reference and snapshot from the firestore object.
         this.docRef = doc(this.myFirestore, "Users", "TPgaEVy71RKUQgCNcrei");
         getDoc(this.docRef).then((result) => {
             this.docSnap = result;
@@ -31,13 +39,6 @@ export class AppComponent {
         }).catch((err) => {
             console.error("Could not complete initialization because of ", err);
         })
-    }
-
-    //I based this solution based on this code:
-    // https://stackoverflow.com/questions/69844586/nullinjectorerror-no-provider-for-injectiontoken-angularfire2-app-options-2021?noredirect=1&lq=1
-    // response from Michael de Soto (https://stackoverflow.com/users/4151208/michael-de-soto)
-    //Somehow this works. I don't fully get why.
-    async initializer() {
     }
 
     getColor (colorName : string) : string {
