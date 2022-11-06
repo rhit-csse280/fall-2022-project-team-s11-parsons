@@ -1,7 +1,5 @@
 <div id="signinContainer">
     <h1 [style.color]="getColor('Sugar Hearts You')">Sign In</h1>
-    <input #email class="form-control" [style.backgroundColor] = "getColor('Bursts of Euphoria')" type="text" placeholder="Email" aria-label="default input example">
-    <input #password class="form-control" [style.backgroundColor] = "getColor('Bursts of Euphoria')" type="text" placeholder="Password" aria-label="default input example">
-    <button type="button" class="btn btn-primary" [style.backgroundColor]="'#800000'" (click)="sendSignInData(email.value, password.value)">Rose-Hulman Authentication</button>
+    <button type="button" class="btn btn-primary" [style.backgroundColor]="'#800000'" (click)="rosefireSignIn()">Rose-Hulman Authentication</button>
     <a routerLink="/signup"><button type="button" class="btn btn-primary" [style.backgroundColor]="getColor('Happy Balloons')">Sign Up</button></a>
 </div>
