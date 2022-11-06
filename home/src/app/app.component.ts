@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { doc, Firestore, getDoc } from '@angular/fire/firestore';
+import { collection, Firestore, getDocs } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 export interface User {
@@ -19,11 +19,8 @@ export interface User {
 })
 export class AppComponent {
     title : string = 'Meal Meetings';
-    docRef : any; // short for document reference
-    docSnap : any; // short for document snapshot
     myFirestore : any; // used to represent the firestore object.
     
-
     //I based this solution based on this code:
     // https://stackoverflow.com/questions/69844586/nullinjectorerror-no-provider-for-injectiontoken-angularfire2-app-options-2021?noredirect=1&lq=1
     // response from Michael de Soto (https://stackoverflow.com/users/4151208/michael-de-soto)
@@ -31,14 +28,14 @@ export class AppComponent {
     // I guess part of it is it is based on the "Get a Document" section at https://firebase.google.com/docs/firestore/query-data/get-data
     constructor(firestore : Firestore) {
         this.myFirestore = firestore;
-        // Extract a document reference and snapshot from the firestore object.
-        this.docRef = doc(this.myFirestore, "Users", "TPgaEVy71RKUQgCNcrei");
-        getDoc(this.docRef).then((result) => {
-            this.docSnap = result;
-            console.log("Welcome to Meal Meetings!");
-        }).catch((err) => {
-            console.error("Could not complete initialization because of ", err);
-        })
+        setTimeout(this.beginListening.bind(this), 1000);
+    }
+
+    async beginListening() {
+        const querySnapshot = await getDocs(collection(this.myFirestore, "Users"));
+        querySnapshot.forEach((doc) => {
+            console.log(doc.id, " => ", doc.data());
+        });
     }
 
     getColor (colorName : string) : string {
