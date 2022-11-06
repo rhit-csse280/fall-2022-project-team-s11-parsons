@@ -18,6 +18,8 @@ export class SigninComponent implements OnInit {
     }
 
     sendSignInData(emailValue : string, passwordValue : string) {
+        console.log(emailValue);
+        console.log(passwordValue);
         let currentAccounts : string | null = sessionStorage.getItem("person");
         if (!currentAccounts) {
             currentAccounts = "";
