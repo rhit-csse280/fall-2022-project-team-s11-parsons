@@ -7,8 +7,8 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
     @Input() colorlist : readonly string[] = [];
-    interests: any;
-    myInput : any;
+    interests: any; // Stores the interests as the server would have it.
+    myInput : any; // The input field for interests
 
     constructor() { 
         // Check every 0.1 seconds what the current value for interests is.
@@ -35,9 +35,14 @@ export class ProfileComponent implements OnInit {
 
     getInterests() {
         // Get the interests from session storage and set the value of the data field to this.
-        this.interests = JSON.parse(sessionStorage.getItem("userdata")||"{}")["interests"];
+        const newInterests : string = JSON.parse(sessionStorage.getItem("userdata")||"{'interests':''}")["interests"];
+        if (newInterests == this.interests) {
+            return;
+        }
         if (this.myInput) {
-            this.myInput.value = this.interests;
+            console.log("Need to change interests");
+            this.myInput.value = newInterests;
+            this.interests = newInterests;
         }
     }
 
