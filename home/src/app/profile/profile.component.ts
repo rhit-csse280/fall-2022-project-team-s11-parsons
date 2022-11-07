@@ -53,7 +53,7 @@ export class ProfileComponent implements OnInit {
 
             //Get the data currently in session storage, add the new username, and put it back into session storage.
             const currentUserInfo = JSON.parse(sessionStorage.getItem("userdata") || "{}");
-            currentUserInfo["username"] = interestString;
+            currentUserInfo["interests"] = interestString;
             sessionStorage.setItem("userdata", JSON.stringify(currentUserInfo));
         }
     }

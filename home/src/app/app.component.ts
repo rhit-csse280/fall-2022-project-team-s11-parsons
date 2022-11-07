@@ -44,6 +44,7 @@ export class AppComponent {
             this.putDataIntoStorage();
         })
         // Every 0.1 seconds, send whatever data we have locally to the server.
+        // This needs to wait some time for the database to give the client a user object.
         setInterval(this.sendDataToStorage.bind(this), 100);
     }
 
@@ -62,7 +63,11 @@ export class AppComponent {
 
     // Set the entire data object on the server equal to what is currently in session storage.
     sendDataToStorage() {
-        setDoc(this.docRef, JSON.parse(sessionStorage.getItem("userdata") || "{}"));
+        // We don't want to send empty data from before the server can send us data.
+        const ourData = sessionStorage.getItem("userdata");
+        if (ourData) {
+            setDoc(this.docRef, JSON.parse(ourData));
+        }
     }
 
     getColor (colorName : string) : string {
