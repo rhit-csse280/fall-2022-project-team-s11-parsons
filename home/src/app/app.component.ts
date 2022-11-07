@@ -31,38 +31,40 @@ export class AppComponent {
     // I guess part of it is it is based on the "Get a Document" section at https://firebase.google.com/docs/firestore/query-data/get-data
     constructor(firestore : Firestore) {
         this.myFirestore = firestore;
-        setTimeout(this.beginListening.bind(this), 1000);
+        this.beginListening();
     }
 
     // Used for constantly listening to the database.
     async beginListening() {
-        //Listen to the user with the User ID TPgaEVy71RKUQgCNcrei
+        // Listen to the user with the User ID TPgaEVy71RKUQgCNcrei
+        // Eventually, this needs to be set to the username for the specific person.
+        // This comes later.
         this.docRef = doc(this.myFirestore, "Users", "TPgaEVy71RKUQgCNcrei");
         this.unsubscribe = onSnapshot(this.docRef, (userDoc : any) => {
+            // Captures updates from the server in real time.
             this.userData = userDoc.data();
             console.log(this.userData);
             this.putDataIntoStorage();
         })
         // Every 0.1 seconds, send whatever data we have locally to the server.
         // This needs to wait some time for the database to give the client a user object.
-        setInterval(this.sendDataToStorage.bind(this), 100);
+        setInterval(this.sendDataToServer.bind(this), 100);
     }
 
-    // Used to store the relevant fields of data into storage.
+    // Used to store the relevant fields of data into session storage.
+    // This is useful because this object can be distributed and modified.
     putDataIntoStorage() {
         sessionStorage.setItem("userdata", JSON.stringify(this.userData));
     }
 
     // Used to retrieve the relevant fields of data from storage.
     getDataFromStorage() {
-        const storageData : string | null = sessionStorage.getItem("userdata");
-        if (storageData) {
-            this.userData = JSON.parse(storageData);
-        }
+        const storageData : string = sessionStorage.getItem("userdata") || "{}";
+        this.userData = JSON.parse(storageData);
     }
 
     // Set the entire data object on the server equal to what is currently in session storage.
-    sendDataToStorage() {
+    sendDataToServer() {
         // We don't want to send empty data from before the server can send us data.
         const ourData = sessionStorage.getItem("userdata");
         if (ourData) {

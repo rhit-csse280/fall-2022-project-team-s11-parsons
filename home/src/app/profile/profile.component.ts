@@ -16,6 +16,7 @@ export class ProfileComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        // Locate the profile container's input.
         this.myInput = document.querySelector("#profileContainer input");
     }
 
@@ -24,12 +25,14 @@ export class ProfileComponent implements OnInit {
     }
 
     signOut() {
+        // To sign out, clear all user information.
         sessionStorage.setItem("username", "");
         sessionStorage.setItem("userdata", "{}");
         document.location.href = "/home";
     }
 
     getUsername() {
+        // The username can be gotten from session storage.
         return sessionStorage.getItem("username");
     }
 
@@ -37,9 +40,12 @@ export class ProfileComponent implements OnInit {
         // Get the interests from session storage and set the value of the data field to this.
         const newInterests : string = JSON.parse(sessionStorage.getItem("userdata")||"{'interests':''}")["interests"];
         if (newInterests == this.interests) {
+            // Only change the interests if the server sent new data.
+            // This allows us to change the interests text field when the server has not sent new data.
             return;
         }
         if (this.myInput) {
+            // If there is new data from the server, alert us and change the view appropriately.
             console.log("Need to change interests");
             this.myInput.value = newInterests;
             this.interests = newInterests;
