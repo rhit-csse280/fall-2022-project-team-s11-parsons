@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
     @Input() colorlist : readonly string[] = [];
-    interests : string = "";
+    interests: any;
 
     constructor() { 
         // Check every 0.1 seconds what the current value for interests is.
@@ -33,5 +33,15 @@ export class ProfileComponent implements OnInit {
 
     getInterests() {
         this.interests = JSON.parse(sessionStorage.getItem("userdata")||"{}")["interests"];
+    }
+
+    setInterests() {
+        const myInput : any = document.querySelector("#profileContainer input");
+        console.log("Change detected");
+        if (myInput) {
+            const interestString : string =  myInput.value || "NULL";
+            console.log(interestString);
+        }
+
     }
 }
