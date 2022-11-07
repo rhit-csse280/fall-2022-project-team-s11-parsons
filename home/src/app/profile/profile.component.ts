@@ -47,12 +47,14 @@ export class ProfileComponent implements OnInit {
     }
 
     setInterests() {
-        // Send the interests to the server.
-        console.log("Change detected");
+        // Send the interests to the session storage.
         if (this.myInput) {
             const interestString : string =  this.myInput.value || "NULL";
-            console.log(interestString);
-        }
 
+            //Get the data currently in session storage, add the new username, and put it back into session storage.
+            const currentUserInfo = JSON.parse(sessionStorage.getItem("userdata") || "{}");
+            currentUserInfo["username"] = interestString;
+            sessionStorage.setItem("userdata", JSON.stringify(currentUserInfo));
+        }
     }
 }
