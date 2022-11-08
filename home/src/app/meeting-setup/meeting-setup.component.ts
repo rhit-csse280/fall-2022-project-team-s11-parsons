@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { stringLength } from '@firebase/util';
 
 @Component({
     selector: 'app-meeting-setup',
@@ -24,36 +25,36 @@ export class MeetingSetupComponent implements OnInit {
     }
 
     // A helper function for converting a string to a non-negative integer.
-    // If the integer representation of the string is >= low and <= high,
-    // Then the output should be the value of the integer.
-    // Otherwise, return -1.
-    convertStringToInteger(expression : string, low : number, high : number) : number {
-        for (let i = low; i <= high; i++) {
-            let iString = "" + i;
-            while (iString.length < expression.length) {
-                iString = "0" + iString;
-            }
-            if (iString === expression) {
-                return i;
-            }
+    // If the expression provided is not a valid 2-digit decimal number, then return -1.
+    convert2DigitStringToInteger(expression: string) : number {
+        const firstDigit = "0123456789".indexOf(expression.charAt(0));
+        const secondDigit = "0123456789".indexOf(expression.charAt(1));
+        if (firstDigit !== -1 && secondDigit != -1) {
+            return firstDigit * 10 + secondDigit;
+        } else {
+            return -1;
         }
-        return -1;
     }
 
     // Given a time expression, if it is valid, set the hour and minute properties of this class to the values from this time expression.
     convertToDetails(timeExpression : string) : void {
-        if (timeExpression.length != 5) {
-            console.log("Wrong Length for HH:MM format");
-            return;
+        if (timeExpression.length != 5 || timeExpression.charAt(2) != ":") {
+            console.log("Not in HH:MM format");
+            this.hour = -1;
+            this.minute = -1;
         } else {
             const newHour : string = timeExpression.substring(0, 2);
             const newMinute : string = timeExpression.substring(3, 5);
-            const newHourConverted : number = this.convertStringToInteger(newHour, 1, 12);
-            const newMinuteConverted : number = this.convertStringToInteger(newMinute, 0, 59);
-            if (newHourConverted != -1 && newMinuteConverted != -1) {
+            const newHourConverted : number = this.convert2DigitStringToInteger(newHour);
+            const newMinuteConverted : number = this.convert2DigitStringToInteger(newMinute);
+            if (newHourConverted >= 1 && newHourConverted <= 12 && newMinuteConverted >= 0 && newMinuteConverted <= 59) {
                 this.hour = newHourConverted;
                 this.minute = newMinuteConverted;
                 console.log(`${this.hour} ${this.minute}`);
+            } else {
+                this.hour = -1;
+                this.minute = -1;
+                console.log("Invalid time");
             }
         }
     }
@@ -63,18 +64,19 @@ export class MeetingSetupComponent implements OnInit {
     sendPreferredDetails(timeExpression : string, locationValue : string) : void {
         // Make sure the time expression is valid.
         this.convertToDetails(timeExpression);
-        if (this.hour == 0 || this.minute == 0) {
+        if (this.hour == -1 || this.minute == -1) {
             return;
         }
 
         // Get the current user data.
         const userDataString : string = sessionStorage.getItem("userdata") || "{}";
-        const userDataJSON : object = JSON.parse(userDataString);
+        const userDataJSON = JSON.parse(userDataString);
+        userDataJSON["hour"] = this.hour;
+        userDataJSON["minute"] = this.minute;
+        userDataJSON["pm"] = this.pm;
 
-        // Modify the relevant portions.
-        console.log("Attempting to modify things...");
-        //userDataJSON.hour = this.hour;
-        //userDataJSON.minute = this.minute;
-        //userDataJSON.pm = this.pm;
+        //Put this data back in session storage and send to the server.
+        sessionStorage.setItem("userdata", JSON.stringify(userDataJSON));
+        document.getElementById("uselessButtonServerSend")?.click();
     }
 }
