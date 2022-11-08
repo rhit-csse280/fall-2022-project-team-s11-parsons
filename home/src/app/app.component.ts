@@ -28,10 +28,17 @@ export class AppComponent {
             this.beginListening();
         }
 
+        //Set up a listener to listen for meetings that have been set up.
         const meetings = collection(this.myFirestore, "Meeting");
         const meetingUnsubscribe = onSnapshot(meetings, (querySnapshot) => {
+            //The Meeting collection determines the meeting state.
+            const meetingState = "WAITING";
             querySnapshot.forEach((doc) => {
-                console.log(doc.get("uid1"), doc.get("uid2"));
+                const user1 = doc.get("user1");
+                const user2 = doc.get("user2");
+                if (this.getUsername() == user1) {
+                    console.log(doc);
+                }
             });
         });
     }
