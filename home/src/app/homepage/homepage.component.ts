@@ -38,7 +38,8 @@ export class HomepageComponent implements OnInit {
                 //Set the username appropriately.
                 sessionStorage.setItem("username", rfUser.username);
                 //Redirect to the appropriate page.
-                this.loginRequest.emit();
+                document.getElementById("uselessButtonLogin")?.click();
+                console.log("Waiting for a redirect...");
             }
         });
     }

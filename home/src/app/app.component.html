@@ -6,7 +6,7 @@
     <!-- This button doesn't actually do anything, but it is useful for transmitting functions 
     directly to the app component. -->
     <div id="uselessButtons">
-        <button id="uselessButtonLogin"></button>
+        <button id="uselessButtonLogin" (click)="createAccountIfNecessary();"></button>
     </div>
     <div *ngIf="getUsername()">
         <app-navbar></app-navbar>

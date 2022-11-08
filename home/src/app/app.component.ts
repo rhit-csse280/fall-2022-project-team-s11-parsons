@@ -38,6 +38,7 @@ export class AppComponent {
     // If an account already exists, then go to the Profile page.
     // If an account does not exist yet, then go to the Terms of Service page.
     async createAccountIfNecessary() {
+        console.log("I'm trying to figure out if you need an account or not.");
         const username : string = this.getUsername() || "ANONYMOUS";
         this.docRef = doc(this.myFirestore, "Users", username);
         const docSnap = await getDoc(this.docRef);
