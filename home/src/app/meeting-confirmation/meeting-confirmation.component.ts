@@ -43,6 +43,14 @@ export class MeetingConfirmationComponent implements OnInit {
         document.getElementById("uselessButtonServerSend")?.click();
     }
 
+    //Handles data sent from the server and stored in session storage.
+    handleServerData(imageWidth: number, imageHeight: number) {
+        const coordinates : any = this.getUserPosition();
+        this.myProportionX = coordinates["propX"];
+        this.myProportionY = coordinates["propY"];
+        this.positionDiv(imageWidth, imageHeight);
+    }
+
     // Based on the data in session storage, determine where the user's last map click was.
     getUserPosition() {
         const myUserString = sessionStorage.getItem("userdata") || "{}";

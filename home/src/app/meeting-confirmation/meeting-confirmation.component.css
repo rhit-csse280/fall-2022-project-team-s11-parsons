@@ -20,3 +20,7 @@
     top: -1000000px;
     left: -100000px;
 }
+
+#updateConfirmedContainer {
+    display: none;
+}
