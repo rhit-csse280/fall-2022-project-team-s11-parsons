@@ -80,10 +80,6 @@ export class MeetingSetupComponent implements OnInit {
         // Get the current user data.
         const userDataString : string = sessionStorage.getItem("userdata") || "{}";
         const userDataJSON = JSON.parse(userDataString);
-        const locationInput = document.getElementById("meetingSetupLocationInput");
-        if (!locationInput) {
-            return;
-        }
         userDataJSON["hour"] = this.hour;
         userDataJSON["minute"] = this.minute;
         userDataJSON["pm"] = this.pm;
