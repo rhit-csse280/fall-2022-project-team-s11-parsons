@@ -27,7 +27,16 @@ export class HomepageComponent implements OnInit {
                 // Use the token to authenticate with your server
                 // checkout the server SDKs for more information.
                 console.log(rfUser);
-                sessionStorage.setItem("username", rfUser.token);
+                // Ensure that the correct users are allowed.
+                if (rfUser.username === "scrivner") {
+                    alert("You are allowed to use this for demo purposes only. This app is intended for students.");
+                } else if (rfUser.group !== "OTHER") {
+                    alert("Your Rosefire token suggests that you are not a student. This app is only for students. Please email josephcpar@gmail.com if this is a mistake.");
+                    return;
+                }
+                //Set the username appropriately.
+                sessionStorage.setItem("username", rfUser.username);
+                //Redirect to the profile page.
                 window.location.href = `/profile`;
             }
         });
