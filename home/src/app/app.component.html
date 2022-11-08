@@ -3,8 +3,13 @@
 <div id="backgroundDiv" [class.signedin]="getUsername()" [class.notsignedin]="!getUsername()"></div>
 
 <div id="availableSpace">
+    <!-- This button doesn't actually do anything, but it is useful for transmitting functions 
+    directly to the app component. -->
+    <div id="uselessButtons">
+        <button id="uselessButtonLogin"></button>
+    </div>
     <div *ngIf="getUsername()">
         <app-navbar></app-navbar>
     </div>
-    <router-outlet (loginRequest)="createAccountIfNecessary();"></router-outlet>
+    <router-outlet></router-outlet>
 </div>

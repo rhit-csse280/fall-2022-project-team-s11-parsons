@@ -43,3 +43,6 @@
     overflow-x: hidden;
     overflow-y: auto;
 }
+#uselessButtons {
+    display: none;
+}
