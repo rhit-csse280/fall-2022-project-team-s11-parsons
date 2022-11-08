@@ -11,10 +11,14 @@ export class MeetingSetupComponent implements OnInit {
     hour: number = 0;
     minute: number = 0;
     location: string = "";
+    timeSelector: any;
+    locationInput: any;
 
     constructor() { }
 
     ngOnInit(): void {
+        // Oddly enough, loading this page can be done without reinitializing the listener.
+        this.getPreferredDetails();
     }
 
     getColor (colorName : string) : string {
@@ -30,7 +34,23 @@ export class MeetingSetupComponent implements OnInit {
     }
 
     getPreferredDetails() {
-        
+        // Get the current user data from session storage.
+        const userData = JSON.parse(sessionStorage.getItem("userdata") || "{'hour': -1, 'minute': -1}");
+        this.hour = userData["hour"];
+        this.minute = userData["minute"];
+        this.pm = userData["pm"];
+        this.location = userData["location"];
+        let timeExpression = "" + Math.floor(this.hour / 10) + this.hour % 10 + ":" + Math.floor(this.minute / 10) + this.minute % 10;
+        //A lot of this checking for existence is a TypeScript requirement.
+        //TypeScript wants to know that something is guaranteed to exist before operating on it.
+        this.timeSelector = document.querySelector("#startTimeContainer input");
+        if (this.timeSelector) {
+            this.timeSelector.value = timeExpression;
+        }
+        this.locationInput = document.querySelector("#bottomOfMeetingSetup input");
+        if (this.locationInput) {
+            this.locationInput.value = this.location;
+        }
     }
 
     // A helper function for converting a string to a non-negative integer.

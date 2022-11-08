@@ -98,7 +98,7 @@ export class AppComponent {
         sessionStorage.setItem("userdata", JSON.stringify(this.userData));
 
         // Now click several invisible buttons to tell any components on the page to update.
-        const buttonIDs = ["updateProfileContainer"];
+        const buttonIDs = ["updateProfileContainer", "updateSetupContainer"];
         for (const buttonID of buttonIDs) {
             console.log(buttonID);
             document.getElementById(buttonID)?.click();
