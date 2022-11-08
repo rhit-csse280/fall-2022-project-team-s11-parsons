@@ -9,9 +9,7 @@ import { PromptComponent } from './prompt/prompt.component';
 import { InfoComponent } from './info/info.component';
 import { ProfileComponent } from './profile/profile.component';
 import { HomepageComponent } from './homepage/homepage.component';
-import { SigninComponent } from './signin/signin.component';
 import { SetupComponent } from './setup/setup.component';
-import { SignupComponent } from './signup/signup.component';
 import { MeetingWaitingComponent } from './meeting-waiting/meeting-waiting.component';
 import { MeetingAwaitingconfirmationComponent } from './meeting-awaitingconfirmation/meeting-awaitingconfirmation.component';
 import { MeetingConfirmationComponent } from './meeting-confirmation/meeting-confirmation.component';
@@ -20,7 +18,6 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
-import { SigninupComponent } from './signinup/signinup.component';
 import { MeetingInvitationreceivedComponent } from './meeting-invitationreceived/meeting-invitationreceived.component';
 
 @NgModule({
@@ -32,14 +29,11 @@ import { MeetingInvitationreceivedComponent } from './meeting-invitationreceived
     InfoComponent,
     ProfileComponent,
     HomepageComponent,
-    SigninComponent,
     SetupComponent,
-    SignupComponent,
     MeetingWaitingComponent,
     MeetingAwaitingconfirmationComponent,
     MeetingConfirmationComponent,
     MeetingComponent,
-    SigninupComponent,
     MeetingInvitationreceivedComponent
   ],
   imports: [
