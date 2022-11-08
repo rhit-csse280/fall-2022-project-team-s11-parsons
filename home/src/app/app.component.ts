@@ -96,18 +96,19 @@ export class AppComponent {
     // This is useful because this object can be distributed and modified.
     putDataIntoStorage() {
         sessionStorage.setItem("userdata", JSON.stringify(this.userData));
+
+        // Now click several invisible buttons to tell any components on the page to update.
+        const buttonIDs = ["updateProfileContainer"];
+        for (const buttonID of buttonIDs) {
+            console.log(buttonID);
+            document.getElementById(buttonID)?.click();
+        }
     }
 
     // Used to retrieve the relevant fields of data from storage.
     getDataFromStorage() {
         const storageData : string = sessionStorage.getItem("userdata") || "{}";
         this.userData = JSON.parse(storageData);
-
-        // Now click several invisible buttons to tell any components on the page to update.
-        const buttonIDs = ["updateProfileContainer"];
-        for (const buttonID of buttonIDs) {
-            document.getElementById(buttonID)?.click();
-        }
     }
 
     // Set the entire data object on the server equal to what is currently in session storage.
