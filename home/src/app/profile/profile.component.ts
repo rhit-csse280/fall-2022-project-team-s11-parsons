@@ -33,7 +33,7 @@ export class ProfileComponent implements OnInit {
 
     getUsername() {
         // The username can be gotten from session storage.
-        return sessionStorage.getItem("username");
+        return JSON.parse(sessionStorage.getItem("userdata") || "{'username': 'ANONYMOUS'}")["username"];
     }
 
     getInterests() {

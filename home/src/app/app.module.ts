@@ -20,6 +20,7 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { SigninupComponent } from './signinup/signinup.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
     MeetingWaitingComponent,
     MeetingAwaitingconfirmationComponent,
     MeetingConfirmationComponent,
-    MeetingComponent
+    MeetingComponent,
+    SigninupComponent
   ],
   imports: [
     BrowserModule,
