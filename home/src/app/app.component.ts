@@ -2,16 +2,6 @@ import { Component } from '@angular/core';
 import { collection, Firestore, doc, onSnapshot, updateDoc, setDoc, getDoc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
-export interface User {
-    hour: number,
-    minute: number,
-    pm: boolean,
-    preferredLocation: string,
-    username: string,
-    xCoordinate: number,
-    yCoordinate: number
-}
-
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
