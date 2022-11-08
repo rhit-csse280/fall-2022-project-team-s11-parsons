@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./meeting.component.css']
 })
 export class MeetingComponent implements OnInit {
-    state : string = "INVITATIONRECEIVED";
+    state : string = "SETUP";
     images = [
         {url: "/assets/PercopoHall3.PNG", width: 1736, height: 487},
         // This image was cropped from the sign close to Career Services.
