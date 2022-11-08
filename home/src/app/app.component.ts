@@ -44,21 +44,49 @@ export class AppComponent {
     // If an account does not exist yet, then go to the Terms of Service page.
     async createAccountIfNecessary() {
         console.log("I'm trying to figure out if you need an account or not.");
+
+        // Determine what the username and usertoken stored in session storage are.
         const username : string = this.getUsername() || "ANONYMOUS";
+        const usertoken : string = sessionStorage.getItem("usertoken") || "NONE";
+        
+        //Try to create a document snapshot of the document for this user.
         this.docRef = doc(this.myFirestore, "Users", username);
         const docSnap = await getDoc(this.docRef);
+        
+        //Account Found
         if (docSnap.exists()) {
+            // If the data is not filled out or the user token does not match the username, do nothing.
+            if (username === "ANONYMOUS" || usertoken === "NONE") {
+                alert("You need to login with Rosefire");
+                return;
+            }
             console.log("Account Already Exists");
+            if (usertoken !== this.docRef.get("usertoken")) {
+                alert("The user token does not match the username.");
+                return;
+            }
+            //Otherwise, listen for changes to the user object and direct us to the profile page.
             this.beginListening();
             window.location.href = "/profile";
         } else {
+            // Create a new object with this base object and user token.
+            // A huge security flaw is that someone could pretend to be anyone else by simply
+            // choosing a username and user token.
+            // This issue should be addressed, but is ignored for now.
             console.log("A new account should be created");
+            const baseObject = {
+                "username" : usertoken.substring(0, 10),
+                "usertoken" : usertoken,
+            }
+            // Create the user and go to setup.
+            await setDoc(this.docRef, baseObject);
+            window.location.href = '/setup';
         }
     }
 
     // Used for constantly listening to the database.
     async beginListening() {
-        // Listen to the user with the User ID TPgaEVy71RKUQgCNcrei
+        // Listen to the user with our username
         // Eventually, this needs to be set to the username for the specific person.
         // This comes later.
         this.unsubscribe = onSnapshot(this.docRef, (userDoc : any) => {
