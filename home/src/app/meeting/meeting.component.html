@@ -1,32 +1,5 @@
 <app-meeting-setup *ngIf="state === 'SETUP'"></app-meeting-setup>
 <app-meeting-waiting *ngIf="state === 'WAITING'"></app-meeting-waiting>
-<app-meeting-invitationreceived *ngIf="state === 'WAITING'"></app-meeting-waiting>
-<app-meeting-waiting *ngIf="state === 'WAITING'"></app-meeting-waiting>
-<div *ngIf="state === 'INVITATIONRECEIVED'" id="invitationReceivedContainer">
-    <p [style.color]="getColor('Sugar Hearts You')" style="text-align: center;">You received an invitation to eat at 12:00 PM at Chauncey's.</p>
-    <p>abcd</p>
-    <input class="form-control" style="width: 75%; margin: 0 auto;" [style.backgroundColor] = "getColor('Bursts of Euphoria')" type="text" placeholder="Coding, Hiking" aria-label="default input example" readonly>
-    <div id="invitationReceivedButtons">
-        <button type="button" class="btn btn-primary centeredBlock" [style.backgroundColor]="getColor('Happy Balloons')">Accept</button>
-        <button type="button" class="btn btn-secondary centeredBlock" [style.backgroundColor]="getColor('Sugar Hearts You')">Decline</button>
-    </div>
-</div>
-<div *ngIf="state === 'AWAITINGCONFIRMATION'" id="awaitingConfirmationContainer">
-    <p [style.color]="getColor('Sugar Hearts You')" style="text-align: center;">You confirmed that you are available to eat at 12:00 PM at Chauncey's with abcd.</p>
-    <div id="cancelWhileAwaitingConfirmation">
-        <button type="button" class="btn btn-secondary centeredBlock" [style.backgroundColor]="getColor('Sugar Hearts You')">Cancel</button>
-    </div>
-</div>
-<div *ngIf="state === 'CONFIRMED'" id="confirmedContainer">
-    <p [style.color]="getColor('Sugar Hearts You')" style="text-align: center; ">You are meeting with abcd at 12:00 PM at Chauncey's.</p>
-    <div id="cancelAfterConfirmation">
-        <button type="button" class="btn btn-secondary centeredBlock" [style.backgroundColor]="getColor('Sugar Hearts You')" id="cancelButton">Cancel</button>
-    </div>
-    <!-- I got this idea based on one of the past projects. -->
-    <!-- See https://rosehulman.sharepoint.com/sites/Facilities/Shared%20Documents/Forms/AllItems.aspx?id=%2Fsites%2FFacilities%2FShared%20Documents%2FResidential%20Buildings%2FPercopo%20Hall%203rd%20Floor%2Epdf&parent=%2Fsites%2FFacilities%2FShared%20Documents%2FResidential%20Buildings&p=true&ga=1 -->
-    <div id="confirmationImageContainer">
-        <!-- I got the onload event from regular JavaScript. I guess this works for Angular as well -->
-        <img #mapImage [src]="images[index].url" id="confirmationImage" (click)="logClick($event, mapImage.width, mapImage.height)" (load)="positionDiv(mapImage.width, mapImage.height)">
-        <div id="currentLocation"></div>
-    </div>
-</div>
+<app-meeting-invitationreceived *ngIf="state === 'INVITATIONRECEIVED'"></app-meeting-waiting>
+<app-meeting-awaitingconfirmation *ngIf="state === 'AWAITINGCONFIRMATION'"></app-meeting-confirmation>
+<app-meeting-confirmation *ngIf="state === 'CONFIRMED'"></app-meeting-confirmation>

@@ -1,1 +1,13 @@
-<p>meeting-confirmation works!</p>
+<div id="confirmedContainer">
+    <p [style.color]="getColor('Sugar Hearts You')" style="text-align: center; ">You are meeting with abcd at 12:00 PM at Chauncey's.</p>
+    <div id="cancelAfterConfirmation">
+        <button type="button" class="btn btn-secondary centeredBlock" [style.backgroundColor]="getColor('Sugar Hearts You')" id="cancelButton">Cancel</button>
+    </div>
+    <!-- I got this idea based on one of the past projects. -->
+    <!-- See https://rosehulman.sharepoint.com/sites/Facilities/Shared%20Documents/Forms/AllItems.aspx?id=%2Fsites%2FFacilities%2FShared%20Documents%2FResidential%20Buildings%2FPercopo%20Hall%203rd%20Floor%2Epdf&parent=%2Fsites%2FFacilities%2FShared%20Documents%2FResidential%20Buildings&p=true&ga=1 -->
+    <div id="confirmationImageContainer">
+        <!-- I got the onload event from regular JavaScript. I guess this works for Angular as well -->
+        <img #mapImage [src]="images[index].url" id="confirmationImage" (click)="logClick($event, mapImage.width, mapImage.height)" (load)="positionDiv(mapImage.width, mapImage.height)">
+        <div id="currentLocation"></div>
+    </div>
+</div>

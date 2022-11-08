@@ -1,1 +1,6 @@
-<p>meeting-awaitingconfirmation works!</p>
+<div id="awaitingConfirmationContainer">
+    <p [style.color]="getColor('Sugar Hearts You')" style="text-align: center;">You confirmed that you are available to eat at 12:00 PM at Chauncey's with abcd.</p>
+    <div id="cancelWhileAwaitingConfirmation">
+        <button type="button" class="btn btn-secondary centeredBlock" [style.backgroundColor]="getColor('Sugar Hearts You')">Cancel</button>
+    </div>
+</div>

@@ -21,6 +21,7 @@ import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { SigninupComponent } from './signinup/signinup.component';
+import { MeetingInvitationreceivedComponent } from './meeting-invitationreceived/meeting-invitationreceived.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { SigninupComponent } from './signinup/signinup.component';
     MeetingAwaitingconfirmationComponent,
     MeetingConfirmationComponent,
     MeetingComponent,
-    SigninupComponent
+    SigninupComponent,
+    MeetingInvitationreceivedComponent
   ],
   imports: [
     BrowserModule,
