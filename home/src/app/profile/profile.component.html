@@ -1,4 +1,5 @@
 <div id="profileContainer">
+    <button id="updateProfileContainer" (click)="getInterests();"></button>
     <p class="centeredText" [style.color]="getColor('Sugar Hearts You')">{{getUsername()}}</p>
     <p>Interests</p>
     <input class="form-control" [style.backgroundColor] = "getColor('Bursts of Euphoria')" type="text" value="" aria-label="default input example" (change)="setInterests()">

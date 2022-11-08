@@ -102,6 +102,12 @@ export class AppComponent {
     getDataFromStorage() {
         const storageData : string = sessionStorage.getItem("userdata") || "{}";
         this.userData = JSON.parse(storageData);
+
+        // Now click several invisible buttons to tell any components on the page to update.
+        const buttonIDs = ["updateProfileContainer"];
+        for (const buttonID of buttonIDs) {
+            document.getElementById(buttonID)?.click();
+        }
     }
 
     // Set the entire data object on the server equal to what is currently in session storage.

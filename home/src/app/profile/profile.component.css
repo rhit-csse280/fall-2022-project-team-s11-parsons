@@ -11,3 +11,7 @@
 #profileContainer > .form-control {
     width: 50%;
 }
+
+#updateProfileContainer {
+    display: none;
+}
