@@ -27,6 +27,13 @@ export class AppComponent {
             this.docRef = doc(this.myFirestore, "Users", username);
             this.beginListening();
         }
+
+        const meetings = collection(this.myFirestore, "Meeting");
+        const meetingUnsubscribe = onSnapshot(meetings, (querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                console.log(doc.get("uid1"), doc.get("uid2"));
+            });
+        });
     }
 
     // Determine whether an account exists or not.
