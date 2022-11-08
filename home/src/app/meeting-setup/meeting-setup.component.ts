@@ -10,6 +10,7 @@ export class MeetingSetupComponent implements OnInit {
     pm: boolean = false;
     hour: number = 0;
     minute: number = 0;
+    location: string = "";
 
     constructor() { }
 
@@ -22,6 +23,10 @@ export class MeetingSetupComponent implements OnInit {
 
     setAmPm(pmTrue : boolean) : void {
         this.pm = pmTrue;
+    }
+
+    setLocation(location : string) : void {
+        this.location = location;
     }
 
     // A helper function for converting a string to a non-negative integer.
@@ -39,19 +44,23 @@ export class MeetingSetupComponent implements OnInit {
     // Given a time expression, if it is valid, set the hour and minute properties of this class to the values from this time expression.
     convertToDetails(timeExpression : string) : void {
         if (timeExpression.length != 5 || timeExpression.charAt(2) != ":") {
+            // Do validation to check that this is in HH:MM format.
             console.log("Not in HH:MM format");
             this.hour = -1;
             this.minute = -1;
         } else {
+            // Extract the hour and minute in the form of integers.
             const newHour : string = timeExpression.substring(0, 2);
             const newMinute : string = timeExpression.substring(3, 5);
             const newHourConverted : number = this.convert2DigitStringToInteger(newHour);
             const newMinuteConverted : number = this.convert2DigitStringToInteger(newMinute);
             if (newHourConverted >= 1 && newHourConverted <= 12 && newMinuteConverted >= 0 && newMinuteConverted <= 59) {
+                // Update the hour and minute here.
                 this.hour = newHourConverted;
                 this.minute = newMinuteConverted;
                 console.log(`${this.hour} ${this.minute}`);
             } else {
+                // -1 and -1 for hour and minute represents INVALID DATE
                 this.hour = -1;
                 this.minute = -1;
                 console.log("Invalid time");
@@ -71,9 +80,14 @@ export class MeetingSetupComponent implements OnInit {
         // Get the current user data.
         const userDataString : string = sessionStorage.getItem("userdata") || "{}";
         const userDataJSON = JSON.parse(userDataString);
+        const locationInput = document.getElementById("meetingSetupLocationInput");
+        if (!locationInput) {
+            return;
+        }
         userDataJSON["hour"] = this.hour;
         userDataJSON["minute"] = this.minute;
         userDataJSON["pm"] = this.pm;
+        userDataJSON["location"] = this.location;
 
         //Put this data back in session storage and send to the server.
         sessionStorage.setItem("userdata", JSON.stringify(userDataJSON));

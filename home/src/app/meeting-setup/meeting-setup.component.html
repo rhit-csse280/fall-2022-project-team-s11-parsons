@@ -10,7 +10,7 @@
     </div>
     <p>Location</p>
     <div id="bottomOfMeetingSetup">
-        <input #location class="form-control" [style.backgroundColor]="getColor('Bursts of Euphoria')" type="text" placeholder="Location" aria-label="default input example">
+        <input #location class="form-control" [style.backgroundColor]="getColor('Bursts of Euphoria')" type="text" placeholder="Location" aria-label="default input example" (change)="setLocation(location.value)">
         <button type="button" class="btn btn-primary centeredBlock" [style.backgroundColor]="getColor('Happy Balloons')" (click)="sendPreferredDetails(hhmmtime.value, location.value)">Request</button>
     </div>
 </div>
