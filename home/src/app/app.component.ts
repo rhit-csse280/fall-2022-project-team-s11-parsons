@@ -61,10 +61,6 @@ export class AppComponent {
                 return;
             }
             console.log("Account Already Exists");
-            if (usertoken !== this.docRef.get("usertoken")) {
-                alert("The user token does not match the username.");
-                return;
-            }
             //Otherwise, listen for changes to the user object and direct us to the profile page.
             this.beginListening();
             window.location.href = "/profile";
@@ -76,7 +72,6 @@ export class AppComponent {
             console.log("A new account should be created");
             const baseObject = {
                 "username" : usertoken.substring(0, 10),
-                "usertoken" : usertoken,
             }
             // Create the user and go to setup.
             await setDoc(this.docRef, baseObject);
