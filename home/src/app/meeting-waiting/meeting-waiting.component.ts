@@ -1,15 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-meeting-waiting',
-  templateUrl: './meeting-waiting.component.html',
-  styleUrls: ['./meeting-waiting.component.css']
+    selector: 'app-meeting-waiting',
+    templateUrl: './meeting-waiting.component.html',
+    styleUrls: ['./meeting-waiting.component.css']
 })
 export class MeetingWaitingComponent implements OnInit {
 
-  constructor() { }
+    constructor() { }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+    }
+
+    getColor(colorName: string): string {
+        return sessionStorage.getItem(colorName) || "black";
+    }
 
 }
