@@ -19,6 +19,7 @@ import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { MeetingInvitationreceivedComponent } from './meeting-invitationreceived/meeting-invitationreceived.component';
+import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,10 @@ import { MeetingInvitationreceivedComponent } from './meeting-invitationreceived
   ],
   //I looked at https://stackoverflow.com/questions/66252333/error-nullinjectorerror-r3injectorerrorappmodule
   //However, https://stackoverflow.com/questions/69844586/nullinjectorerror-no-provider-for-injectiontoken-angularfire2-app-options-2021?noredirect=1&lq=1 provided the answer.
+  //Specifically, Baraa Halabi's answer.
+  //I do not understand what it is doing, but it is doing someting to resolve version conflicts.
   providers: [
+    {provide: FIREBASE_OPTIONS, useValue: environment.firebase}
   ],
   bootstrap: [AppComponent]
 })
