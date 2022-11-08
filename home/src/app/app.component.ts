@@ -31,7 +31,12 @@ export class AppComponent {
     // I guess part of it is it is based on the "Get a Document" section at https://firebase.google.com/docs/firestore/query-data/get-data
     constructor(firestore : Firestore) {
         this.myFirestore = firestore;
-        this.beginListening();
+        //If the username is known, create a document reference and begin listening immediately.
+        const username : string = this.getUsername() || "";
+        if (username) {
+            this.docRef = doc(this.myFirestore, "Users", username);
+            this.beginListening();
+        }
     }
 
     // Determine whether an account exists or not.
@@ -44,6 +49,8 @@ export class AppComponent {
         const docSnap = await getDoc(this.docRef);
         if (docSnap.exists()) {
             console.log("Account Already Exists");
+            this.beginListening();
+            window.location.href = "/profile";
         } else {
             console.log("A new account should be created");
         }
@@ -54,16 +61,12 @@ export class AppComponent {
         // Listen to the user with the User ID TPgaEVy71RKUQgCNcrei
         // Eventually, this needs to be set to the username for the specific person.
         // This comes later.
-        this.docRef = doc(this.myFirestore, "Users", "TPgaEVy71RKUQgCNcrei");
         this.unsubscribe = onSnapshot(this.docRef, (userDoc : any) => {
             // Captures updates from the server in real time.
             this.userData = userDoc.data();
             console.log(this.userData);
             this.putDataIntoStorage();
-        })
-        // Every 0.1 seconds, send whatever data we have locally to the server.
-        // This needs to wait some time for the database to give the client a user object.
-        setInterval(this.sendDataToServer.bind(this), 100);
+        });
     }
 
     // Used to store the relevant fields of data into session storage.
@@ -81,8 +84,8 @@ export class AppComponent {
     // Set the entire data object on the server equal to what is currently in session storage.
     sendDataToServer() {
         // We don't want to send empty data from before the server can send us data.
-        const ourData = sessionStorage.getItem("userdata");
-        if (ourData) {
+        const ourData : string = sessionStorage.getItem("userdata") || "";
+        if (ourData && this.docRef) {
             setDoc(this.docRef, JSON.parse(ourData));
         }
     }

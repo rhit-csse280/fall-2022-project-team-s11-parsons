@@ -49,6 +49,7 @@ export class ProfileComponent implements OnInit {
             console.log("Need to change interests");
             this.myInput.value = newInterests;
             this.interests = newInterests;
+            document.getElementById("uselessButtonServerSend")?.click();
         }
     }
 
