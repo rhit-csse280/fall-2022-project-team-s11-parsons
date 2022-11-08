@@ -22,6 +22,7 @@ export class MeetingConfirmationComponent implements OnInit {
         const userPosition = this.getUserPosition();
         this.myProportionX = userPosition["propX"];
         this.myProportionY = userPosition["propY"];
+        console.log(userPosition);
     }
 
     getColor(colorName: string): string {
@@ -29,62 +30,29 @@ export class MeetingConfirmationComponent implements OnInit {
     }
 
     sendUserPosition(propX: number, propY: number) : void {
-        const myUsername : string = sessionStorage.getItem("username") || "ERROR";
+        // Get the current data object
+        const myUserString = sessionStorage.getItem("userdata") || "{}";
+        const myUserObject = JSON.parse(myUserString);
 
-        // Figure out what is stored in the current accounts.
-        let currentAccounts : string | null = sessionStorage.getItem("person");
-        if (!currentAccounts) {
-            // This should never be run in practice.
-            currentAccounts = "";
-        }
+        // Add the user object
+        myUserObject["xCoordinate"] = propX;
+        myUserObject["yCoordinate"] = propY;
 
-        //Look at each account.
-        const accounts : string[] = currentAccounts.split("\n");
-        for (let i = 0; i < accounts.length; i++) {
-            const account = accounts[i];
-            if (account === "") {
-                //Ignore blank lines
-                continue;
-            }
-            const accountProperties : string[] = account.split(",");
-            const username = accountProperties[0];
-            if (myUsername === username) {
-                // Change the appropriate properties, generate a new string, and put it back into acounts.
-                accountProperties[7] = "" + propX;
-                accountProperties[8] = "" + propY;
-                accounts[i] = accountProperties.join(",");
-            }
-        }
-        currentAccounts = accounts.join("\n");
-        sessionStorage.setItem("person", currentAccounts);
+        // Put the data object back into session storage.
+        sessionStorage.setItem("userdata", JSON.stringify(myUserObject));
+        document.getElementById("uselessButtonServerSend")?.click();
     }
 
+    // Based on the data in session storage, determine where the user's last map click was.
     getUserPosition() {
-        const myUsername : string = sessionStorage.getItem("username") || "ERROR";
-
-        // Figure out what is stored in the current accounts.
-        let currentAccounts : string | null = sessionStorage.getItem("person");
-        if (!currentAccounts) {
-            // This should never be run in practice.
-            currentAccounts = "";
+        const myUserString = sessionStorage.getItem("userdata") || "{}";
+        const myUserObject = JSON.parse(myUserString);
+        if (myUserObject["xCoordinate"]) {
+            return {"propX" : Number(myUserObject["xCoordinate"]),
+            "propY" : Number(myUserObject["yCoordinate"])};
+        } else {
+            return {"propX" : 0, "propY" : 0};
         }
-
-        //Look at each account.
-        const accounts : string[] = currentAccounts.split("\n");
-        for (let i = 0; i < accounts.length; i++) {
-            const account = accounts[i];
-            if (account === "") {
-                //Ignore blank lines
-                continue;
-            }
-            const accountProperties : string[] = account.split(",");
-            const username = accountProperties[0];
-            if (myUsername === username) {
-                // Change the appropriate properties, generate a new string, and put it back into acounts.
-                return {"propX" : Number(accountProperties[7]), "propY" : Number(accountProperties[8])};
-            }
-        }
-        return {"propX" : 0, "propY" : 0};
     }
 
     logClick(e : MouseEvent, imageWidth: number, imageHeight: number) {

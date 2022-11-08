@@ -1,4 +1,4 @@
-#invitationReceivedContainer, #confirmedContainer {
+#invitationReceivedContainer {
     background-color: cyan;
 }
 
@@ -21,21 +21,8 @@
     align-items: center;
 }
 
-#cancelWhileAwaitingConfirmation, #cancelAfterConfirmation {
+#cancelWhileAwaitingConfirmation {
     display: flex;
     flex-direction: row;
     justify-content: center;
-}
-
-#confirmationImage {
-    width: 90vw;
-}
-
-#currentLocation {
-    width: 10px;
-    height: 10px;
-    position: relative;
-    background-color: red;
-    top: -1000000px;
-    left: -100000px;
 }
