@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { collection, Firestore, doc, onSnapshot, updateDoc, setDoc } from '@angular/fire/firestore';
+import { collection, Firestore, doc, onSnapshot, updateDoc, setDoc, getDoc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 export interface User {
@@ -32,6 +32,20 @@ export class AppComponent {
     constructor(firestore : Firestore) {
         this.myFirestore = firestore;
         this.beginListening();
+    }
+
+    // Determine whether an account exists or not.
+    // If an account already exists, then go to the Profile page.
+    // If an account does not exist yet, then go to the Terms of Service page.
+    async createAccountIfNecessary() {
+        const username : string = this.getUsername() || "ANONYMOUS";
+        this.docRef = doc(this.myFirestore, "Users", username);
+        const docSnap = await getDoc(this.docRef);
+        if (docSnap.exists()) {
+            console.log("Account Already Exists");
+        } else {
+            console.log("A new account should be created");
+        }
     }
 
     // Used for constantly listening to the database.

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'app-homepage',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./homepage.component.css']
 })
 export class HomepageComponent implements OnInit {
-
+    @Output() loginRequest = new EventEmitter<string>();
     constructor() { }
 
     ngOnInit(): void {
@@ -17,6 +17,7 @@ export class HomepageComponent implements OnInit {
         return sessionStorage.getItem(colorName) || "black";
     }
 
+    // sign in or sign up using Rosefire
     rosefireSignIn() {
         Rosefire.signIn('fdcea3b8-924f-48eb-8602-9c9355591911', (error, rfUser: RosefireUser) => {
             if (error) {
@@ -36,10 +37,9 @@ export class HomepageComponent implements OnInit {
                 }
                 //Set the username appropriately.
                 sessionStorage.setItem("username", rfUser.username);
-                //Redirect to the profile page.
-                window.location.href = `/profile`;
+                //Redirect to the appropriate page.
+                this.loginRequest.emit();
             }
         });
-
     }
 }
