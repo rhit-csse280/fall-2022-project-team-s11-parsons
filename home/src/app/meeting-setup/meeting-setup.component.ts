@@ -29,6 +29,10 @@ export class MeetingSetupComponent implements OnInit {
         this.location = location;
     }
 
+    getPreferredDetails() {
+        
+    }
+
     // A helper function for converting a string to a non-negative integer.
     // If the expression provided is not a valid 2-digit decimal number, then return -1.
     convert2DigitStringToInteger(expression: string) : number {
@@ -67,8 +71,6 @@ export class MeetingSetupComponent implements OnInit {
             }
         }
     }
-
-    
 
     sendPreferredDetails(timeExpression : string, locationValue : string) : void {
         // Make sure the time expression is valid.
