@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import 'rosefire';
 
 @Component({
     selector: 'app-homepage',
