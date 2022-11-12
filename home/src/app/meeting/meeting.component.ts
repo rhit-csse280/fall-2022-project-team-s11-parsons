@@ -10,6 +10,10 @@ export class MeetingComponent implements OnInit {
     meetingInfoSource : string = "";
 
     constructor() {
+        this.chooseWhatToDisplay();
+    }
+
+    chooseWhatToDisplay() {
         let meetingInfo : any = sessionStorage.getItem("meetingdata");
         if (!meetingInfo) {
             this.state = "SETUP";

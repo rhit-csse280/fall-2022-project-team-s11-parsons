@@ -37,41 +37,8 @@ export class AppComponent {
         if (username) {
             this.docRef = doc(this.myFirestore, "Users", username);
             this.beginListening();
+            this.beginMeetingListening();
         }
-
-        //Set up a listener to listen for meetings that have been set up.
-        const meetings : CollectionReference = collection(this.myFirestore, "Meeting");
-        const meetingUnsubscribe = onSnapshot(meetings, (querySnapshot) => {
-            querySnapshot.forEach((doc : QueryDocumentSnapshot) => {
-                const meetingInfo = {
-                    "hourA" : parseInt(doc.get("hourA")),
-                    "hourB" : parseInt(doc.get("hourB")),
-                    "locationA" : doc.get("locationA"),
-                    "locationB" : doc.get("locationB"),
-                    "minuteA" : parseInt(doc.get("minuteA")),
-                    "minuteB" : parseInt(doc.get("minuteB")),
-                    "pmA" : String(doc.get("pmA")) == "true",
-                    "pmB" : String(doc.get("pmB")) == "true",
-                    "status" : doc.get("status"),
-                    "user1" : doc.get("user1"),
-                    "user2" : doc.get("user2")
-                }
-                let userNumber : number = 0;
-                // Determine if we are in this meeting, and if so, which user we are.
-                if (this.getUsername() == meetingInfo["user1"]) {
-                    userNumber = 1;
-                } else if (this.getUsername() == meetingInfo["user2"]) {
-                    userNumber = 2;
-                }
-
-                if (meetingInfo["status"] != "SUCCESS" && meetingInfo["status"] != "FAILURE") {
-                    sessionStorage.setItem("meetingdata", JSON.stringify(meetingInfo));
-                    sessionStorage.setItem("usernumber", JSON.stringify(userNumber));
-                } else {
-                    this.requestMeeting();
-                }
-            });
-        });
     }
 
     // Determine what to do with the meeting based on the button press.
@@ -125,7 +92,7 @@ export class AppComponent {
     }
 
     // Used for constantly listening to the database.
-    async beginListening() {
+    beginListening() {
         // Listen to the user with our username
         // Eventually, this needs to be set to the username for the specific person.
         // This comes later.
@@ -137,13 +104,52 @@ export class AppComponent {
         });
     }
 
+    
+
+    //Set up a listener to listen for meetings that have been set up.
+    beginMeetingListening() {
+        const meetings : CollectionReference = collection(this.myFirestore, "Meeting");
+        const meetingUnsubscribe = onSnapshot(meetings, (querySnapshot) => {
+            querySnapshot.forEach((doc : QueryDocumentSnapshot) => {
+                const meetingInfo = {
+                    "hourA" : parseInt(doc.get("hourA")),
+                    "hourB" : parseInt(doc.get("hourB")),
+                    "locationA" : doc.get("locationA"),
+                    "locationB" : doc.get("locationB"),
+                    "minuteA" : parseInt(doc.get("minuteA")),
+                    "minuteB" : parseInt(doc.get("minuteB")),
+                    "pmA" : String(doc.get("pmA")) == "true",
+                    "pmB" : String(doc.get("pmB")) == "true",
+                    "status" : doc.get("status"),
+                    "user1" : doc.get("user1"),
+                    "user2" : doc.get("user2")
+                }
+                let userNumber : number = 0;
+                // Determine if we are in this meeting, and if so, which user we are.
+                if (this.getUsername() == meetingInfo["user1"]) {
+                    userNumber = 1;
+                } else if (this.getUsername() == meetingInfo["user2"]) {
+                    userNumber = 2;
+                }
+
+                if (meetingInfo["status"] != "SUCCESS" && meetingInfo["status"] != "FAILURE") {
+                    sessionStorage.setItem("meetingdata", JSON.stringify(meetingInfo));
+                    sessionStorage.setItem("usernumber", JSON.stringify(userNumber));
+                    this.putDataIntoStorage();
+                } else {
+                    this.requestMeeting();
+                }
+            });
+        });
+    }
+
     // Used to store the relevant fields of data into session storage.
     // This is useful because this object can be distributed and modified.
     putDataIntoStorage() {
         sessionStorage.setItem("userdata", JSON.stringify(this.userData));
 
         // Now click several invisible buttons to tell any components on the page to update.
-        const buttonIDs : readonly string[] = ["updateProfileContainer", "updateSetupContainer", "updateConfirmedContainer"];
+        const buttonIDs : readonly string[] = ["updateProfileContainer", "updateSetupContainer", "updateConfirmedContainer", "updateMeeting"];
         for (const buttonID of buttonIDs) {
             console.log(buttonID);
             const myButton : HTMLElement | null = document.getElementById(buttonID);
