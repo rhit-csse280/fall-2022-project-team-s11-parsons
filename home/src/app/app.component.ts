@@ -44,14 +44,13 @@ export class AppComponent {
         }
     }
 
-    // Determine what to do with the meeting based on the button press.
-    handleButtonPress(buttonName : string) {
-
-    }
-
     // Tell the server that we want to be in a meeting.
     requestMeeting() {
-
+        const myInfo = sessionStorage.getItem("userdata");
+        if (myInfo) {
+            const tmpDocRef = doc(this.myFirestore, "UsersWaitingForMeal", this.getUsername() || "ANONYMOUS");
+            setDoc(tmpDocRef, JSON.parse(myInfo));
+        }
     }
 
     // Determine whether an account exists or not.
@@ -111,6 +110,7 @@ export class AppComponent {
 
     //Set up a listener to listen for meetings that have been set up.
     beginMeetingListening() {
+        this.meetingDocRef = undefined;
         this.meetingsRef = collection(this.myFirestore, "Meeting");
         this.meetingsUnsubscribe = onSnapshot(this.meetingsRef, (querySnapshot) => {
             querySnapshot.forEach((doc1 : QueryDocumentSnapshot) => {
@@ -134,7 +134,6 @@ export class AppComponent {
                 } else if (this.getUsername() == meetingInfo["user2"]) {
                     userNumber = 2;
                 }
-
                 if (userNumber > 0) {
                     this.meetingDocRef = doc(this.myFirestore, "Meeting", String(doc1.id));
                     if (meetingInfo["status"] != "SUCCESS" && meetingInfo["status"] != "FAILURE") {
@@ -147,6 +146,11 @@ export class AppComponent {
                 }
             });
         });
+        // Once a meeting is over, clear it from our session storage.
+        if (!this.meetingDocRef) {
+            sessionStorage.setItem("meetingdata", "{}")
+            sessionStorage.setItem("usernumber", "0");
+        }
     }
 
     // Used to store the relevant fields of data into session storage.

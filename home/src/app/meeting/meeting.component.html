@@ -1,6 +1,5 @@
 <div id="meetingContainer">
     <app-meeting-setup *ngIf="state === 'SETUP'"></app-meeting-setup>
-    <app-meeting-waiting *ngIf="state === 'WAITING'"></app-meeting-waiting>
     <app-meeting-invitationreceived [meetingSource]="meetingInfoSource" *ngIf="state === 'INVITATIONRECEIVED'"></app-meeting-invitationreceived>
     <app-meeting-awaitingconfirmation [meetingSource]="meetingInfoSource" *ngIf="state === 'AWAITINGCONFIRMATION'"></app-meeting-awaitingconfirmation>
     <app-meeting-confirmation *ngIf="state === 'CONFIRMED'"></app-meeting-confirmation>
