@@ -6,9 +6,8 @@ import { Component, Input, OnInit } from '@angular/core';
     styleUrls: ['./prompt.component.css']
 })
 export class PromptComponent implements OnInit {
-    @Input() colorlist : readonly string[] = [];
     index: number;
-    prompts: readonly string[] = [];
+    prompts: readonly string[];
     constructor() { 
         this.index = 0;
         this.prompts = ["What is your name?",

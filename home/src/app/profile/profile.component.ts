@@ -6,7 +6,6 @@ import { Component, Input, OnInit } from '@angular/core';
     styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-    @Input() colorlist : readonly string[] = [];
     interests: any; // Stores the interests as the server would have it.
     myInput : any; // The input field for interests
 
@@ -26,19 +25,19 @@ export class ProfileComponent implements OnInit {
         return sessionStorage.getItem(colorName) || "black";
     }
 
-    signOut() {
+    signOut() : void {
         // To sign out, clear all user information.
         sessionStorage.setItem("username", "");
         sessionStorage.setItem("userdata", "{}");
         document.location.href = "/home";
     }
 
-    getUsername() {
+    getUsername() : string {
         // The username can be gotten from session storage.
         return JSON.parse(sessionStorage.getItem("userdata") || "{'username': 'ANONYMOUS'}")["username"];
     }
 
-    getInterests() {
+    getInterests() : void {
         // Get the interests from session storage and set the value of the data field to this.
         const newInterests : string = JSON.parse(sessionStorage.getItem("userdata")||"{'interests':''}")["interests"];
         if (this.myInput) {
@@ -49,7 +48,7 @@ export class ProfileComponent implements OnInit {
         }
     }
 
-    setInterests() {
+    setInterests() : void {
         // Send the interests to the session storage.
         if (this.myInput) {
             const interestString : string =  this.myInput.value || "NULL";

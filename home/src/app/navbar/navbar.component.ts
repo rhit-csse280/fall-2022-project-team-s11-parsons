@@ -5,20 +5,16 @@ import { Component, Input, OnInit } from '@angular/core';
     templateUrl: './navbar.component.html',
     styleUrls: ['./navbar.component.css']
 })
+
 export class NavbarComponent implements OnInit {
+
     navigationTabs = [
         { materialIcon: "account_circle", tabName: "Profile" },
         { materialIcon: "restaurant", tabName: "Meeting" },
         { materialIcon: "lightbulb", tabName: "Prompt" },
         { materialIcon: "info", tabName: "Info" }
     ];
-    enum Tabs {
-        Profile: "Profile",
-        Meeting: "Meeting",
-        Prompt: "Prompt",
-        Info: "Info"
-    };
-    lastSelectedTab = "Profile";
+    lastSelectedTab : string = "Profile";
 
     constructor() {
     }
