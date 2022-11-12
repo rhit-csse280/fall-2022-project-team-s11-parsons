@@ -65,7 +65,7 @@ export class MeetingComponent implements OnInit {
             }
         }
         // Tell the subcomponents to update their information if applicable.
-        const subcomponentNames = ["updateMeetingInvitationReceived"];
+        const subcomponentNames = ["updateMeetingInvitationReceived", "updateMeetingAwaitingConfirmation"];
         for (const subcomponentName of subcomponentNames) {
             const button = document.getElementById(subcomponentName);
             if (button) {
