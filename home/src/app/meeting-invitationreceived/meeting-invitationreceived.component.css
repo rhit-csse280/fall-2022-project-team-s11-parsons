@@ -1,0 +1,11 @@
+#invitationReceivedContainer {
+    background-color: cyan;
+}
+#invitationReceivedButtons {
+    display: flex;
+    flex-direction: row;
+    width: 90vw;
+    left: 5vw;
+    justify-content: space-around;
+    align-items: center;
+}

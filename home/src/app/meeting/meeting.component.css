@@ -1,6 +1,3 @@
-#invitationReceivedContainer {
-    background-color: cyan;
-}
 
 #waitingContainer {
     display: flex;
@@ -12,7 +9,7 @@
     background-color: cyan;
 }
 
-#waitingButtons, #invitationReceivedButtons {
+#waitingButtons {
     display: flex;
     flex-direction: row;
     width: 90vw;
