@@ -26,7 +26,6 @@ import 'rosefire';
     styleUrls: ['./homepage.component.css']
 })
 export class HomepageComponent implements OnInit {
-    @Output() loginRequest = new EventEmitter<string>();
     constructor(private afAuth : AngularFireAuth) { }
 
     ngOnInit(): void {
@@ -38,7 +37,7 @@ export class HomepageComponent implements OnInit {
     }
 
     // sign in or sign up using Rosefire
-    rosefireSignIn() {
+    rosefireSignIn() : void {
         Rosefire.signIn('fdcea3b8-924f-48eb-8602-9c9355591911', (error, rfUser: RosefireUser) => {
             if (error) {
                 // User not logged in!
@@ -59,7 +58,10 @@ export class HomepageComponent implements OnInit {
                 sessionStorage.setItem("username", rfUser.username);
                 sessionStorage.setItem("usertoken", rfUser.token);
                 //Redirect to the appropriate page.
-                document.getElementById("uselessButtonLogin")?.click();
+                const uselessButtonLogin : HTMLElement | null = document.getElementById("uselessButtonLogin");
+                if (uselessButtonLogin) {
+                    uselessButtonLogin.click();
+                }
                 console.log("Waiting for a redirect...");
             }
             this.afAuth.signInWithCustomToken(rfUser.token);

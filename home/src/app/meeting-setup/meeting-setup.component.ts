@@ -11,8 +11,8 @@ export class MeetingSetupComponent implements OnInit {
     hour: number = 0;
     minute: number = 0;
     location: string = "";
-    timeSelector: any;
-    locationInput: any;
+    timeSelector: Element | null = null;
+    locationInput: Element | null = null;
 
     constructor() { }
 
@@ -45,11 +45,11 @@ export class MeetingSetupComponent implements OnInit {
         //TypeScript wants to know that something is guaranteed to exist before operating on it.
         this.timeSelector = document.querySelector("#startTimeContainer input");
         if (this.timeSelector) {
-            this.timeSelector.value = timeExpression;
+            (this.timeSelector as any).value = timeExpression;
         }
         this.locationInput = document.querySelector("#bottomOfMeetingSetup input");
         if (this.locationInput) {
-            this.locationInput.value = this.location;
+            (this.locationInput as any).value = this.location;
         }
     }
 
@@ -69,7 +69,7 @@ export class MeetingSetupComponent implements OnInit {
     convertToDetails(timeExpression : string) : void {
         if (timeExpression.length != 5 || timeExpression.charAt(2) != ":") {
             // Do validation to check that this is in HH:MM format.
-            console.log("Not in HH:MM format");
+            alert("Your time is not in HH:MM format");
             this.hour = -1;
             this.minute = -1;
         } else {
@@ -87,7 +87,7 @@ export class MeetingSetupComponent implements OnInit {
                 // -1 and -1 for hour and minute represents INVALID DATE
                 this.hour = -1;
                 this.minute = -1;
-                console.log("Invalid time");
+                alert("Your time is not in a valid format.");
             }
         }
     }

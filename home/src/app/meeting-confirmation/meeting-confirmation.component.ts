@@ -40,11 +40,14 @@ export class MeetingConfirmationComponent implements OnInit {
 
         // Put the data object back into session storage.
         sessionStorage.setItem("userdata", JSON.stringify(myUserObject));
-        document.getElementById("uselessButtonServerSend")?.click();
+        const button = document.getElementById("uselessButtonServerSend");
+        if (button) {
+            button.click();
+        }
     }
 
     //Handles data sent from the server and stored in session storage.
-    handleServerData(imageWidth: number, imageHeight: number) {
+    handleServerData(imageWidth: number, imageHeight: number) : void {
         const coordinates : any = this.getUserPosition();
         this.myProportionX = coordinates["propX"];
         this.myProportionY = coordinates["propY"];
@@ -53,7 +56,7 @@ export class MeetingConfirmationComponent implements OnInit {
 
     // Based on the data in session storage, determine where the user's last map click was.
     getUserPosition() {
-        const myUserString = sessionStorage.getItem("userdata") || "{}";
+        const myUserString : string = sessionStorage.getItem("userdata") || "{}";
         const myUserObject = JSON.parse(myUserString);
         if (myUserObject["xCoordinate"]) {
             return {"propX" : Number(myUserObject["xCoordinate"]),
@@ -63,7 +66,7 @@ export class MeetingConfirmationComponent implements OnInit {
         }
     }
 
-    logClick(e : MouseEvent, imageWidth: number, imageHeight: number) {
+    logClick(e : MouseEvent, imageWidth: number, imageHeight: number) : void {
         /* Chrome developer tools allow me to see properties that I didn't know existed. */
         /* For example, finding the width and height of an image. */
         console.log(e);
@@ -75,7 +78,7 @@ export class MeetingConfirmationComponent implements OnInit {
         this.sendUserPosition(this.myProportionX, this.myProportionY);
     }
 
-    positionDiv(imageWidth : number, imageHeight: number) {
+    positionDiv(imageWidth : number, imageHeight: number) : void {
         console.log("Positioning div");
         // Figuring out this.myProportionX * imageWidth gets the appropriate x position relative to the div.
         // Since the div is the image plus a bit of space beneath it, this gets the appropriate x location for the center of the div.

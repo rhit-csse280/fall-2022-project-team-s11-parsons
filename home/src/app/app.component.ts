@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { collection, Firestore, doc, onSnapshot, updateDoc, setDoc, getDoc } from '@angular/fire/firestore';
+import { collection, Firestore, doc, onSnapshot, updateDoc, setDoc, getDoc, DocumentReference, CollectionReference, QueryDocumentSnapshot, DocumentSnapshot } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -9,10 +9,10 @@ import { Observable } from 'rxjs';
 })
 export class AppComponent {
     title : string = 'Meal Meetings';
-    myFirestore : any; // used to represent the firestore object.
+    myFirestore : Firestore; // used to represent the firestore object.
     unsubscribe: any;
-    userData: any;
-    docRef : any;
+    userData: object | undefined;
+    docRef : DocumentReference | undefined;
     
     //I based this solution based on this code:
     // https://stackoverflow.com/questions/69844586/nullinjectorerror-no-provider-for-injectiontoken-angularfire2-app-options-2021?noredirect=1&lq=1
@@ -29,13 +29,13 @@ export class AppComponent {
         }
 
         //Set up a listener to listen for meetings that have been set up.
-        const meetings = collection(this.myFirestore, "Meeting");
+        const meetings : CollectionReference = collection(this.myFirestore, "Meeting");
         const meetingUnsubscribe = onSnapshot(meetings, (querySnapshot) => {
             //The Meeting collection determines the meeting state.
-            const meetingState = "WAITING";
-            querySnapshot.forEach((doc) => {
-                const user1 = doc.get("user1");
-                const user2 = doc.get("user2");
+            const meetingState : string = "WAITING";
+            querySnapshot.forEach((doc : QueryDocumentSnapshot) => {
+                const user1 : string = doc.get("user1");
+                const user2 : string = doc.get("user2");
                 if (this.getUsername() == user1) {
                     console.log(doc);
                 }
@@ -52,18 +52,18 @@ export class AppComponent {
         // Determine what the username and usertoken stored in session storage are.
         const username : string = this.getUsername() || "ANONYMOUS";
         const usertoken : string = sessionStorage.getItem("usertoken") || "NONE";
+
+        // Only advance if the username and usertoken are valid.
+        if (username == "ANONYMOUS" || usertoken == "NONE") {
+            return;
+        }
         
         //Try to create a document snapshot of the document for this user.
         this.docRef = doc(this.myFirestore, "Users", username);
-        const docSnap = await getDoc(this.docRef);
+        const docSnap : DocumentSnapshot = await getDoc(this.docRef);
         
         //Account Found
         if (docSnap.exists()) {
-            // If the data is not filled out or the user token does not match the username, do nothing.
-            if (username === "ANONYMOUS" || usertoken === "NONE") {
-                alert("You need to login with Rosefire");
-                return;
-            }
             console.log("Account Already Exists");
             //Otherwise, listen for changes to the user object and direct us to the profile page.
             this.beginListening();
@@ -88,7 +88,7 @@ export class AppComponent {
         // Listen to the user with our username
         // Eventually, this needs to be set to the username for the specific person.
         // This comes later.
-        this.unsubscribe = onSnapshot(this.docRef, (userDoc : any) => {
+        this.unsubscribe = onSnapshot((this.docRef as DocumentReference), (userDoc : any) => {
             // Captures updates from the server in real time.
             this.userData = userDoc.data();
             console.log(this.userData);
@@ -102,15 +102,18 @@ export class AppComponent {
         sessionStorage.setItem("userdata", JSON.stringify(this.userData));
 
         // Now click several invisible buttons to tell any components on the page to update.
-        const buttonIDs = ["updateProfileContainer", "updateSetupContainer", "updateConfirmedContainer"];
+        const buttonIDs : readonly string[] = ["updateProfileContainer", "updateSetupContainer", "updateConfirmedContainer"];
         for (const buttonID of buttonIDs) {
             console.log(buttonID);
-            document.getElementById(buttonID)?.click();
+            const myButton : HTMLElement | null = document.getElementById(buttonID);
+            if (myButton) {
+                myButton.click();
+            }
         }
     }
 
     // Used to retrieve the relevant fields of data from storage.
-    getDataFromStorage() {
+    getDataFromStorage() : void {
         const storageData : string = sessionStorage.getItem("userdata") || "{}";
         this.userData = JSON.parse(storageData);
     }

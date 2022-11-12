@@ -12,7 +12,12 @@ export class NavbarComponent implements OnInit {
         { materialIcon: "lightbulb", tabName: "Prompt" },
         { materialIcon: "info", tabName: "Info" }
     ];
-
+    enum Tabs {
+        Profile: "Profile",
+        Meeting: "Meeting",
+        Prompt: "Prompt",
+        Info: "Info"
+    };
     lastSelectedTab = "Profile";
 
     constructor() {
