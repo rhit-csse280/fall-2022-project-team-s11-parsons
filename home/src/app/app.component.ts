@@ -184,12 +184,77 @@ export class AppComponent {
     sendMeetingDataToServer() {
         const buttonPressed = document.getElementById("uselessButtonMeetingUpdate");
         if (buttonPressed) {
-            const buttonPressedName = buttonPressed.innerHTML;
+            const buttonPressedName : string = buttonPressed.innerHTML;
             const ourData : string = sessionStorage.getItem("meetingdata") || "";
             const ourDataObject = JSON.parse(ourData);
+            const ourUserNumber : number = Number(sessionStorage.getItem("usernumber"));
             if (ourDataObject) {
-                const meetingStatus = !ourDataObject["status"];
-                console.log(meetingStatus);
+                const meetingStatus = ourDataObject["status"];
+                let newMeetingStatus = meetingStatus;
+                if (meetingStatus == "DEFAULT") {
+                    if (buttonPressedName == "Accept") {
+                        if (ourUserNumber == 1) {
+                            newMeetingStatus = "1ACC2";
+                        } else {
+                            newMeetingStatus = "2ACC1";
+                        }
+                    } else if (buttonPressedName == "Decline") {
+                        newMeetingStatus = "NOT2";
+                    }
+                } else if (meetingStatus == "1ACC2") {
+                    if (buttonPressedName == "Cancel" || buttonPressedName == "Decline") {
+                        newMeetingStatus = "NOT2";
+                    } else if (buttonPressedName == "Accept") {
+                        newMeetingStatus = "12ACC2";
+                    }
+                } else if (meetingStatus == "2ACC1") {
+                    if (buttonPressedName == "Cancel" || buttonPressedName == "Decline") {
+                        newMeetingStatus = "NOT2";
+                    } else if (buttonPressedName == "Accept") {
+                        newMeetingStatus = "12ACC1";
+                    }
+                } else if (meetingStatus == "NOT2") {
+                    if (buttonPressedName == "Accept") {
+                        newMeetingStatus = "NOT2-" + ourUserNumber + "ACC1";
+                    } else if (buttonPressedName == "Decline") {
+                        newMeetingStatus = "FAILURE";
+                    }
+                } else if (meetingStatus == "NOT1") {
+                    if (buttonPressedName == "Accept") {
+                        newMeetingStatus = "NOT1-" + ourUserNumber + "ACC2";
+                    } else if (buttonPressedName == "Decline") {
+                        newMeetingStatus = "FAILURE";
+                    }
+                } else if (meetingStatus == "12ACC2") {
+                    if (buttonPressedName == "Cancel") {
+                        newMeetingStatus = "NOT2";
+                    } else if (buttonPressedName == "Complete") {
+                        newMeetingStatus = "SUCCESS";
+                    }
+                } else if (meetingStatus == "12ACC1") {
+                    if (buttonPressedName == "Cancel") {
+                        newMeetingStatus = "NOT1";
+                    } else if (buttonPressedName == "Complete") {
+                        newMeetingStatus = "SUCCESS";
+                    }
+                } else if (meetingStatus == "NOT2-1ACC1" || meetingStatus == "NOT2-2ACC1") {
+                    if (buttonPressedName == "Cancel" || buttonPressedName == "Decline") {
+                        newMeetingStatus = "FAILURE";
+                    } else if (buttonPressedName == "Accept") {
+                        newMeetingStatus = "NOT2-12ACC1";
+                    }
+                } else if (meetingStatus == "NOT1-1ACC2" || meetingStatus == "NOT1-2ACC2") {
+                    if (buttonPressedName == "Cancel" || buttonPressedName == "Decline") {
+                        newMeetingStatus = "FAILURE";
+                    } else if (buttonPressedName == "Accept") {
+                        newMeetingStatus = "NOT2-12ACC2";
+                    }
+                } else if (meetingStatus == "NOT2-12ACC1" || meetingStatus == "NOT2-12ACC2") {
+                    if (buttonPressedName == "Cancel") {
+                        newMeetingStatus = "FAILURE";
+                    }
+                }
+                ourDataObject["status"] = newMeetingStatus;
                 if (this.meetingDocRef) {
                     setDoc(this.meetingDocRef, ourDataObject);
                 }
