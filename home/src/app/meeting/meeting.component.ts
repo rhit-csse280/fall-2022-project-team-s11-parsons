@@ -61,6 +61,13 @@ export class MeetingComponent implements OnInit {
                 this.meetingInfoSource = "B";
             }
         }
+        const subcomponentNames = ["updateMeetingInvitationReceived"];
+        for (const subcomponentName of subcomponentNames) {
+            const button = document.getElementById(subcomponentName);
+            if (button) {
+                button.click();
+            }
+        }
     }
 
     ngOnInit(): void {

@@ -14,6 +14,9 @@ export class MeetingInvitationreceivedComponent implements OnInit {
     }
 
     ngOnInit(): void {
+    }
+
+    setInformation() {
         const meetingInfo = sessionStorage.getItem("meetingdata");
         const otherUserNumber = 3 - Number(sessionStorage.getItem("usernumber"));
         if (meetingInfo && this.meetingSource && otherUserNumber) {
