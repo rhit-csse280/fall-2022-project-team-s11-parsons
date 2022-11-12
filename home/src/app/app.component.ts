@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { collection, Firestore, doc, onSnapshot, updateDoc, setDoc, getDoc, DocumentReference, CollectionReference, QueryDocumentSnapshot, DocumentSnapshot } from '@angular/fire/firestore';
+import { collection, Firestore, doc, onSnapshot, updateDoc, setDoc, getDoc, DocumentReference, CollectionReference, QueryDocumentSnapshot, DocumentSnapshot, deleteDoc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -266,6 +266,16 @@ export class AppComponent {
         }
     }
 
+    // This tells the server to delete our account.
+    requestAccountDeletion() {
+        if (this.docRef) {
+            deleteDoc(this.docRef);
+        }
+        if (this.meetingDocRef) {
+            deleteDoc(this.meetingDocRef);
+        }
+    }
+    
     getColor (colorName : string) : string {
         return sessionStorage.getItem(colorName) || "black";
     }

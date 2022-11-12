@@ -4,5 +4,5 @@
     <p>Interests</p>
     <input class="form-control" [style.backgroundColor] = "getColor('Bursts of Euphoria')" type="text" value="" aria-label="default input example" (change)="setInterests()">
     <button type="button" class="btn btn-primary" [style.backgroundColor]="getColor('Happy Balloons')" (click)="signOut()">Log Out</button>
-    <button type="button" class="btn btn-secondary" [style.backgroundColor]="getColor('Sugar Hearts You')">Delete Account</button>
+    <button type="button" class="btn btn-secondary" [style.backgroundColor]="getColor('Sugar Hearts You')" (click)="deleteAccount()">Delete Account</button>
 </div>

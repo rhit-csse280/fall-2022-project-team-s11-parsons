@@ -32,6 +32,16 @@ export class ProfileComponent implements OnInit {
         document.location.href = "/home";
     }
 
+    async deleteAccount() {
+        // First delete the account on the Firebase.
+        const button = document.getElementById("uselessButtonDeleteAccount");
+        if (button) {
+            button.click();
+        }
+        // Sign out after a second to give enough time for the information to be sent to Firebase.
+        setTimeout(this.signOut, 1000);
+    }
+
     getUsername() : string {
         // The username can be gotten from session storage.
         return JSON.parse(sessionStorage.getItem("userdata") || "{'username': 'ANONYMOUS'}")["username"];
