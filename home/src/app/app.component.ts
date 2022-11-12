@@ -20,6 +20,16 @@ export class AppComponent {
     //Somehow this works. I don't fully get why.
     // I guess part of it is it is based on the "Get a Document" section at https://firebase.google.com/docs/firestore/query-data/get-data
     constructor(firestore : Firestore) {
+        const colors = [
+            { name: "Sugar Hearts You", hex: "#FE4365" },
+            { name: "Party Confetti", hex: "#FC9D9A" },
+            { name: "Sugar Champagne", hex: "#F9CDAD" },
+            { name: "Bursts of Euphoria", hex: "#C8C8A9" },
+            { name: "Happy Balloons", hex: "#83AF9B" }
+        ];
+        for (const color of colors) {
+            sessionStorage.setItem(color.name, color.hex);
+        }
         this.myFirestore = firestore;
         //If the username is known, create a document reference and begin listening immediately.
         const username : string = this.getUsername() || "";
