@@ -66,8 +66,9 @@ export class AppComponent {
 
                 if (meetingInfo["status"] != "SUCCESS" && meetingInfo["status"] != "FAILURE") {
                     sessionStorage.setItem("meetingdata", JSON.stringify(meetingInfo));
+                    sessionStorage.setItem("usernumber", JSON.stringify(userNumber));
                 } else {
-                    requestMeeting();
+                    this.requestMeeting();
                 }
             });
         });
