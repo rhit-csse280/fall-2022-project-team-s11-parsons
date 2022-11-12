@@ -13,6 +13,7 @@ export class MeetingComponent implements OnInit {
         this.chooseWhatToDisplay();
     }
 
+    // Determine which component should be displayed for the meeting based on the meeting state.
     chooseWhatToDisplay() {
         let meetingInfo : any = sessionStorage.getItem("meetingdata");
         if (!meetingInfo) {
@@ -20,6 +21,8 @@ export class MeetingComponent implements OnInit {
         } else {
             meetingInfo = JSON.parse(meetingInfo);
             const userNumber = parseInt(sessionStorage.getItem("usernumber") as any);
+            // See the below link for more information.
+            // https://docs.google.com/document/d/1JSff4SZplRbZXeFIzsd8AOPMmGNJSJnmIdCy_oMsBcI/edit?usp=sharing
             if (meetingInfo["status"] == "DEFAULT") {
                 this.state = "INVITATIONRECEIVED";
                 this.meetingInfoSource = (userNumber == 1) ? "B" : "A";
@@ -61,6 +64,7 @@ export class MeetingComponent implements OnInit {
                 this.meetingInfoSource = "B";
             }
         }
+        // Tell the subcomponents to update their information if applicable.
         const subcomponentNames = ["updateMeetingInvitationReceived"];
         for (const subcomponentName of subcomponentNames) {
             const button = document.getElementById(subcomponentName);

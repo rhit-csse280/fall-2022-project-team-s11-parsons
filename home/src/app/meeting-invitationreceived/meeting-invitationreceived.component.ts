@@ -16,6 +16,7 @@ export class MeetingInvitationreceivedComponent implements OnInit {
     ngOnInit(): void {
     }
 
+    // Based on the information in session storage, display this component.
     setInformation() {
         const meetingInfo = sessionStorage.getItem("meetingdata");
         const otherUserNumber = 3 - Number(sessionStorage.getItem("usernumber"));
@@ -27,6 +28,17 @@ export class MeetingInvitationreceivedComponent implements OnInit {
             this.timeString = hour + ":" + minute + " " + pm;
             this.location = String(meetingInfoObject["location" + this.meetingSource]);
             this.otherUser = String(meetingInfoObject["user" + otherUserNumber]);
+        }
+    }
+
+    pressButton(buttonName : string) {
+        let button = document.getElementById("updateMeetingInvitationReceived");
+        if (button) {
+            button.innerHTML = buttonName;
+            button = document.getElementById("uselessButtonMeetingUpdate");
+            if (button) {
+                button.click();
+            }
         }
     }
 

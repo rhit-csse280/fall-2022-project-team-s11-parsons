@@ -3,8 +3,8 @@
     <p>{{otherUser}}</p>
     <input class="form-control" style="width: 75%; margin: 0 auto;" [style.backgroundColor] = "getColor('Bursts of Euphoria')" type="text" placeholder="Coding, Hiking" aria-label="default input example" readonly>
     <div id="invitationReceivedButtons">
-        <button type="button" class="btn btn-primary centeredBlock" [style.backgroundColor]="getColor('Happy Balloons')">Accept</button>
-        <button type="button" class="btn btn-secondary centeredBlock" [style.backgroundColor]="getColor('Sugar Hearts You')">Decline</button>
+        <button type="button" class="btn btn-primary centeredBlock" [style.backgroundColor]="getColor('Happy Balloons')" (click)="pressButton('Accept')">Accept</button>
+        <button type="button" class="btn btn-secondary centeredBlock" [style.backgroundColor]="getColor('Sugar Hearts You')" (click)="pressButton('Decline')">Decline</button>
     </div>
     <button id="updateMeetingInvitationReceived" (click)="setInformation();"></button>
 </div>

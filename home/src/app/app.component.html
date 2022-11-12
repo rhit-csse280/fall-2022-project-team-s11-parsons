@@ -8,6 +8,7 @@
     <div id="uselessButtons">
         <button id="uselessButtonLogin" (click)="createAccountIfNecessary();"></button>
         <button id="uselessButtonServerSend" (click)="sendDataToServer();"></button>
+        <button id="uselessButtonMeetingUpdate" (click)="sendMeetingDataToServer();"></button>
     </div>
     <div *ngIf="getUsername()">
         <app-navbar></app-navbar>

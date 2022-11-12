@@ -13,6 +13,9 @@ export class AppComponent {
     unsubscribe: any;
     userData: object | undefined;
     docRef : DocumentReference | undefined;
+    meetingDocRef : DocumentReference | undefined;
+    meetingsRef : CollectionReference | undefined;
+    meetingsUnsubscribe : any;
     
     //I based this solution based on this code:
     // https://stackoverflow.com/questions/69844586/nullinjectorerror-no-provider-for-injectiontoken-angularfire2-app-options-2021?noredirect=1&lq=1
@@ -108,21 +111,21 @@ export class AppComponent {
 
     //Set up a listener to listen for meetings that have been set up.
     beginMeetingListening() {
-        const meetings : CollectionReference = collection(this.myFirestore, "Meeting");
-        const meetingUnsubscribe = onSnapshot(meetings, (querySnapshot) => {
-            querySnapshot.forEach((doc : QueryDocumentSnapshot) => {
+        this.meetingsRef = collection(this.myFirestore, "Meeting");
+        this.meetingsUnsubscribe = onSnapshot(this.meetingsRef, (querySnapshot) => {
+            querySnapshot.forEach((doc1 : QueryDocumentSnapshot) => {
                 const meetingInfo = {
-                    "hourA" : parseInt(doc.get("hourA")),
-                    "hourB" : parseInt(doc.get("hourB")),
-                    "locationA" : doc.get("locationA"),
-                    "locationB" : doc.get("locationB"),
-                    "minuteA" : parseInt(doc.get("minuteA")),
-                    "minuteB" : parseInt(doc.get("minuteB")),
-                    "pmA" : String(doc.get("pmA")) == "true",
-                    "pmB" : String(doc.get("pmB")) == "true",
-                    "status" : doc.get("status"),
-                    "user1" : doc.get("user1"),
-                    "user2" : doc.get("user2")
+                    "hourA" : parseInt(doc1.get("hourA")),
+                    "hourB" : parseInt(doc1.get("hourB")),
+                    "locationA" : doc1.get("locationA"),
+                    "locationB" : doc1.get("locationB"),
+                    "minuteA" : parseInt(doc1.get("minuteA")),
+                    "minuteB" : parseInt(doc1.get("minuteB")),
+                    "pmA" : String(doc1.get("pmA")) == "true",
+                    "pmB" : String(doc1.get("pmB")) == "true",
+                    "status" : doc1.get("status"),
+                    "user1" : doc1.get("user1"),
+                    "user2" : doc1.get("user2")
                 }
                 let userNumber : number = 0;
                 // Determine if we are in this meeting, and if so, which user we are.
@@ -132,12 +135,15 @@ export class AppComponent {
                     userNumber = 2;
                 }
 
-                if (meetingInfo["status"] != "SUCCESS" && meetingInfo["status"] != "FAILURE") {
-                    sessionStorage.setItem("meetingdata", JSON.stringify(meetingInfo));
-                    sessionStorage.setItem("usernumber", JSON.stringify(userNumber));
-                    this.putDataIntoStorage();
-                } else {
-                    this.requestMeeting();
+                if (userNumber > 0) {
+                    this.meetingDocRef = doc(this.myFirestore, "Meeting", String(doc1.id));
+                    if (meetingInfo["status"] != "SUCCESS" && meetingInfo["status"] != "FAILURE") {
+                        sessionStorage.setItem("meetingdata", JSON.stringify(meetingInfo));
+                        sessionStorage.setItem("usernumber", JSON.stringify(userNumber));
+                        this.putDataIntoStorage();
+                    } else {
+                        this.requestMeeting();
+                    }
                 }
             });
         });
@@ -171,6 +177,14 @@ export class AppComponent {
         const ourData : string = sessionStorage.getItem("userdata") || "";
         if (ourData && this.docRef) {
             setDoc(this.docRef, JSON.parse(ourData));
+        }
+    }
+
+    // The same thing as sendDataToServer but for meetings.
+    sendMeetingDataToServer() {
+        const ourData : string = sessionStorage.getItem("meetingdata") || "";
+        if (ourData && this.meetingDocRef) {
+            setDoc(this.meetingDocRef, JSON.parse(ourData));
         }
     }
 
