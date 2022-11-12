@@ -20,6 +20,7 @@ export class AppComponent {
     //Somehow this works. I don't fully get why.
     // I guess part of it is it is based on the "Get a Document" section at https://firebase.google.com/docs/firestore/query-data/get-data
     constructor(firestore : Firestore) {
+        // Sets the colors
         const colors = [
             { name: "Sugar Hearts You", hex: "#FE4365" },
             { name: "Party Confetti", hex: "#FC9D9A" },
@@ -41,16 +42,45 @@ export class AppComponent {
         //Set up a listener to listen for meetings that have been set up.
         const meetings : CollectionReference = collection(this.myFirestore, "Meeting");
         const meetingUnsubscribe = onSnapshot(meetings, (querySnapshot) => {
-            //The Meeting collection determines the meeting state.
-            const meetingState : string = "WAITING";
             querySnapshot.forEach((doc : QueryDocumentSnapshot) => {
-                const user1 : string = doc.get("user1");
-                const user2 : string = doc.get("user2");
-                if (this.getUsername() == user1) {
-                    console.log(doc);
+                const meetingInfo = {
+                    "hourA" : parseInt(doc.get("hourA")),
+                    "hourB" : parseInt(doc.get("hourB")),
+                    "locationA" : doc.get("locationA"),
+                    "locationB" : doc.get("locationB"),
+                    "minuteA" : parseInt(doc.get("minuteA")),
+                    "minuteB" : parseInt(doc.get("minuteB")),
+                    "pmA" : String(doc.get("pmA")) == "true",
+                    "pmB" : String(doc.get("pmB")) == "true",
+                    "status" : doc.get("status"),
+                    "user1" : doc.get("user1"),
+                    "user2" : doc.get("user2")
+                }
+                let userNumber : number = 0;
+                // Determine if we are in this meeting, and if so, which user we are.
+                if (this.getUsername() == meetingInfo["user1"]) {
+                    userNumber = 1;
+                } else if (this.getUsername() == meetingInfo["user2"]) {
+                    userNumber = 2;
+                }
+
+                if (meetingInfo["status"] != "SUCCESS" && meetingInfo["status"] != "FAILURE") {
+                    sessionStorage.setItem("meetingdata", JSON.stringify(meetingInfo));
+                } else {
+                    requestMeeting();
                 }
             });
         });
+    }
+
+    // Determine what to do with the meeting based on the button press.
+    handleButtonPress(buttonName : string) {
+
+    }
+
+    // Tell the server that we want to be in a meeting.
+    requestMeeting() {
+
     }
 
     // Determine whether an account exists or not.
