@@ -21,6 +21,7 @@ export class MeetingInvitationreceivedComponent implements OnInit {
         const meetingInfo = sessionStorage.getItem("meetingdata");
         const otherUserNumber = 3 - Number(sessionStorage.getItem("usernumber"));
         if (meetingInfo && this.meetingSource && otherUserNumber) {
+            console.log(meetingInfo);
             let meetingInfoObject = JSON.parse(meetingInfo);
             const hour = parseInt(String(meetingInfoObject["hour" + this.meetingSource]));
             const minute = parseInt(String(meetingInfoObject["minute" + this.meetingSource]));
@@ -34,9 +35,9 @@ export class MeetingInvitationreceivedComponent implements OnInit {
     pressButton(buttonName : string) {
         let button = document.getElementById("updateMeetingInvitationReceived");
         if (button) {
-            button.innerHTML = buttonName;
             button = document.getElementById("uselessButtonMeetingUpdate");
-            if (button) {
+            if (button) {                
+                button.innerHTML = buttonName;
                 button.click();
             }
         }

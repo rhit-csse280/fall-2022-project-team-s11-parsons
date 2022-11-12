@@ -180,11 +180,20 @@ export class AppComponent {
         }
     }
 
-    // The same thing as sendDataToServer but for meetings.
+    // This determines what the new meeting state should be and sends it to the server.
     sendMeetingDataToServer() {
-        const ourData : string = sessionStorage.getItem("meetingdata") || "";
-        if (ourData && this.meetingDocRef) {
-            setDoc(this.meetingDocRef, JSON.parse(ourData));
+        const buttonPressed = document.getElementById("uselessButtonMeetingUpdate");
+        if (buttonPressed) {
+            const buttonPressedName = buttonPressed.innerHTML;
+            const ourData : string = sessionStorage.getItem("meetingdata") || "";
+            const ourDataObject = JSON.parse(ourData);
+            if (ourDataObject) {
+                const meetingStatus = !ourDataObject["status"];
+                console.log(meetingStatus);
+                if (this.meetingDocRef) {
+                    setDoc(this.meetingDocRef, ourDataObject);
+                }
+            }
         }
     }
 
