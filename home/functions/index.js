@@ -78,12 +78,17 @@ exports.formAMeeting = functions.firestore.document("/UsersWaitingForMeal/{useri
             "hourA" : Number(myData["hour"]),
             "minuteA" : Number(myData["minute"]),
             "pmA" : String(myData["pm"]) == "true",
+            "locationA" : String(myData["location"]),
             "hourB" : otherHour,
             "minuteB" : otherMinute,
             "pmB" : otherPM,
+            "locationB" : myData["location"],
             "user1" : myData["username"],
-            "user2" : myElement["userid"]
+            "user2" : myElement["username"],
+            "status" : "DEFAULT"
         };
+        const user1ID = database[bestIndex]["userid"];
+        const user2ID = database[bestIndex]["userid"];
         database.splice(bestIndex, 1);
         database.pop();
     } else {
