@@ -37,13 +37,10 @@ export class MeetingAwaitingconfirmationComponent implements OnInit {
 
     pressButton(buttonName : string) {
         console.log("Hello there!");
-        let button = document.getElementById("updateMeetingAwaitingConfirmation");
-        if (button) {
-            button = document.getElementById("uselessButtonMeetingUpdate");
-            if (button) {                
-                button.innerHTML = buttonName;
-                button.click();
-            }
+        const button = document.getElementById("uselessButtonMeetingUpdate");
+        if (button) {                
+            button.innerHTML = buttonName;
+            button.click();
         }
     }
 

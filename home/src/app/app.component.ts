@@ -170,9 +170,9 @@ export class AppComponent {
                 }
                 let userNumber : number = 0;
                 // Determine if we are in this meeting, and if so, which user we are.
-                if (this.getUsername() == meetingInfo["user1"]) {
+                if ((this.userData as any)["username"] == meetingInfo["user1"]) {
                     userNumber = 1;
-                } else if (this.getUsername() == meetingInfo["user2"]) {
+                } else if ((this.userData as any)["username"] == meetingInfo["user2"]) {
                     userNumber = 2;
                 }
                 if (userNumber > 0) {

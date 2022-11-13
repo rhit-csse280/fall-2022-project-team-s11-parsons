@@ -2,6 +2,6 @@
     <app-meeting-setup *ngIf="state === 'SETUP'"></app-meeting-setup>
     <app-meeting-invitationreceived [meetingSource]="meetingInfoSource" *ngIf="state === 'INVITATIONRECEIVED'"></app-meeting-invitationreceived>
     <app-meeting-awaitingconfirmation [meetingSource]="meetingInfoSource" *ngIf="state === 'AWAITINGCONFIRMATION'"></app-meeting-awaitingconfirmation>
-    <app-meeting-confirmation *ngIf="state === 'CONFIRMED'"></app-meeting-confirmation>
+    <app-meeting-confirmation [meetingSource]="meetingInfoSource" *ngIf="state === 'CONFIRMED'"></app-meeting-confirmation>
 </div>
 <button id="updateMeeting" (click)="chooseWhatToDisplay();"></button>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
     selector: 'app-meeting-confirmation',
@@ -6,13 +6,33 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./meeting-confirmation.component.css']
 })
 export class MeetingConfirmationComponent implements OnInit {
+    @Input() meetingSource : string | undefined;
+
     images = [{url: "/assets/RoseHulman.png", width: 1358, height: 1046}]
     index: number = 0;
     myProportionX: number = 0;
     myProportionY: number = 0;
+    otherUser: string = "";
+    timeString: string = "";
+    location: string = "";
 
 
     constructor() { }
+
+    // Based on the information in session storage, display this component.
+    setInformation() {
+        const meetingInfo = sessionStorage.getItem("meetingdata");
+        const otherUserNumber = 3 - Number(sessionStorage.getItem("usernumber"));
+        if (meetingInfo && this.meetingSource && otherUserNumber) {
+            let meetingInfoObject = JSON.parse(meetingInfo);
+            const hour = parseInt(String(meetingInfoObject["hour" + this.meetingSource]));
+            const minute = parseInt(String(meetingInfoObject["minute" + this.meetingSource]));
+            const pm = (String(meetingInfoObject["pm" + this.meetingSource]) == "true") ? "PM" : "AM";
+            this.timeString = hour + ":" + minute + " " + pm;
+            this.location = String(meetingInfoObject["location" + this.meetingSource]);
+            this.otherUser = String(meetingInfoObject["user" + otherUserNumber]);
+        }
+    }
 
     ngOnInit(): void {
         const userPosition = this.getUserPosition();
@@ -90,6 +110,15 @@ export class MeetingConfirmationComponent implements OnInit {
         if (locationIndicator) {
             locationIndicator.style.left = locationIndicatorLeft + "px";
             locationIndicator.style.top = locationIndicatorTop + "px";
+        }
+    }
+
+    pressButton(buttonName : string) {
+        console.log("Hello there!");
+        const button = document.getElementById("uselessButtonMeetingUpdate");
+        if (button) {                
+            button.innerHTML = buttonName;
+            button.click();
         }
     }
 }
