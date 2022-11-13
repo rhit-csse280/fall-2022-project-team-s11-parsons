@@ -27,6 +27,11 @@ fs.readFile(__dirname + "/db.json", (err, data) => {
 
 exports.formAMeeting = functions.firestore.document("/UsersWaitingForMeal/{userid}")
 .onCreate((snap, context) => {
+    // This should write back to the file.
+    fs.writeFile(__dirname + "/db.json", "Test", (err) => {
+        console.log(err);
+    });
+
     // Get the data
     const myData = snap.data();
     let minutesAfterMidnight = (myData["hour"] % 12) * 60 + myData["minute"];
