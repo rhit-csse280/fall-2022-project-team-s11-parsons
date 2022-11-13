@@ -1,11 +1,11 @@
 <!-- This is not really a good way of getting a background, but it works. -->
-<!--<img src="/assets/spaghetti-1932466_1920.jpg" id="backgroundImage">
+<img src="/assets/spaghetti-1932466_1920.jpg" id="backgroundImage">
 <div id="backgroundDiv" [class.signedin]="getUsername()" [class.notsignedin]="!getUsername()"></div>
 
-<div id="availableSpace">-->
+<div id="availableSpace">
     <!-- This button doesn't actually do anything, but it is useful for transmitting functions 
     directly to the app component. -->
-    <!--<div id="uselessButtons">
+    <div id="uselessButtons">
         <button id="uselessButtonLogin" (click)="createAccountIfNecessary();"></button>
         <button id="uselessButtonServerSend" (click)="sendDataToServer();"></button>
         <button id="uselessButtonMeetingUpdate" (click)="sendMeetingDataToServer();"></button>
@@ -15,9 +15,11 @@
         <app-navbar></app-navbar>
     </div>
     <router-outlet></router-outlet>
-</div>-->
+</div>
+<!--
 <div>
     <button (click)="callMe()">Call Me!</button>
 </div>
 
 {{ data$ | async }}
+-->

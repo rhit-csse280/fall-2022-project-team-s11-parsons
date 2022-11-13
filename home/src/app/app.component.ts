@@ -31,15 +31,15 @@ export class AppComponent {
     meetingDocRef : DocumentReference | undefined;
     meetingsRef : CollectionReference | undefined;
     meetingsUnsubscribe : any;
-    data$ : any;
+    //data$ : any;
     functions : AngularFireFunctions;
-    
+    /*
     callMe() {
         console.log("Calling...");
         const callable = this.functions.httpsCallable("callMe");
         this.data$ = callable({name: "Ada Lovelace"});
     }
-
+    */
     //I based this solution based on this code:
     // https://stackoverflow.com/questions/69844586/nullinjectorerror-no-provider-for-injectiontoken-angularfire2-app-options-2021?noredirect=1&lq=1
     // response from Michael de Soto (https://stackoverflow.com/users/4151208/michael-de-soto)
@@ -47,9 +47,10 @@ export class AppComponent {
     // I guess part of it is it is based on the "Get a Document" section at https://firebase.google.com/docs/firestore/query-data/get-data
     constructor(firestore : Firestore, fns: AngularFireFunctions) {
         this.functions = fns;
+        /*
         const callable = fns.httpsCallable("executeOnPageLoad");
         this.data$ = callable({name: "Charles Babbage"});
-
+        */
         /*
         this.data$.subscribe({
             next(i : any) { console.log(i); }
