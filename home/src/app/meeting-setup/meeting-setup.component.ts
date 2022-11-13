@@ -109,8 +109,9 @@ export class MeetingSetupComponent implements OnInit {
 
         //Put this data back in session storage and send to the server.
         sessionStorage.setItem("userdata", JSON.stringify(userDataJSON));
-        let ele = document.getElementById("uselessButtonServerSend")
+        let ele = document.getElementById("uselessButtonRequestMeeting");
         if (ele) {
+            console.log(ele);
             ele.click();
         }
         ele = document.getElementById("setupContainer");

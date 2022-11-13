@@ -85,6 +85,7 @@ export class AppComponent {
     requestMeeting() {
         const myInfo = sessionStorage.getItem("userdata");
         if (myInfo) {
+            console.log(myInfo);
             const tmpDocRef = doc(this.myFirestore, "UsersWaitingForMeal", this.getUsername() || "ANONYMOUS");
             setDoc(tmpDocRef, JSON.parse(myInfo));
         }
