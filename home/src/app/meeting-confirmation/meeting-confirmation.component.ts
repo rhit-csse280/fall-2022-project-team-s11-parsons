@@ -6,12 +6,8 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./meeting-confirmation.component.css']
 })
 export class MeetingConfirmationComponent implements OnInit {
-    images = [
-        {url: "/assets/PercopoHall3.PNG", width: 1736, height: 487},
-        // This image was cropped from the sign close to Career Services.
-        {url: "/assets/vonderschmittcafe.jpg", width: 1332, height: 1780}
-    ];
-    index: number = 1;
+    images = [{url: "/assets/RoseHulman.png", width: 1358, height: 1046}]
+    index: number = 0;
     myProportionX: number = 0;
     myProportionY: number = 0;
 

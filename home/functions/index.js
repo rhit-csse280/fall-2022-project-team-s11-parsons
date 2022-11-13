@@ -1,6 +1,7 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
 admin.initializeApp();
+const db = admin.firestore();
 
 /*
 exports.executeOnPageLoad = functions.https.onCall((data, context) => {
@@ -84,9 +85,9 @@ exports.formAMeeting = functions.firestore.document("/UsersWaitingForMeal/{useri
         const otherPM = (otherHour >= 12);
         if (otherPM) {
             otherHour -= 12;
-            if (otherHour == 0) {
-                otherHour = 12;
-            }
+        }
+        if (otherHour == 0) {
+            otherHour = 12;
         }
         const newObject = {
             "hourA" : Number(myData["hour"]),
@@ -104,6 +105,8 @@ exports.formAMeeting = functions.firestore.document("/UsersWaitingForMeal/{useri
         // Note that this doesn't actually delete the user from the collection
         // Rather, it just ignores that user afterwards.
         // As long as the user makes sure to clear the meeting once it is complete, this works.
+        const meetingsCollection = db.collection("/Meeting");
+        meetingsCollection.add(newObject);
         database.splice(bestIndex, 1);
         database.pop();
     } else {
