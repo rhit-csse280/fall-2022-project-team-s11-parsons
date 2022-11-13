@@ -25,10 +25,9 @@ export class AppComponent {
     //Somehow this works. I don't fully get why.
     // I guess part of it is it is based on the "Get a Document" section at https://firebase.google.com/docs/firestore/query-data/get-data
     constructor(firestore : Firestore, fns: AngularFireFunctions) {
-        const callable = fns.httpsCallable("my-fn-name");
-        this.data$ = callable({name: "my-fn-name"});
+        const callable = fns.httpsCallable("testFunction");
+        this.data$ = callable({name: "testFunction"});
         setInterval(() => {
-            document.write(this.data$);
             console.log(this.data$);
             console.log(typeof(this.data$));
         }, 1000);
