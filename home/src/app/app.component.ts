@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 @Component({
     selector: 'app-root',
-    template: `{{data$}}`,
+    templateUrl: "./app.component.html",
     styleUrls: ['./app.component.css']
 })
 export class AppComponent {
@@ -25,7 +25,7 @@ export class AppComponent {
     //Somehow this works. I don't fully get why.
     // I guess part of it is it is based on the "Get a Document" section at https://firebase.google.com/docs/firestore/query-data/get-data
     constructor(firestore : Firestore, fns: AngularFireFunctions) {
-        const callable = fns.httpsCallable("testFunction");
+        /*const callable = fns.httpsCallable("testFunction");
         this.data$ = callable({name: "testFunction"});
         this.data$.subscribe({
             next(i : any) { console.log(i); }
@@ -33,7 +33,7 @@ export class AppComponent {
         setInterval(() => {
             console.log(this.data$);
             console.log(typeof(this.data$));
-        }, 1000);
+        }, 1000);*/
 
         // Sets the colors
         const colors = [
