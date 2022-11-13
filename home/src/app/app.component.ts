@@ -3,6 +3,13 @@ import { collection, Firestore, doc, onSnapshot, updateDoc, setDoc, getDoc, Docu
 import { AngularFireFunctions } from '@angular/fire/compat/functions';
 import { Observable } from 'rxjs';
 
+/*
+I tried to figure out what the hosting problem was.
+I think the budget would just give warnings (https://web.dev/performance-budgets-with-the-angular-cli/).
+Maybe this will solve the problem (https://github.com/firebase/firebase-tools/issues/3327).
+
+*/
+
 @Component({
     selector: 'app-root',
     templateUrl: "./app.component.html",
