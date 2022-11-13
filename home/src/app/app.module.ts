@@ -20,7 +20,7 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { MeetingInvitationreceivedComponent } from './meeting-invitationreceived/meeting-invitationreceived.component';
 import { FIREBASE_OPTIONS, AngularFireModule } from '@angular/fire/compat';
-import { AngularFireFunctionsModule } from '@angular/fire/compat/functions';
+import { AngularFireFunctionsModule, ORIGIN } from '@angular/fire/compat/functions';
 
 @NgModule({
   declarations: [
@@ -50,7 +50,8 @@ import { AngularFireFunctionsModule } from '@angular/fire/compat/functions';
   //Specifically, Baraa Halabi's answer.
   //I do not understand what it is doing, but it is doing someting to resolve version conflicts.
   providers: [
-    {provide: FIREBASE_OPTIONS, useValue: environment.firebase}
+    {provide: FIREBASE_OPTIONS, useValue: environment.firebase},
+    {provide: ORIGIN, useValue: 'https://localhost:4200'}
   ],
   bootstrap: [AppComponent]
 })

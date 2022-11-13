@@ -29,6 +29,10 @@
       {
         "source": "**",
         "destination": "/index.html"
+      },
+      {
+        "source": "/testFunction",
+        "function": "testFunction"
       }
     ]
   }

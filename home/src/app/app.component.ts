@@ -27,6 +27,9 @@ export class AppComponent {
     constructor(firestore : Firestore, fns: AngularFireFunctions) {
         const callable = fns.httpsCallable("testFunction");
         this.data$ = callable({name: "testFunction"});
+        this.data$.subscribe({
+            next(i : any) { console.log(i); }
+        })
         setInterval(() => {
             console.log(this.data$);
             console.log(typeof(this.data$));
