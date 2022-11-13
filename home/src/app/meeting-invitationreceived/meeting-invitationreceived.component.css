@@ -1,6 +1,3 @@
-#invitationReceivedContainer {
-    background-color: cyan;
-}
 #invitationReceivedButtons {
     display: flex;
     flex-direction: row;

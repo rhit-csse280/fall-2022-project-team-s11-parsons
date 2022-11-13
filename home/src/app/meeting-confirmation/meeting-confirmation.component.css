@@ -1,7 +1,3 @@
-#confirmedContainer {
-    background-color: cyan;
-}
-
 #cancelAfterConfirmation {
     display: flex;
     flex-direction: row;
