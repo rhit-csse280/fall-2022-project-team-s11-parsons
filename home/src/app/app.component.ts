@@ -303,6 +303,10 @@ export class AppComponent {
                 if (this.meetingDocRef) {
                     setDoc(this.meetingDocRef, ourDataObject);
                 }
+                if (newMeetingStatus == "SUCCESS" || newMeetingStatus == "FAILURE") {
+                    const myMeetingRequest = doc(this.myFirestore, "UsersWaitingForMeal", this.getUsername() || "ANONYMOUS");
+                    deleteDoc(meetingStatus);
+                }
             }
         }
     }

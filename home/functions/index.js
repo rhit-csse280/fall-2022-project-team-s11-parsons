@@ -101,8 +101,9 @@ exports.formAMeeting = functions.firestore.document("/UsersWaitingForMeal/{useri
             "user2" : myElement["username"],
             "status" : "DEFAULT"
         };
-        const user1ID = database[bestIndex]["userid"];
-        const user2ID = database[bestIndex]["userid"];
+        // Note that this doesn't actually delete the user from the collection
+        // Rather, it just ignores that user afterwards.
+        // As long as the user makes sure to clear the meeting once it is complete, this works.
         database.splice(bestIndex, 1);
         database.pop();
     } else {
