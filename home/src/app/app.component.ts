@@ -83,6 +83,7 @@ export class AppComponent {
 
     // Tell the server that we want to be in a meeting.
     requestMeeting() {
+        this.sendDataToServer();
         const myInfo = sessionStorage.getItem("userdata");
         if (myInfo) {
             console.log(myInfo);
