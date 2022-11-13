@@ -18,10 +18,12 @@ export class AppComponent {
     meetingsRef : CollectionReference | undefined;
     meetingsUnsubscribe : any;
     data$ : any;
+    functions : AngularFireFunctions;
     
     callMe() {
         console.log("Calling...");
-        const callable = 
+        const callable = this.functions.httpsCallable("callMe");
+        this.data$ = callable({name: "Ada Lovelace"});
     }
 
     //I based this solution based on this code:
@@ -30,8 +32,9 @@ export class AppComponent {
     //Somehow this works. I don't fully get why.
     // I guess part of it is it is based on the "Get a Document" section at https://firebase.google.com/docs/firestore/query-data/get-data
     constructor(firestore : Firestore, fns: AngularFireFunctions) {
+        this.functions = fns;
         const callable = fns.httpsCallable("executeOnPageLoad");
-        this.data$ = callable({name: "Joseph Parsons"});
+        this.data$ = callable({name: "Charles Babbage"});
 
         /*
         this.data$.subscribe({
@@ -301,9 +304,5 @@ export class AppComponent {
 
     getUsername() : string | null {
         return sessionStorage.getItem("username");
-    }
-
-    callMe() {
-
     }
 }

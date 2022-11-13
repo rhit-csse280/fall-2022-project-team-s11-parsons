@@ -13,7 +13,8 @@ export const environment = {
     authDomain: 'meal-meetings.firebaseapp.com',
     messagingSenderId: '843796174844',
   },
-  production: false
+  production: false,
+  useEmulators: true
 };
 
 /*
