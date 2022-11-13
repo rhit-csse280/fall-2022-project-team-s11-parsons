@@ -19,20 +19,20 @@ exports.callMe = functions.https.onCall((data, context) => {
 */
 
 const fs = require("fs");
-let database = []; // db.json stores the entire database of meeting requests
+
+// I was planning to use db.json to store user data.
+// For now, I'll test whether I can get it working with just JS.
+let database = [];
 /*
 fs.readFile(__dirname + "/db.json", (err, data) => {
     database = JSON.parse(data.toString());
 });
 */
+console.log("Database", database);
 
-fs.writeFileSync("../db.json", "Test");
-
-exports.formAMeeting = functions.firestore.document("/UsersWaitingForMeal/parsonjc")
+exports.formAMeeting = functions.firestore.document("/UsersWaitingForMeal/{userid}")
 .onCreate((snap, context) => {
-    // This should write back to the file.
-    fs.writeFileSync(__dirname + "/db.json", "Test");
-
+    console.log("onCreate called");
     // Get the data
     const myData = snap.data();
     let minutesAfterMidnight = (myData["hour"] % 12) * 60 + myData["minute"];
@@ -40,8 +40,7 @@ exports.formAMeeting = functions.firestore.document("/UsersWaitingForMeal/parson
         minutesAfterMidnight += 60 * 12;
     }
 
-    
-    fs.writeFileSync(__dirname + "/db.json", "Got data");
+    console.log("Checkpoint A");
     // Because users cannot change their preferences once they submit
     // We know that any compatible matches must be with this new user.
     const newElement = {"totalMinutes" : minutesAfterMidnight, "location" : myData["location"], "username" : myData["username"], "userid" : myData["userid"]};
@@ -49,7 +48,7 @@ exports.formAMeeting = functions.firestore.document("/UsersWaitingForMeal/parson
     database.push(newElement);
 
     
-    fs.writeFileSync(__dirname + "/db.json", "Added new element");
+    console.log("Checkpoint B");
     
     // Figure out which users are close enough to form a match.
     let lowestDifferenceScore = 120.5;
@@ -75,7 +74,7 @@ exports.formAMeeting = functions.firestore.document("/UsersWaitingForMeal/parson
     }
 
     
-    fs.writeFileSync(__dirname + "/db.json", "Searching through potential matches");
+    console.log("Checkpoint C");
 
     if (bestIndex != -1) {
         console.log("Found a match!");
@@ -110,6 +109,7 @@ exports.formAMeeting = functions.firestore.document("/UsersWaitingForMeal/parson
         console.log("No available matches");
     }
 
+    console.log("Checkpoint D");
     // This should write back to the file.
     /*
     fs.writeFile(__dirname + "/db.json", JSON.stringify(myData), (err) => {
