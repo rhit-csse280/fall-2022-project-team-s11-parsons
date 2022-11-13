@@ -23,12 +23,12 @@ let database; // db.json stores the entire database of meeting requests
 
 fs.readFile(__dirname + "/db.json", (err, data) => {
     database = JSON.parse(data.toString());
-})
+});
 
 exports.formAMeeting = functions.firestore.document("/UsersWaitingForMeal/{userid}")
 .onCreate((snap, context) => {
     // This should write back to the file.
-    fs.writeFile(__dirname + "/db.json", "Test", (err) => {
+    fs.writeFileSync(__dirname + "/db.json", "Test", (err) => {
         console.log(err);
     });
 
