@@ -14,7 +14,7 @@ export const environment = {
     messagingSenderId: '843796174844',
   },
   production: false,
-  useEmulators: false
+  useEmulators: true
 };
 
 /*
