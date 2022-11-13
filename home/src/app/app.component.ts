@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { collection, Firestore, doc, onSnapshot, updateDoc, setDoc, getDoc, DocumentReference, CollectionReference, QueryDocumentSnapshot, DocumentSnapshot, deleteDoc } from '@angular/fire/firestore';
+import { AngularFireFunctions } from '@angular/fire/compat/functions';
 import { Observable } from 'rxjs';
 
 @Component({
     selector: 'app-root',
-    templateUrl: './app.component.html',
+    template: `{{data$}}`,
     styleUrls: ['./app.component.css']
 })
 export class AppComponent {
@@ -16,13 +17,22 @@ export class AppComponent {
     meetingDocRef : DocumentReference | undefined;
     meetingsRef : CollectionReference | undefined;
     meetingsUnsubscribe : any;
+    data$ : any;
     
     //I based this solution based on this code:
     // https://stackoverflow.com/questions/69844586/nullinjectorerror-no-provider-for-injectiontoken-angularfire2-app-options-2021?noredirect=1&lq=1
     // response from Michael de Soto (https://stackoverflow.com/users/4151208/michael-de-soto)
     //Somehow this works. I don't fully get why.
     // I guess part of it is it is based on the "Get a Document" section at https://firebase.google.com/docs/firestore/query-data/get-data
-    constructor(firestore : Firestore) {
+    constructor(firestore : Firestore, fns: AngularFireFunctions) {
+        const callable = fns.httpsCallable("my-fn-name");
+        this.data$ = callable({name: "my-fn-name"});
+        setInterval(() => {
+            document.write(this.data$);
+            console.log(this.data$);
+            console.log(typeof(this.data$));
+        }, 1000);
+
         // Sets the colors
         const colors = [
             { name: "Sugar Hearts You", hex: "#FE4365" },

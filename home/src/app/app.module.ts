@@ -19,7 +19,8 @@ import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { MeetingInvitationreceivedComponent } from './meeting-invitationreceived/meeting-invitationreceived.component';
-import { FIREBASE_OPTIONS } from '@angular/fire/compat';
+import { FIREBASE_OPTIONS, AngularFireModule } from '@angular/fire/compat';
+import { AngularFireFunctionsModule } from '@angular/fire/compat/functions';
 
 @NgModule({
   declarations: [
