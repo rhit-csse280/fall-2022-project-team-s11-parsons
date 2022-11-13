@@ -89,6 +89,7 @@ export class AppComponent {
             const tmpDocRef = doc(this.myFirestore, "UsersWaitingForMeal", this.getUsername() || "ANONYMOUS");
             const myInfoObject = JSON.parse(myInfo);
             myInfoObject["userid"] = sessionStorage.getItem("username");
+            setDoc(tmpDocRef, myInfoObject);
         }
     }
 
