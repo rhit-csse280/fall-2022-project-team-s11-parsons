@@ -20,7 +20,8 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { MeetingInvitationreceivedComponent } from './meeting-invitationreceived/meeting-invitationreceived.component';
 import { FIREBASE_OPTIONS, AngularFireModule } from '@angular/fire/compat';
-import { AngularFireFunctionsModule, ORIGIN } from '@angular/fire/compat/functions';
+import { AngularFireFunctionsModule } from '@angular/fire/compat/functions';
+import { USE_EMULATOR as USE_FUNCTIONS_EMULATOR } from '@angular/fire/compat/functions';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,9 @@ import { AngularFireFunctionsModule, ORIGIN } from '@angular/fire/compat/functio
     AppRoutingModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
-    provideFirestore(() => getFirestore())
+    provideFirestore(() => getFirestore()),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireFunctionsModule
   ],
   //I looked at https://stackoverflow.com/questions/66252333/error-nullinjectorerror-r3injectorerrorappmodule
   //However, https://stackoverflow.com/questions/69844586/nullinjectorerror-no-provider-for-injectiontoken-angularfire2-app-options-2021?noredirect=1&lq=1 provided the answer.
@@ -51,7 +54,7 @@ import { AngularFireFunctionsModule, ORIGIN } from '@angular/fire/compat/functio
   //I do not understand what it is doing, but it is doing someting to resolve version conflicts.
   providers: [
     {provide: FIREBASE_OPTIONS, useValue: environment.firebase},
-    {provide: ORIGIN, useValue: 'https://localhost:4200'}
+    {provide: USE_FUNCTIONS_EMULATOR, useValue: (environment as any).useEmulators ? ['localhost', 5001] : undefined}
   ],
   bootstrap: [AppComponent]
 })
