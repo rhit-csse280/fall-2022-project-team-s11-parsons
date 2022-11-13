@@ -14,6 +14,7 @@ export class MeetingAwaitingconfirmationComponent implements OnInit {
     constructor() { }
 
     ngOnInit(): void {
+        this.setInformation();
     }
 
     // Based on the information in session storage, display this component.

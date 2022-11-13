@@ -251,7 +251,11 @@ export class AppComponent {
                             newMeetingStatus = "2ACC1";
                         }
                     } else if (buttonPressedName == "Decline") {
-                        newMeetingStatus = "NOT2";
+                        if (ourUserNumber == 1) {
+                            newMeetingStatus = "NOT2";
+                        } else {
+                            newMeetingStatus = "NOT1";
+                        }
                     }
                 } else if (meetingStatus == "1ACC2") {
                     if (buttonPressedName == "Cancel" || buttonPressedName == "Decline") {

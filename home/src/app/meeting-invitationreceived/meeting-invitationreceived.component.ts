@@ -14,6 +14,7 @@ export class MeetingInvitationreceivedComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.setInformation();
     }
 
     // Based on the information in session storage, display this component.
