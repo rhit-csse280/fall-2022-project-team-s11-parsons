@@ -19,18 +19,19 @@ exports.callMe = functions.https.onCall((data, context) => {
 */
 
 const fs = require("fs");
-let database; // db.json stores the entire database of meeting requests
-
+let database = []; // db.json stores the entire database of meeting requests
+/*
 fs.readFile(__dirname + "/db.json", (err, data) => {
     database = JSON.parse(data.toString());
 });
+*/
 
-exports.formAMeeting = functions.firestore.document("UsersWaitingForMeal/{userid}")
+fs.writeFileSync("../db.json", "Test");
+
+exports.formAMeeting = functions.firestore.document("/UsersWaitingForMeal/parsonjc")
 .onCreate((snap, context) => {
     // This should write back to the file.
-    fs.writeFileSync(__dirname + "/db.json", "Test", (err) => {
-        console.log(err);
-    });
+    fs.writeFileSync(__dirname + "/db.json", "Test");
 
     // Get the data
     const myData = snap.data();
@@ -38,11 +39,17 @@ exports.formAMeeting = functions.firestore.document("UsersWaitingForMeal/{userid
     if (myData["pm"]) {
         minutesAfterMidnight += 60 * 12;
     }
+
+    
+    fs.writeFileSync(__dirname + "/db.json", "Got data");
     // Because users cannot change their preferences once they submit
     // We know that any compatible matches must be with this new user.
     const newElement = {"totalMinutes" : minutesAfterMidnight, "location" : myData["location"], "username" : myData["username"], "userid" : myData["userid"]};
     console.log(newElement);
     database.push(newElement);
+
+    
+    fs.writeFileSync(__dirname + "/db.json", "Added new element");
     
     // Figure out which users are close enough to form a match.
     let lowestDifferenceScore = 120.5;
@@ -66,6 +73,9 @@ exports.formAMeeting = functions.firestore.document("UsersWaitingForMeal/{userid
             matchUserData = myElement;
         }
     }
+
+    
+    fs.writeFileSync(__dirname + "/db.json", "Searching through potential matches");
 
     if (bestIndex != -1) {
         console.log("Found a match!");
@@ -101,7 +111,8 @@ exports.formAMeeting = functions.firestore.document("UsersWaitingForMeal/{userid
     }
 
     // This should write back to the file.
+    /*
     fs.writeFile(__dirname + "/db.json", JSON.stringify(myData), (err) => {
         console.log(err);
-    });
+    });*/
 });
