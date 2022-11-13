@@ -9,6 +9,20 @@ import { Observable } from 'rxjs';
     styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+    /*
+    These sources below were used for getting the cloud functions working:
+    https://firebase.google.com/docs/functions/get-started
+    https://github.com/angular/angularfire/blob/master/docs/functions/functions.md
+    https://firebase.blog/posts/2018/09/introducing-rxfire-easy-async-firebase
+    https://firebase.google.com/docs/functions/firestore-events
+    https://www.educba.com/observable-javascript/
+    https://stackoverflow.com/questions/47732157/using-observable-and-subscribe-in-angular-with-firebase
+    https://stackoverflow.com/questions/58886755/how-do-i-use-cloud-functions-with-an-angular-fire-project?rq=1
+    https://stackoverflow.com/questions/74009031/how-to-call-firebase-cloud-functions-from-angular-and-angularfire
+    https://github.com/tdkehoe/Firebase-Cloud-Functions-with-Angular/blob/main/README.md
+    https://firebase.blog/posts/2018/09/introducing-rxfire-easy-async-firebase
+    https://stackoverflow.com/questions/69366517/could-not-detect-language-for-functions-at-functions
+    */
     title : string = 'Meal Meetings';
     myFirestore : Firestore; // used to represent the firestore object.
     unsubscribe: any;
