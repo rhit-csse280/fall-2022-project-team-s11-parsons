@@ -60,7 +60,7 @@ exports.formAMeeting = functions.firestore.document("/UsersWaitingForMeal/{useri
         if (timeDifference < 0) {
             timeDifference = -timeDifference;
         }
-        if (timeDifference < 12 * 60) {
+        if (timeDifference > 12 * 60) {
             timeDifference = 24 * 60 - timeDifference;
         }
         const locationDifference = (myElement["location"] == newElement["location"]) ? 0 : 60;
@@ -80,7 +80,7 @@ exports.formAMeeting = functions.firestore.document("/UsersWaitingForMeal/{useri
         console.log("Found a match!");
         const minutesAfterMidnight = matchUserData["totalMinutes"];
         const otherMinute = minutesAfterMidnight % 60;
-        const otherHour = (minutesAfterMidnight - otherMinute) / 60;
+        let otherHour = (minutesAfterMidnight - otherMinute) / 60;
         const otherPM = (otherHour >= 12);
         if (otherPM) {
             otherHour -= 12;
@@ -98,7 +98,7 @@ exports.formAMeeting = functions.firestore.document("/UsersWaitingForMeal/{useri
             "pmB" : otherPM,
             "locationB" : myData["location"],
             "user1" : myData["username"],
-            "user2" : myElement["username"],
+            "user2" : matchUserData["username"],
             "status" : "DEFAULT"
         };
         // Note that this doesn't actually delete the user from the collection
