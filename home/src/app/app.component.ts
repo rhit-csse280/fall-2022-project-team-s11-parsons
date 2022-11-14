@@ -303,7 +303,7 @@ export class AppComponent {
                     if (buttonPressedName == "Cancel" || buttonPressedName == "Decline") {
                         newMeetingStatus = "FAILURE";
                     } else if (buttonPressedName == "Accept") {
-                        newMeetingStatus = "NOT2-12ACC2";
+                        newMeetingStatus = "NOT2-12ACC1";
                     }
                 } else if (meetingStatus == "NOT2-12ACC1" || meetingStatus == "NOT2-12ACC2") {
                     if (buttonPressedName == "Cancel") {
