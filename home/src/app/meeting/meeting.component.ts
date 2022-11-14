@@ -54,7 +54,7 @@ export class MeetingComponent implements OnInit {
                 this.state = (userNumber == 1) ? "AWAITINGCONFIRMATION" : "INVITATIONRECEIVED";
                 this.meetingInfoSource = "B";
             } else if (meetingInfo["status"] == "NOT1-2ACC2") {
-                this.state = (userNumber == 1) ? "AWAITINGCONFIRMATION" : "INVITATIONRECEIVED";
+                this.state = (userNumber == 2) ? "AWAITINGCONFIRMATION" : "INVITATIONRECEIVED";
                 this.meetingInfoSource = "B";
             } else if (meetingInfo["status"] == "NOT2-12ACC1") {
                 this.state = "CONFIRMED";

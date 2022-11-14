@@ -316,7 +316,7 @@ export class AppComponent {
                 }
                 if (newMeetingStatus == "SUCCESS" || newMeetingStatus == "FAILURE") {
                     const myMeetingRequest = doc(this.myFirestore, "UsersWaitingForMeal", this.getUsername() || "ANONYMOUS");
-                    deleteDoc(meetingStatus);
+                    deleteDoc(myMeetingRequest);
                 }
             }
         }
@@ -324,6 +324,7 @@ export class AppComponent {
 
     // This tells the server to delete our account.
     requestAccountDeletion() {
+        console.log("Deleting an account now...");
         if (this.docRef) {
             deleteDoc(this.docRef);
         }
