@@ -28,11 +28,20 @@ export class SetupComponent implements OnInit {
     }
 
     deleteAccountAndRedirect() {
+        //Sign out
+        sessionStorage.removeItem("userdata");
+        sessionStorage.removeItem("meetingdata");
+        sessionStorage.removeItem("username");
+        sessionStorage.removeItem("usernumber");
+        //Delete account
         const button = document.getElementById("uselessButtonDeleteAccount");
         if (button) {
             button.click();
             alert("I'm sorry, but you have to accept the Terms of Service to have a Meal Meetings account. If you have any objections to the Terms of Service, email josephcpar@gmail.com.");
-            window.location.href = "/";
+            // Redirect the page in 1 second.
+            setTimeout(() => {
+                window.location.href = "/";
+            }, 1000);
         }
     }
 }

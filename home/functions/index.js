@@ -97,7 +97,7 @@ exports.formAMeeting = functions.firestore.document("/UsersWaitingForMeal/{useri
             "hourB" : otherHour,
             "minuteB" : otherMinute,
             "pmB" : otherPM,
-            "locationB" : myData["location"],
+            "locationB" : String(matchUserData["location"]),
             "user1" : myData["username"],
             "user2" : matchUserData["username"],
             "status" : "DEFAULT"
