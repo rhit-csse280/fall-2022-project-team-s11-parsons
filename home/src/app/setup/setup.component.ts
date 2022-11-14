@@ -13,7 +13,7 @@ export class SetupComponent implements OnInit {
         // Hide the navbar every second
         // This doesn't do much really other than verify for certain that it is hidden.
         setInterval(() => {
-            const navbar = document.getElementById("backgroundDiv");
+            const navbar = document.getElementById("myNavbarDiv");
             if (navbar) {
                 navbar.style.display = "hidden";
             }

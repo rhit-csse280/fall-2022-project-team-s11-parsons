@@ -12,7 +12,7 @@
         <button id="uselessButtonDeleteAccount" (click)="requestAccountDeletion();"></button>
         <button id="uselessButtonRequestMeeting" (click)="requestMeeting();"></button>
     </div>
-    <div *ngIf="getUsername()">
+    <div *ngIf="getUsername()" id="myNavbarDiv">
         <app-navbar></app-navbar>
     </div>
     <router-outlet></router-outlet>
