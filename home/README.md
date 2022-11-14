@@ -1,27 +1,37 @@
-# Home
+# Welcome to Meal Meetings
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.6.
+## Description
+This project was created by Joseph Parsons as part of the CSSE280 course. Meal Meetings is an app intended to help people find another person to eat with, preferably on-campus, but off-campus also works. This is useful for people who are busy and don't have much time to meet new people or for people who don't like to eat alone.
 
-## Development server
+Note that this is intended for Rose-Hulman students, not faculty or staff. Authentication is done via Rosefire.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Attributions
+This code is licensed under the CC-BY-NC-SA license. For each of these below, there are way too many changes to be able to reasonably describe every single change used in incorporating the material into my work. However, a limited attempt to do so will be made here. Keep in mind that some of these component attributions may be incorrect by mistake or some component attributions may be omitted. Despite this, I do think that these do list all of the sources for the Figma components that are ever visible on screen.
 
-## Code scaffolding
+If any of the Creative Commons attributions was poorly done, then this will likely fall under the fair use doctrine, since
+This is an educational, non-commercial product.
+The use of individual components should not reasonably be expected to harm the market value for these creations.
+The use of these components is transformative, as it is used in a completely new app.
+Only a small fraction of the available components are actually used.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+The background image is from Pixabay.
 
-## Build
+iOS 16 UI Kit created by Marcelo de Araújo licensed under CC BY 4.0
+I used an alert dialog box (for Deleting Account warning), Tab Bar (for the four tabs on the screen), top navigational bar (for the little icons at the very top of the screen), probably all of the buttons as well? The fonts and color schemes have changed significantly.
+ 
+Best Practice Design System - Forms created by Daris Ali Mufti licensed under CC BY 4.0
+I used the default input to display people’s profiles. The font and color scheme changed.
+ 
+Apple IOS 16 UI Kit created by Osama Zidan licensed under CC BY 4.0
+I used the time selector (for meeting time) and a text field (for meeting location). The font and color scheme changed.
+ 
+Icons Set created by Henrich P licensed under CC BY 4.0
+I used icons for Profile, Meeting, Prompt, and Info. These icons have been copied without modification.
+ 
+FOOD APP UI DESIGN created by Rakesh Mishra licensed under CC BY 4.0
+I did not use any of the components from here, but I did use it as a reference. Notably, I put an image of food in the background of the home page.
+ 
+(???) created by sugar! licensed under CC-BY-NC-SA
+This color scheme was used throughout the project.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
