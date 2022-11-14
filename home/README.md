@@ -35,7 +35,32 @@ I did not use any of the components from here, but I did use it as a reference. 
 This color scheme was used throughout the project.
 
 ## Coding Sources
-These should include most of the sources I used. I apologize if I forgot any source below:
+These should include most of the sources I used. Note that I am generally excluding tutorials on basic features, such as
+ - W3Schools
+ - Bootstrap documentation
+ - Firebase documentation
 
+Learning About the Data "Budget": https://web.dev/performance-budgets-with-the-angular-cli/
+Figuring out why hosting was stalling: https://github.com/firebase/firebase-tools/issues/3327
 
+Cloud Functions:
+https://firebase.google.com/docs/functions/get-started
+https://github.com/angular/angularfire/blob/master/docs/functions/functions.md
+https://firebase.blog/posts/2018/09/introducing-rxfire-easy-async-firebase
+https://firebase.google.com/docs/functions/firestore-events
+https://www.educba.com/observable-javascript/
+https://stackoverflow.com/questions/47732157/using-observable-and-subscribe-in-angular-with-firebase
+https://stackoverflow.com/questions/58886755/how-do-i-use-cloud-functions-with-an-angular-fire-project?rq=1
+https://stackoverflow.com/questions/74009031/how-to-call-firebase-cloud-functions-from-angular-and-angularfire
+https://github.com/tdkehoe/Firebase-Cloud-Functions-with-Angular/blob/main/README.md
+https://firebase.blog/posts/2018/09/introducing-rxfire-easy-async-firebase
+https://stackoverflow.com/questions/69366517/could-not-detect-language-for-functions-at-functions
 
+For Cloud Functions, the ones that were particularly useful are visible in the Technical Document.
+
+Managing Version Control for AngularFire:
+The most helpful was the response from Michael de Soto (https://stackoverflow.com/users/4151208/michael-de-soto) at
+https://stackoverflow.com/questions/69844586/nullinjectorerror-no-provider-for-injectiontoken-angularfire2-app-options-2021?noredirect=1&lq=1
+They based their solution based on the documentation at https://firebase.google.com/docs/firestore/query-data/get-data
+
+More Sources for Managing Version Control for AngularFire:
