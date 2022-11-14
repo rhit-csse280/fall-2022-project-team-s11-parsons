@@ -13,7 +13,7 @@ export class SetupComponent implements OnInit {
         console.log("Don't navigate to other pages just yet.");
         const navbar = document.getElementById("myNavbarDiv");
         if (navbar) {
-            navbar.style.display = "hidden";
+            navbar.style.display = "none";
         }
     }
 
