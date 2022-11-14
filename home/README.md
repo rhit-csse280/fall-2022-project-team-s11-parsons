@@ -64,3 +64,14 @@ https://stackoverflow.com/questions/69844586/nullinjectorerror-no-provider-for-i
 They based their solution based on the documentation at https://firebase.google.com/docs/firestore/query-data/get-data
 
 More Sources for Managing Version Control for AngularFire:
+https://stackoverflow.com/questions/66252333/error-nullinjectorerror-r3injectorerrorappmodule
+https://github.com/angular/angularfire/
+https://ada.csse.rose-hulman.edu/rosefire/javascript-sdk
+https://stackoverflow.com/questions/60455433/property-auth-does-not-exist-on-type-angularfireauth
+https://github.com/angular/angularfire/issues/2409#issuecomment-615993136
+https://github.com/squireaj/angularFireAuth
+https://www.npmjs.com/package/@angular/fire
+https://github.com/IdanCo/angularfire2
+https://stackoverflow.com/questions/66252333/error-nullinjectorerror-r3injectorerrorappmodule
+https://stackoverflow.com/questions/51656933/angular-6-and-firebase-angularfireauth
+https://stackoverflow.com/questions/55241779/nullinjectorerror-no-provider-for-injectiontoken-angularfire2-app-options

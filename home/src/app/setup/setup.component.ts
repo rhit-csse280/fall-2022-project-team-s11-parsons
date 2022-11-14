@@ -9,15 +9,18 @@ export class SetupComponent implements OnInit {
 
     constructor() { }
 
+    hideNavbar() : void {
+        console.log("Don't navigate to other pages just yet.");
+        const navbar = document.getElementById("myNavbarDiv");
+        if (navbar) {
+            navbar.style.display = "hidden";
+        }
+    }
+
     ngOnInit(): void {
         // Hide the navbar every second
         // This doesn't do much really other than verify for certain that it is hidden.
-        setInterval(() => {
-            const navbar = document.getElementById("myNavbarDiv");
-            if (navbar) {
-                navbar.style.display = "hidden";
-            }
-        }, 1000);
+        setInterval(this.hideNavbar, 100);
     }
 
     getColor(colorName: string): string {
