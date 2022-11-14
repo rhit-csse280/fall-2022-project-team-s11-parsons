@@ -34,4 +34,8 @@ I did not use any of the components from here, but I did use it as a reference. 
 (???) created by sugar! licensed under CC-BY-NC-SA
 This color scheme was used throughout the project.
 
+## Coding Sources
+These should include most of the sources I used. I apologize if I forgot any source below:
+
+
 
