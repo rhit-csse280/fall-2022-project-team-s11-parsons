@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class MeetingConfirmationComponent implements OnInit {
     @Input() meetingSource : string | undefined;
 
-    images = [{url: "/assets/PercopoHall3.PNG", width: 1358, height: 1046}]
+    images = [{url: "/assets/'Rose-Hulman Map'.PNG", width: 1358, height: 1046}]
     index: number = 0;
     myProportionX: number = 0;
     myProportionY: number = 0;
@@ -39,6 +39,7 @@ export class MeetingConfirmationComponent implements OnInit {
         this.myProportionX = userPosition["propX"];
         this.myProportionY = userPosition["propY"];
         console.log(userPosition);
+        this.setInformation();
     }
 
     getColor(colorName: string): string {
